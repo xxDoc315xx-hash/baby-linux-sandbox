@@ -33,6 +33,28 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
   const [isReady, setIsReady] = useState<boolean>(false);
   const [isBlinking, setIsBlinking] = useState<boolean>(false);
 
+  // Suppress unhandled texture loading errors from PIXI/Live2D loader
+  useEffect(() => {
+    const handleTextureError = (e: any) => {
+      const msg = e?.message || e?.reason?.message || e?.reason || "";
+      if (
+        typeof msg === "string" &&
+        (msg.includes("Texture loading error") || msg.includes("texture") || msg.includes("Live2D"))
+      ) {
+        if (typeof e?.preventDefault === "function") e.preventDefault();
+        console.warn("Handled Live2D texture loading note gracefully:", msg);
+      }
+    };
+
+    window.addEventListener("error", handleTextureError);
+    window.addEventListener("unhandledrejection", handleTextureError);
+
+    return () => {
+      window.removeEventListener("error", handleTextureError);
+      window.removeEventListener("unhandledrejection", handleTextureError);
+    };
+  }, []);
+
   // Eye blinking timer for vector fallback
   useEffect(() => {
     const blinkInterval = setInterval(() => {
@@ -107,6 +129,7 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         try {
           model = await Live2DModel.from(modelSource, {
             autoInteract: true,
+            crossOrigin: "anonymous",
             onError: (err: any) => {
               console.warn("Live2D texture or resource note:", err);
             },
@@ -118,6 +141,7 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
             try {
               model = await Live2DModel.from("/hiyori/Hiyori.model3.json", {
                 autoInteract: true,
+                crossOrigin: "anonymous",
                 onError: (err: any) => console.warn("Fallback texture note:", err),
               });
             } catch (fallbackErr) {
