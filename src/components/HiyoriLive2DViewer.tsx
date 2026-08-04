@@ -103,11 +103,40 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         }
 
         setIsReady(false);
-        const model = await Live2DModel.from(modelSource, {
-          autoInteract: true,
-        });
+        let model: any = null;
+        try {
+          model = await Live2DModel.from(modelSource, {
+            autoInteract: true,
+            onError: (err: any) => {
+              console.warn("Live2D texture or resource note:", err);
+            },
+          });
+        } catch (loadErr) {
+          console.warn("Primary Live2D model texture/load error:", loadErr);
+          // Fallback to default Hiyori model if primary model (CDN or custom) fails
+          if (model3JsonUrl !== "/hiyori/Hiyori.model3.json") {
+            try {
+              model = await Live2DModel.from("/hiyori/Hiyori.model3.json", {
+                autoInteract: true,
+                onError: (err: any) => console.warn("Fallback texture note:", err),
+              });
+            } catch (fallbackErr) {
+              console.warn("Fallback Live2D model load error:", fallbackErr);
+            }
+          }
+        }
 
         if (!isMounted) return;
+
+        if (!model) {
+          setIsReady(false);
+          return;
+        }
+
+        // Attach error event listener on model instance if available
+        if (typeof model.on === "function") {
+          model.on("error", (err: any) => console.warn("Live2D model runtime error:", err));
+        }
 
         modelRef.current = model;
         app.stage.addChild(model);
