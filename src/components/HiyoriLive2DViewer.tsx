@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { motion } from "motion/react";
-import { Sparkles } from "lucide-react";
+import { Loader2, AlertCircle } from "lucide-react";
 
 interface HiyoriLive2DViewerProps {
   model3JsonUrl?: string;
@@ -14,8 +13,12 @@ interface HiyoriLive2DViewerProps {
 declare global {
   interface Window {
     PIXI: any;
+    Live2DCubismCore: any;
   }
 }
+
+// Global flag to ensure ticker is registered only once
+let isTickerRegistered = false;
 
 export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
   model3JsonUrl = "/hiyori/Hiyori.model3.json",
@@ -30,82 +33,68 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
   const modelRef = useRef<any>(null);
   const appRef = useRef<any>(null);
 
-  const [isReady, setIsReady] = useState<boolean>(false);
-  const [isBlinking, setIsBlinking] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  // Suppress unhandled texture loading errors from PIXI/Live2D loader
-  useEffect(() => {
-    const handleTextureError = (e: any) => {
-      const msg = e?.message || e?.reason?.message || e?.reason || "";
-      if (
-        typeof msg === "string" &&
-        (msg.includes("Texture loading error") || msg.includes("texture") || msg.includes("Live2D"))
-      ) {
-        if (typeof e?.preventDefault === "function") e.preventDefault();
-        console.warn("Handled Live2D texture loading note gracefully:", msg);
-      }
-    };
-
-    window.addEventListener("error", handleTextureError);
-    window.addEventListener("unhandledrejection", handleTextureError);
-
-    return () => {
-      window.removeEventListener("error", handleTextureError);
-      window.removeEventListener("unhandledrejection", handleTextureError);
-    };
-  }, []);
-
-  // Eye blinking timer for vector fallback
-  useEffect(() => {
-    const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => setIsBlinking(false), 180);
-    }, 4000);
-    return () => clearInterval(blinkInterval);
-  }, []);
-
-  // Initialize PixiJS WebGL Live2D Engine
   useEffect(() => {
     let isMounted = true;
-    let attempts = 0;
 
     const initLive2D = async () => {
-      while (attempts < 10) {
-        if (window.PIXI && window.PIXI.live2d && window.PIXI.live2d.Live2DModel) {
+      setLoading(true);
+      setErrorMsg(null);
+
+      // Wait for window.PIXI, window.PIXI.live2d, and window.Live2DCubismCore
+      let attempts = 0;
+      while (attempts < 25) {
+        if (
+          window.PIXI &&
+          window.PIXI.live2d &&
+          window.PIXI.live2d.Live2DModel &&
+          window.Live2DCubismCore
+        ) {
           break;
         }
-        await new Promise((res) => setTimeout(res, 300));
+        await new Promise((res) => setTimeout(res, 200));
         attempts++;
       }
 
       if (!isMounted) return;
 
       if (!window.PIXI || !window.PIXI.live2d || !window.PIXI.live2d.Live2DModel) {
-        console.warn("Live2D WebGL SDK not ready, presenting high-fidelity vector mentor.");
+        setErrorMsg("Live2D Cubism runtime script missing or failed to initialize.");
+        setLoading(false);
         return;
       }
 
       if (!canvasRef.current) return;
 
       try {
-        const Live2DModel = window.PIXI.live2d.Live2DModel;
+        const { Live2DModel, cubism4Ready } = window.PIXI.live2d;
 
-        // Register Pixi Ticker if available
-        if (window.PIXI.Ticker && typeof Live2DModel.registerTicker === "function") {
-          try {
-            Live2DModel.registerTicker(window.PIXI.Ticker);
-          } catch (_) {}
+        // Ensure Cubism4 Core is initialized before model creation
+        if (typeof cubism4Ready === "function") {
+          await cubism4Ready();
         }
 
-        // Destroy old app if exists
+        // Register Ticker once
+        if (!isTickerRegistered && window.PIXI.Ticker && typeof Live2DModel.registerTicker === "function") {
+          try {
+            Live2DModel.registerTicker(window.PIXI.Ticker);
+            isTickerRegistered = true;
+          } catch (e) {
+            console.warn("Ticker registration note:", e);
+          }
+        }
+
+        // Clean up previous app if re-initializing
         if (appRef.current) {
           try {
-            appRef.current.destroy(true);
+            appRef.current.destroy(true, { children: true, texture: false, baseTexture: false });
           } catch (_) {}
           appRef.current = null;
         }
 
-        // Create PIXI Application
+        // Create PIXI Application on canvas element
         const app = new window.PIXI.Application({
           view: canvasRef.current,
           width: width,
@@ -118,34 +107,29 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
 
         appRef.current = app;
 
-        // Load Live2D Model (Supports URL or uploaded local File array/FileList)
+        // Determine model source
         let modelSource: any = model3JsonUrl;
         if (customFiles && customFiles.length > 0) {
           modelSource = Array.from(customFiles);
         }
 
-        setIsReady(false);
         let model: any = null;
         try {
           model = await Live2DModel.from(modelSource, {
+            autoUpdate: true,
             autoInteract: true,
-            crossOrigin: "anonymous",
-            onError: (err: any) => {
-              console.warn("Live2D texture or resource note:", err);
-            },
           });
-        } catch (loadErr) {
-          console.warn("Primary Live2D model texture/load error:", loadErr);
-          // Fallback to default Hiyori model if primary model (CDN or custom) fails
+        } catch (primaryErr: any) {
+          console.warn("Primary Live2D model load issue:", primaryErr);
+          // If primary model URL is not default, try fallback to /hiyori/Hiyori.model3.json
           if (model3JsonUrl !== "/hiyori/Hiyori.model3.json") {
             try {
               model = await Live2DModel.from("/hiyori/Hiyori.model3.json", {
+                autoUpdate: true,
                 autoInteract: true,
-                crossOrigin: "anonymous",
-                onError: (err: any) => console.warn("Fallback texture note:", err),
               });
-            } catch (fallbackErr) {
-              console.warn("Fallback Live2D model load error:", fallbackErr);
+            } catch (fallbackErr: any) {
+              console.error("Fallback Live2D model failed:", fallbackErr);
             }
           }
         }
@@ -153,43 +137,40 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         if (!isMounted) return;
 
         if (!model) {
-          setIsReady(false);
+          setErrorMsg("Failed to compile Live2D model mesh & textures.");
+          setLoading(false);
           return;
-        }
-
-        // Attach error event listener on model instance if available
-        if (typeof model.on === "function") {
-          model.on("error", (err: any) => console.warn("Live2D model runtime error:", err));
         }
 
         modelRef.current = model;
         app.stage.addChild(model);
 
-        // Scale & Center with robust fallbacks using internalModel dimensions or bounds
-        const origW = model.internalModel?.originalWidth || model.width || 500;
-        const origH = model.internalModel?.originalHeight || model.height || 600;
+        // Scale and position model nicely within container
+        const origW = model.width || model.internalModel?.originalWidth || 500;
+        const origH = model.height || model.internalModel?.originalHeight || 600;
+
         const scaleX = (width * 0.85) / origW;
-        const scaleY = (height * 0.95) / origH;
-        const fitScale = isFinite(Math.min(scaleX, scaleY)) && Math.min(scaleX, scaleY) > 0 ? Math.min(scaleX, scaleY) : 0.25;
+        const scaleY = (height * 0.92) / origH;
+        const fitScale = Math.min(scaleX, scaleY);
 
         if (model.scale && typeof model.scale.set === "function") {
           model.scale.set(fitScale);
         }
 
-        // Safely set anchor or pivot without throwing errors on PIXI.Container
         if (model.anchor && typeof model.anchor.set === "function") {
           model.anchor.set(0.5, 0.45);
-        } else if (model.pivot && typeof model.pivot.set === "function") {
-          model.pivot.set(origW * 0.5, origH * 0.45);
         }
 
         model.x = width / 2;
         model.y = height / 2;
 
-        setIsReady(true);
-      } catch (err) {
-        console.warn("Live2D initialization note:", err);
-        setIsReady(false);
+        setLoading(false);
+      } catch (err: any) {
+        console.error("Live2D WebGL initialization error:", err);
+        if (isMounted) {
+          setErrorMsg(err?.message || "WebGL context error during Live2D setup.");
+          setLoading(false);
+        }
       }
     };
 
@@ -197,16 +178,22 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
 
     return () => {
       isMounted = false;
+      if (modelRef.current) {
+        try {
+          modelRef.current.destroy();
+        } catch (_) {}
+        modelRef.current = null;
+      }
       if (appRef.current) {
         try {
-          appRef.current.destroy(true);
+          appRef.current.destroy(true, { children: true, texture: false, baseTexture: false });
         } catch (_) {}
         appRef.current = null;
       }
     };
   }, [model3JsonUrl, customFiles, width, height]);
 
-  // Head / Eye Tracking on Mouse Move
+  // Head & Eye focus on mouse move
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (modelRef.current && containerRef.current) {
@@ -214,7 +201,9 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
         const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
         try {
-          modelRef.current.focus(mouseX * 2, mouseY * 2);
+          if (typeof modelRef.current.focus === "function") {
+            modelRef.current.focus(mouseX * 2, mouseY * 2);
+          }
         } catch (_) {}
       }
     };
@@ -223,33 +212,32 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
-  // WebGL Lip Sync
+  // WebGL Lip Sync during speech
   useEffect(() => {
     let interval: any;
-    const updateLipSync = (val: number) => {
+    const setMouthOpen = (val: number) => {
       try {
         const core = modelRef.current?.internalModel?.coreModel;
         if (!core) return;
-        if (typeof core.getParameterIndex === "function") {
-          const idx = core.getParameterIndex("ParamMouthOpenY");
-          if (idx !== -1 && typeof core.setParameterValueByIndex === "function") {
-            core.setParameterValueByIndex(idx, val);
-            return;
-          }
-        }
+
         if (typeof core.setParameterValueById === "function") {
           core.setParameterValueById("ParamMouthOpenY", val);
+        } else if (typeof core.setParameterValueByIndex === "function") {
+          const idx = core.getParameterIndex ? core.getParameterIndex("ParamMouthOpenY") : -1;
+          if (idx !== -1) {
+            core.setParameterValueByIndex(idx, val);
+          }
         }
       } catch (_) {}
     };
 
     if (isSpeaking && modelRef.current) {
       interval = setInterval(() => {
-        const val = Math.random() * 0.8 + 0.2;
-        updateLipSync(val);
+        const val = Math.random() * 0.75 + 0.2;
+        setMouthOpen(val);
       }, 90);
     } else if (modelRef.current) {
-      updateLipSync(0);
+      setMouthOpen(0);
     }
 
     return () => {
@@ -260,134 +248,33 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
   return (
     <div
       ref={containerRef}
-      className={`relative flex items-center justify-center ${className}`}
+      className={`relative flex items-center justify-center overflow-hidden ${className}`}
       style={{ width, height }}
     >
-      {/* WebGL Canvas (When Live2D Cubism is Active) */}
+      {/* Loading indicator while WebGL compiles Live2D model */}
+      {loading && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-900/60 backdrop-blur-sm rounded-xl border border-amber-500/20 text-amber-300 z-20">
+          <Loader2 className="w-8 h-8 animate-spin text-amber-400 mb-2" />
+          <span className="text-xs font-mono tracking-wider">Compiling WebGL Live2D Mesh...</span>
+        </div>
+      )}
+
+      {/* Error State if WebGL or scripts fail */}
+      {errorMsg && !loading && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-slate-900/80 rounded-xl border border-rose-500/30 text-rose-300 z-20 text-center">
+          <AlertCircle className="w-7 h-7 text-rose-400 mb-2" />
+          <span className="text-xs font-semibold text-rose-200">Live2D WebGL Error</span>
+          <span className="text-[11px] text-slate-400 mt-1 line-clamp-2">{errorMsg}</span>
+        </div>
+      )}
+
+      {/* Pure WebGL Live2D Canvas */}
       <canvas
         ref={canvasRef}
-        className={`w-full h-full transition-opacity duration-700 ${
-          isReady ? "opacity-100 relative z-10" : "opacity-0 absolute inset-0 pointer-events-none"
-        }`}
+        className="w-full h-full block relative z-10"
       />
-
-      {/* Immediate Render Vector Hiyori (Active until WebGL takes over or as primary fallback) */}
-      <div className={`w-full h-full flex items-center justify-center ${isReady ? "hidden" : "block"}`}>
-        <svg
-          width={width}
-          height={height}
-          viewBox="0 0 220 260"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="drop-shadow-[0_0_25px_rgba(245,158,11,0.35)]"
-        >
-          {/* Glowing Background Aura */}
-          <circle cx="110" cy="110" r="95" fill="url(#hiyori_vector_glow)" opacity="0.65" />
-
-          {/* Back Hair */}
-          <path d="M38 85 C28 140 34 220 48 255 L172 255 C186 220 192 140 182 85 Z" fill="#4a2c11" />
-
-          {/* Beige Cardigan Sweater */}
-          <path d="M48 255 L68 152 L152 152 L172 255 Z" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2" />
-
-          {/* Dark Blue Sailor Collar */}
-          <path d="M70 152 L110 210 L150 152 L136 152 L110 190 L84 152 Z" fill="#1e3a8a" stroke="#2563eb" strokeWidth="1.5" />
-
-          {/* Inner Shirt & Ribbon */}
-          <polygon points="98,152 122,152 110,178" fill="#ffffff" />
-          <path d="M104 172 L90 225 L108 215 L110 182 Z" fill="#3b82f6" />
-          <path d="M116 172 L130 225 L112 215 L110 182 Z" fill="#2563eb" />
-          <circle cx="110" cy="176" r="4.5" fill="#fbbf24" stroke="#d97706" strokeWidth="1" />
-
-          {/* Cardigan Buttons */}
-          <circle cx="88" cy="205" r="2.5" fill="#d97706" />
-          <circle cx="88" cy="232" r="2.5" fill="#d97706" />
-
-          {/* Neck */}
-          <rect x="97" y="128" width="26" height="30" fill="#fff3eb" rx="4" />
-
-          {/* Head Structure */}
-          <rect x="62" y="38" width="96" height="100" rx="48" fill="#fff5eb" stroke="#fed7aa" strokeWidth="2" />
-
-          {/* Ears */}
-          <ellipse cx="59" cy="88" rx="5" ry="8" fill="#ffedd5" />
-          <ellipse cx="161" cy="88" rx="5" ry="8" fill="#ffedd5" />
-
-          {/* Hiyori Warm Amber Eyes */}
-          {!isBlinking ? (
-            <>
-              {/* Left Eye */}
-              <ellipse cx="88" cy="84" rx="11" ry="14" fill="#ffffff" stroke="#78350f" strokeWidth="1.5" />
-              <ellipse cx="88" cy="85" rx="7.5" ry="10" fill="#d97706" />
-              <ellipse cx="88" cy="87" rx="4" ry="6" fill="#78350f" />
-              <circle cx="85" cy="80" r="3" fill="#ffffff" />
-              <circle cx="91" cy="90" r="1.5" fill="#fde68a" />
-              <path d="M75 74 Q88 70 101 74" stroke="#4a2c11" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-
-              {/* Right Eye */}
-              <ellipse cx="132" cy="84" rx="11" ry="14" fill="#ffffff" stroke="#78350f" strokeWidth="1.5" />
-              <ellipse cx="132" cy="85" rx="7.5" ry="10" fill="#d97706" />
-              <ellipse cx="132" cy="87" rx="4" ry="6" fill="#78350f" />
-              <circle cx="129" cy="80" r="3" fill="#ffffff" />
-              <circle cx="135" cy="90" r="1.5" fill="#fde68a" />
-              <path d="M119 74 Q132 70 145 74" stroke="#4a2c11" strokeWidth="2.5" strokeLinecap="round" fill="none" />
-            </>
-          ) : (
-            <>
-              {/* Blinking Eyes */}
-              <path d="M76 85 Q88 92 100 85" stroke="#78350f" strokeWidth="3" fill="none" strokeLinecap="round" />
-              <path d="M120 85 Q132 92 144 85" stroke="#78350f" strokeWidth="3" fill="none" strokeLinecap="round" />
-            </>
-          )}
-
-          {/* Eyebrows */}
-          <path d="M77 65 Q88 61 99 66" stroke="#78350f" strokeWidth="1.5" fill="none" />
-          <path d="M121 66 Q132 61 143 65" stroke="#78350f" strokeWidth="1.5" fill="none" />
-
-          {/* Cheeks Pink Blush */}
-          <ellipse cx="73" cy="97" rx="8" ry="4" fill="#fb7185" opacity="0.45" />
-          <ellipse cx="147" cy="97" rx="8" ry="4" fill="#fb7185" opacity="0.45" />
-
-          {/* Nose */}
-          <circle cx="110" cy="97" r="1.2" fill="#d97706" />
-
-          {/* Dynamic Mouth / Lip Sync */}
-          {isSpeaking ? (
-            <g>
-              <motion.path
-                d="M100 109 Q110 125 120 109 Z"
-                fill="#9f1239"
-                stroke="#881337"
-                strokeWidth="1.5"
-                animate={{ scaleY: [0.8, 1.35, 0.75, 1.2, 0.8] }}
-                transition={{ repeat: Infinity, duration: 0.22 }}
-              />
-              <path d="M103 111 Q110 114 117 111" fill="#ffffff" />
-            </g>
-          ) : (
-            <path d="M102 111 Q110 118 118 111" stroke="#9f1239" strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          )}
-
-          {/* Front Bangs */}
-          <path d="M58 68 Q80 26 110 30 Q140 26 162 68 Q136 46 110 50 Q84 46 58 68 Z" fill="#6b3f19" />
-          <path d="M84 38 Q104 76 110 80 Q112 63 126 40" fill="#6b3f19" />
-
-          {/* Twin Side Hair Strands */}
-          <path d="M60 63 Q43 110 50 180 Q60 185 66 140 Q66 95 70 68 Z" fill="#5c3d2e" stroke="#78350f" strokeWidth="0.8" />
-          <path d="M160 63 Q177 110 170 180 Q160 185 154 140 Q154 95 150 68 Z" fill="#5c3d2e" stroke="#78350f" strokeWidth="0.8" />
-
-          {/* Yellow Star/Bar Hair Clip */}
-          <rect x="146" y="50" width="11" height="4.5" rx="1" fill="#f59e0b" transform="rotate(-15 146 50)" />
-
-          <defs>
-            <radialGradient id="hiyori_vector_glow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(110 110) scale(95)">
-              <stop stopColor="#f59e0b" />
-              <stop offset="1" stopColor="#f59e0b" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-        </svg>
-      </div>
     </div>
   );
 };
+
 
