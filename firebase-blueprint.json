@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "users": {
+      "title": "Users",
+      "description": "Registered user accounts",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "status": { "type": "string" },
+        "bio": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "lastSeen": { "type": "string" }
+      },
+      "required": ["uid", "email", "displayName"]
+    },
+    "channels": {
+      "title": "Chat Channels",
+      "description": "Public chat rooms",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "messages": {
+      "title": "Chat Messages",
+      "description": "Real-time messages in channels and direct chats",
+      "type": "object",
+      "properties": {
+        "channelId": { "type": "string" },
+        "senderUid": { "type": "string" },
+        "senderName": { "type": "string" },
+        "senderEmail": { "type": "string" },
+        "text": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "reactions": { "type": "object" }
+      },
+      "required": ["channelId", "senderUid", "text"]
+    },
+    "dms": {
+      "title": "Direct Messages",
+      "description": "1-on-1 private threads between users",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "members": { "type": "array" },
+        "memberDetails": { "type": "object" },
+        "lastMessage": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "members"]
+    },
+    "progress": {
+      "title": "Lesson Progress",
+      "description": "User lesson progression, completed steps, and XP points",
+      "type": "object",
+      "properties": {
+        "userEmail": { "type": "string" },
+        "currentLessonId": { "type": "number" },
+        "lessonsCompleted": { "type": "array" },
+        "xp": { "type": "number" },
+        "lastLessonTitle": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userEmail", "currentLessonId"]
+    }
+  }
+}

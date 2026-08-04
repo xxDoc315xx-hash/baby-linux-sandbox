@@ -1,0 +1,91 @@
+[
+  {
+    "id": "doc-315",
+    "name": "Doc",
+    "nickname": "Doc315",
+    "email": "xxDoc315xx@hotmail.com",
+    "role": "Core Creator",
+    "bio": "Pioneering the frontiers of the modern web with sleek design, robust full-stack logic, and adaptive AI integrations. Building elegant systems that balance form and function.",
+    "tagline": "Architect of the digital canvas, crafting elegant solutions.",
+    "skills": [
+      "React",
+      "Express",
+      "TypeScript",
+      "Vite",
+      "Tailwind CSS",
+      "Gemini AI"
+    ],
+    "badge": "Aistudio Pioneer",
+    "theme": "amber",
+    "socials": {
+      "twitter": "doc315_dev",
+      "github": "xxDoc315xx",
+      "website": ""
+    },
+    "sparks": 100,
+    "avatarStyle": {
+      "bgColor": "#451a03",
+      "fgColor": "#fbbf24",
+      "pattern": "dots"
+    }
+  },
+  {
+    "id": "alice-123",
+    "name": "Alice Vance",
+    "nickname": "Alys",
+    "email": "alice@example.com",
+    "role": "Creative Technologist",
+    "bio": "Crafting interactive digital sculptures using shaders, physical computing, and real-time audio. Obsessed with typography, neon aesthetics, and CSS art.",
+    "tagline": "Making the virtual feel tangible, one pixel at a time.",
+    "skills": [
+      "Three.js",
+      "WebAudio API",
+      "React",
+      "GLSL Shaders",
+      "Tailwind CSS"
+    ],
+    "badge": "Pixel Weaver Rank S",
+    "theme": "violet",
+    "socials": {
+      "twitter": "alys_dev",
+      "github": "alysvance",
+      "website": "alys.dev"
+    },
+    "sparks": 42,
+    "avatarStyle": {
+      "bgColor": "#1e1b4b",
+      "fgColor": "#818cf8",
+      "pattern": "waves"
+    }
+  },
+  {
+    "id": "bob-456",
+    "name": "Bob Chen",
+    "nickname": "ByteCoder",
+    "email": "bob@example.com",
+    "role": "Backend Architect",
+    "bio": "Optimizing database queries and building distributed pipelines. Enjoys low-latency systems, specialty coffee, and writing high-performance Go microservices.",
+    "tagline": "I compile coffee into highly concurrent, bug-free APIs.",
+    "skills": [
+      "Go",
+      "Kubernetes",
+      "PostgreSQL",
+      "Redis",
+      "gRPC",
+      "Docker"
+    ],
+    "badge": "Mutex Master",
+    "theme": "emerald",
+    "socials": {
+      "twitter": "bob_bytes",
+      "github": "bobchen",
+      "website": "chen.io"
+    },
+    "sparks": 38,
+    "avatarStyle": {
+      "bgColor": "#022c22",
+      "fgColor": "#34d399",
+      "pattern": "grid"
+    }
+  }
+]

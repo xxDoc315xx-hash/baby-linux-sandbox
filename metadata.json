@@ -1,0 +1,6 @@
+{
+  "name": "Cosmic Creators Directory",
+  "description": "An interactive full-stack creator directory with dynamic vector avatars and real-time upvotes, coupled with a hands-on 'Baby Linux' interactive terminal playground and AI mentor tutor.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
