@@ -48,6 +48,7 @@ interface VTuberModelPreset {
   name: string;
   creator: string;
   model3JsonUrl: string;
+  modelUrl?: string;
   description: string;
   tag: string;
 }
@@ -143,14 +144,25 @@ export default function AdaTuxStudio() {
       name: "Hiyori (Official Live2D Cubism 3.0)",
       creator: "Live2D Inc. Official",
       model3JsonUrl: "/hiyori/Hiyori.model3.json",
+      modelUrl: "/hiyori/Hiyori.model3.json",
       description: "Official free Live2D Cubism model rendered directly from local textures (texture_00.png & texture_01.png).",
       tag: "👑 Hiyori (Default)"
+    },
+    {
+      id: "custom_avatar",
+      name: "Custom Avatar",
+      creator: "Custom Live2D Model",
+      model3JsonUrl: "/assets/models/custom-avatar/custom-avatar.model3.json",
+      modelUrl: "/assets/models/custom-avatar/custom-avatar.model3.json",
+      description: "Custom user model configuration loaded from /assets/models/custom-avatar/.",
+      tag: "✨ Custom Avatar"
     },
     {
       id: "mao",
       name: "Mao Pro VTuber",
       creator: "Live2D Inc.",
       model3JsonUrl: "https://cdn.jsdelivr.net/gh/Eikanya/Live2d-model/Live2D/v3/Mao/Mao.model3.json",
+      modelUrl: "https://cdn.jsdelivr.net/gh/Eikanya/Live2d-model/Live2D/v3/Mao/Mao.model3.json",
       description: "Expressive VTuber avatar with custom mouth shapes (ParamMouthOpenY) and responsive head tilt mechanics.",
       tag: "Mao Pro"
     },
@@ -159,6 +171,7 @@ export default function AdaTuxStudio() {
       name: "Chitose Cyber Companion",
       creator: "Live2D Inc.",
       model3JsonUrl: "https://cdn.jsdelivr.net/gh/Eikanya/Live2d-model/Live2D/v3/Chitose/Chitose.model3.json",
+      modelUrl: "https://cdn.jsdelivr.net/gh/Eikanya/Live2d-model/Live2D/v3/Chitose/Chitose.model3.json",
       description: "Refined tech avatar featuring subtle eye-tracking shaders and calm, focused coding expressions.",
       tag: "Tech Avatar"
     }
@@ -786,7 +799,7 @@ export default function AdaTuxStudio() {
                     />
                   ) : (
                     <HiyoriLive2DViewer
-                      model3JsonUrl={sampleVTuberModels.find((m) => m.id === selectedPresetModel)?.model3JsonUrl || "/hiyori/Hiyori.model3.json"}
+                      model3JsonUrl={sampleVTuberModels.find((m) => m.id === selectedPresetModel)?.modelUrl || sampleVTuberModels.find((m) => m.id === selectedPresetModel)?.model3JsonUrl || "/hiyori/Hiyori.model3.json"}
                       isSpeaking={isSpeaking}
                       width={260}
                       height={280}
