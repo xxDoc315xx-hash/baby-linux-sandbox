@@ -1,19 +1,19 @@
 {
 	"Version": 3,
 	"FileReferences": {
-		"Moc": "/hiyori/Hiyori.moc3",
+		"Moc": "Hiyori.moc3",
 		"Textures": [
-			"/hiyori/Hiyori.2048/texture_00.png",
-			"/hiyori/Hiyori.2048/texture_01.png"
+			"Hiyori.2048/texture_00.png",
+			"Hiyori.2048/texture_01.png"
 		],
-		"Physics": "/hiyori/Hiyori.physics3.json",
-		"Pose": "/hiyori/Hiyori.pose3.json",
-		"UserData": "/hiyori/Hiyori.userdata3.json",
-		"DisplayInfo": "/hiyori/Hiyori.cdi3.json",
+		"Physics": "Hiyori.physics3.json",
+		"Pose": "Hiyori.pose3.json",
+		"UserData": "Hiyori.userdata3.json",
+		"DisplayInfo": "Hiyori.cdi3.json",
 		"Motions": {
 			"Idle": [
 				{
-					"File": "/hiyori/motions/Hiyori_m01.motion3.json",
+					"File": "motions/Hiyori_m01.motion3.json",
 					"FadeInTime": 0.5,
 					"FadeOutTime": 0.5
 				}

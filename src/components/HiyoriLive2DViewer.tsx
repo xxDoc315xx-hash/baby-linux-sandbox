@@ -102,6 +102,7 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
           modelSource = Array.from(customFiles);
         }
 
+        setIsReady(false);
         const model = await Live2DModel.from(modelSource, {
           autoInteract: true,
         });
@@ -111,10 +112,12 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         modelRef.current = model;
         app.stage.addChild(model);
 
-        // Scale & Center
-        const scaleX = (width * 0.85) / model.width;
-        const scaleY = (height * 0.95) / model.height;
-        const fitScale = Math.min(scaleX, scaleY);
+        // Scale & Center with robust fallbacks
+        const modelWidth = model.width || 500;
+        const modelHeight = model.height || 600;
+        const scaleX = (width * 0.85) / modelWidth;
+        const scaleY = (height * 0.95) / modelHeight;
+        const fitScale = isFinite(Math.min(scaleX, scaleY)) && Math.min(scaleX, scaleY) > 0 ? Math.min(scaleX, scaleY) : 0.25;
 
         model.scale.set(fitScale);
         model.anchor.set(0.5, 0.45);
@@ -124,6 +127,7 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         setIsReady(true);
       } catch (err) {
         console.warn("Live2D initialization note:", err);
+        setIsReady(false);
       }
     };
 
@@ -160,19 +164,30 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
   // WebGL Lip Sync
   useEffect(() => {
     let interval: any;
+    const updateLipSync = (val: number) => {
+      try {
+        const core = modelRef.current?.internalModel?.coreModel;
+        if (!core) return;
+        if (typeof core.getParameterIndex === "function") {
+          const idx = core.getParameterIndex("ParamMouthOpenY");
+          if (idx !== -1 && typeof core.setParameterValueByIndex === "function") {
+            core.setParameterValueByIndex(idx, val);
+            return;
+          }
+        }
+        if (typeof core.setParameterValueById === "function") {
+          core.setParameterValueById("ParamMouthOpenY", val);
+        }
+      } catch (_) {}
+    };
+
     if (isSpeaking && modelRef.current) {
       interval = setInterval(() => {
-        try {
-          const val = Math.random() * 0.8 + 0.2;
-          if (modelRef.current?.internalModel?.coreModel) {
-            modelRef.current.internalModel.coreModel.setParameterValueById("ParamMouthOpenY", val);
-          }
-        } catch (_) {}
+        const val = Math.random() * 0.8 + 0.2;
+        updateLipSync(val);
       }, 90);
-    } else if (modelRef.current?.internalModel?.coreModel) {
-      try {
-        modelRef.current.internalModel.coreModel.setParameterValueById("ParamMouthOpenY", 0);
-      } catch (_) {}
+    } else if (modelRef.current) {
+      updateLipSync(0);
     }
 
     return () => {
