@@ -6,6 +6,20 @@
     <title>Baby Linux - Live2D Mentor Playground</title>
     <script src="/live2dcubismcore.min.js"></script>
     <script src="/pixi.min.js"></script>
+    <script>
+      if (window.PIXI && window.PIXI.utils && typeof window.PIXI.utils.checkMaxIfStatementsInShader === 'function') {
+        var origCheck = window.PIXI.utils.checkMaxIfStatementsInShader;
+        window.PIXI.utils.checkMaxIfStatementsInShader = function(maxIfStatements, maxTextures) {
+          var safeIfs = (!maxIfStatements || maxIfStatements <= 0) ? 16 : maxIfStatements;
+          var safeTex = (!maxTextures || maxTextures <= 0) ? 16 : maxTextures;
+          try {
+            return origCheck.call(this, safeIfs, safeTex);
+          } catch (e) {
+            return 16;
+          }
+        };
+      }
+    </script>
     <script src="/cubism4.min.js"></script>
   </head>
   <body>
