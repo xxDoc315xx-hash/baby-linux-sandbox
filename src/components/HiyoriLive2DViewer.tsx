@@ -165,15 +165,24 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         modelRef.current = model;
         app.stage.addChild(model);
 
-        // Scale & Center with robust fallbacks
-        const modelWidth = model.width || 500;
-        const modelHeight = model.height || 600;
-        const scaleX = (width * 0.85) / modelWidth;
-        const scaleY = (height * 0.95) / modelHeight;
+        // Scale & Center with robust fallbacks using internalModel dimensions or bounds
+        const origW = model.internalModel?.originalWidth || model.width || 500;
+        const origH = model.internalModel?.originalHeight || model.height || 600;
+        const scaleX = (width * 0.85) / origW;
+        const scaleY = (height * 0.95) / origH;
         const fitScale = isFinite(Math.min(scaleX, scaleY)) && Math.min(scaleX, scaleY) > 0 ? Math.min(scaleX, scaleY) : 0.25;
 
-        model.scale.set(fitScale);
-        model.anchor.set(0.5, 0.45);
+        if (model.scale && typeof model.scale.set === "function") {
+          model.scale.set(fitScale);
+        }
+
+        // Safely set anchor or pivot without throwing errors on PIXI.Container
+        if (model.anchor && typeof model.anchor.set === "function") {
+          model.anchor.set(0.5, 0.45);
+        } else if (model.pivot && typeof model.pivot.set === "function") {
+          model.pivot.set(origW * 0.5, origH * 0.45);
+        }
+
         model.x = width / 2;
         model.y = height / 2;
 
