@@ -25,15 +25,8 @@ const patchPixiShaderCheck = () => {
   if (typeof window === "undefined" || !window.PIXI || !window.PIXI.utils) return;
   const utils = window.PIXI.utils;
   if (typeof utils.checkMaxIfStatementsInShader === "function" && !(utils.checkMaxIfStatementsInShader as any)._patched) {
-    const origCheck = utils.checkMaxIfStatementsInShader;
-    const safeCheck = function (maxIfStatements: number, maxTextures: number) {
-      const safeIfs = !maxIfStatements || maxIfStatements <= 0 ? 16 : maxIfStatements;
-      const safeTex = !maxTextures || maxTextures <= 0 ? 16 : maxTextures;
-      try {
-        return origCheck.call(utils, safeIfs, safeTex);
-      } catch (_) {
-        return 16;
-      }
+    const safeCheck = function () {
+      return 16;
     };
     (safeCheck as any)._patched = true;
     utils.checkMaxIfStatementsInShader = safeCheck;
@@ -193,21 +186,23 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
           model = await Live2DModel.from(modelSource, {
             autoUpdate: true,
             autoInteract: true,
+            ticker: app.ticker,
           });
-        } catch (_) {
-          // Strictly force attempt loading binary /assets/models/custom-avatar/custom-avatar.model3.json
+        } catch (e1) {
           try {
-            model = await Live2DModel.from("/assets/models/custom-avatar/custom-avatar.model3.json", {
+            model = await Live2DModel.from("/hiyori/Hiyori.model3.json", {
               autoUpdate: true,
               autoInteract: true,
+              ticker: app.ticker,
             });
-          } catch (_) {
+          } catch (e2) {
             try {
-              model = await Live2DModel.from("/hiyori/Hiyori.model3.json", {
+              model = await Live2DModel.from("/assets/models/custom-avatar/custom-avatar.model3.json", {
                 autoUpdate: true,
                 autoInteract: true,
+                ticker: app.ticker,
               });
-            } catch (_) {}
+            } catch (e3) {}
           }
         }
 
@@ -222,25 +217,24 @@ export const HiyoriLive2DViewer: React.FC<HiyoriLive2DViewerProps> = ({
         modelRef.current = model;
         app.stage.addChild(model);
 
-        // Precise centering & bounding box calculation
-        const origW = model.width || model.internalModel?.originalWidth || 500;
-        const origH = model.height || model.internalModel?.originalHeight || 600;
+        // Precise scale & stage centering calculation
+        const stageW = width || 260;
+        const stageH = height || 280;
 
-        const scaleX = ((width || 260) * 0.85) / origW;
-        const scaleY = ((height || 280) * 0.88) / origH;
+        const origW = model.width || 500;
+        const origH = model.height || 600;
+
+        const scaleX = (stageW * 0.85) / origW;
+        const scaleY = (stageH * 0.88) / origH;
         const fitScale = Math.min(scaleX, scaleY);
 
         if (model.scale && typeof model.scale.set === "function") {
           model.scale.set(fitScale);
         }
 
-        // Set anchor precisely to center (0.5, 0.5) to center character perfectly in frame
-        if (model.anchor && typeof model.anchor.set === "function") {
-          model.anchor.set(0.5, 0.5);
-        }
-
-        model.x = (width || 260) / 2;
-        model.y = (height || 280) / 2;
+        // Standard PIXI container positioning - centers model bounding box inside canvas
+        model.x = Math.max(0, (stageW - model.width) / 2);
+        model.y = Math.max(0, (stageH - model.height) / 2);
 
         setLoading(false);
       } catch (_) {
