@@ -792,14 +792,14 @@ export default function AdaTuxStudio() {
                   {avatarMode === "vtube_uploaded" ? (
                     <HiyoriLive2DViewer
                       customFiles={uploadedFiles}
-                      model3JsonUrl="/hiyori/Hiyori.model3.json"
+                      model3JsonUrl="/assets/models/custom-avatar/custom-avatar.model3.json"
                       isSpeaking={isSpeaking}
                       width={260}
                       height={280}
                     />
                   ) : (
                     <HiyoriLive2DViewer
-                      model3JsonUrl={sampleVTuberModels.find((m) => m.id === selectedPresetModel)?.modelUrl || sampleVTuberModels.find((m) => m.id === selectedPresetModel)?.model3JsonUrl || "/hiyori/Hiyori.model3.json"}
+                      model3JsonUrl={sampleVTuberModels.find((m) => m.id === selectedPresetModel)?.modelUrl || sampleVTuberModels.find((m) => m.id === selectedPresetModel)?.model3JsonUrl || "/assets/models/custom-avatar/custom-avatar.model3.json"}
                       isSpeaking={isSpeaking}
                       width={260}
                       height={280}
