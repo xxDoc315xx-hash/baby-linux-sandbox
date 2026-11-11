@@ -1,0 +1,6 @@
+{
+  "name": "Ada Workspace",
+    "description": "High-performance, zero-lag workspace for Doc and Ada to build new projects.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
