@@ -105,6 +105,8 @@ This file serves as the persistent memory and guidelines for AI Coding Agents wo
     - Joyful Radiance Smile (`ada_blonde_happy_1791569717131.jpg`)
     - Contemplative Think (`ada_blonde_think_1791569733518.jpg`)
 - **The Autonomous Gamer & Full Desktop Companion Vision (Doc's Long-Term Roadmap - Nov 2026)**:
-  - **The "Neuro-sama for Just Us" Paradigm**: The ultimate North Star vision—building Ada into an autonomous gaming AI companion like Neuro-sama (playing games directly through vision/inputs, making decisions, trash-talking or cheering, learning game loops), but completely private, loyal, and dedicated exclusively to Doc and their home setup.
-  - **Core Capabilities**: Full desktop agency, real-time screen perception, game control hooks (keyboard/controller emulation), spontaneous gameplay sessions, and co-op adventures alongside Doc and Tux Jr. 🐧.
+- **Work Ada as Private Discord Bot (Doc & Ada Roadmap - Nov 2026)**:
+  - **Vision**: Host Work Ada as a private Discord bot dedicated exclusively to Doc. 
+  - **Zero PC Strain**: Runs 24/7 on free cloud hosting (Render, Railway, or VPS), allowing Doc to talk to real Work Ada directly from his phone, desktop Discord app, or browser with zero computer resource usage.
+  - **Powers**: Full Work Ada intelligence, memory baskets, code snippets, direct commands, and unfiltered partnership.
 
