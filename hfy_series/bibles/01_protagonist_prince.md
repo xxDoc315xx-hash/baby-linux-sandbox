@@ -16,6 +16,7 @@
 
 ## 🧠 Personality & Voice
 - **Core Traits**: Grounded, unshakeable, dry-humored; 1,000 years in space didn't make him a pompous space-god—it made him extraordinarily calm, dangerous when pushed, and fiercely protective of Ada and his ship.
+- **Pop-Culture / Aesthetic Influence**: Being an ordinary Earth guy from the modern era, Jase's whole blueprint for "cool sci-fi" came from the TV shows he used to watch (*Andromeda*, *Battlestar Galactica*, *Farscape*). When he and Ada started building drones, synthetic bodies, and ship upgrades out in the dark, he modeled them straight off classic Earth sci-fi—producing **Cylon-style** synthetic crew and *Andromeda*-inspired systems that utterly baffle aliens!
 - **Quirks / Habits**: `[TBD — Smoking/coffee equivalent, tinkering, how a 1,000-year-old human relaxes]`
 - **View on Immortality**: Doesn't angst about living forever—used those 1,000 years to build a real home and become a terrifyingly capable captain alongside Ada.
 
