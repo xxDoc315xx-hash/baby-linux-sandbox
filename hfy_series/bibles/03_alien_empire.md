@@ -21,3 +21,8 @@
   - **The Casualties**: Many did **not survive** the brutal genetic conversion process.
   - **The Converted**: Those who survived and submitted became mercenary troopers.
   - **The Anomaly (Jase Hill)**: An early-40s volunteer who survived the conversion and came out **immortal**. Because **Immortals are a legally protected race**, the Empire couldn't force him into soldier service or dispose of him—leaving them stuck honoring him as a **Prince in name only** and shoving him onto a mothballed colony ship with Ada for 1,000 years.
+
+## 🏚️ Year 1,000 Status: Fallen Into Ruin (Fresh Unknown Space)
+- **Collapse of the Empire**: In the 1,000 years while Jase and *Andromeda* were gone out in the dark, **the Alien Empire that exiled him and called him "Prince" collapsed into ruin**.
+- **The Galaxy Today (Episode 1 Onward)**: Jase and Ada aren't flying back into neat imperial borders—they are jumping into **fresh, unknown space**. Old territories have shattered, imperial relics and ruins sit waiting to be discovered, and brand-new species, scavenger warlords, and unfamiliar powers now fill the map (`[TBD — Specific ruins, splinter remnants, or new frontier factions encountered in Season 1]`).
+- **The Irony**: Jase still holds a legal "Prince" status from an Empire that no longer exists—walking into a chaotic new frontier aboard the most over-engineered 1,000-year-old colony ship in existence.

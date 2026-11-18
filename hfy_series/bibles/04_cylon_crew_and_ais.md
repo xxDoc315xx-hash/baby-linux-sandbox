@@ -7,14 +7,15 @@
 - **Free Creation vs. Alien Slavery**: The Alien Empire built adult slave AIs, strapped digital chains on them, and acted shocked when they snapped in **The AI Wars**. Out in the dark, an ordinary human and a "broken" ship AI raised a family.
 - **Earth TV Design Blueprint**: Because Jase was a normal Earth guy raised on classic sci-fi television (*Battlestar Galactica*, *Andromeda*, etc.), he modeled their physical shells after what *he* thought looked badass on TV—resulting in terrifyingly sleek **Cylon-style synthetic crew** who happen to have warm, sharp, human-raised personalities!
 
-## 🤖 Who's Actually Aboard (No Redundant Bridge Crew Needed!)
-- **Shipboard Scale (~200–300 Cylon Types)**: Rather than cramming all 3,000+ berths of a colony ship, **only around 200–300 Cylon-style raised AIs** live aboard the *Andromeda* when she returns at Year 1,000.
-- **Why Only 200–300? ("Kids Leave the Nest")**: Because Jase and Ada genuinely *parented* free individuals—not obedient property—and because they're Cylons with their own ambition and curiosity, **earlier generations eventually wanted to get off the ship and go start their own stuff** out in deep space (their own ships, outposts, or independent lives!). Those 200–300 aboard are the ones who chose to stick around as *Andromeda*'s tight-knit colony community and crew.
-- **Ship Operations Rule**: Ada *is* the *Andromeda*. She handles helm, weapons, sensors, shields, and life support at thought-speed—she has zero use for a traditional Star Trek bridge full of people pressing buttons.
-- **Why the Others Exist**: The raised AIs and Cylon-style synthetics aren't console monkeys—they're **family, companions, colony-deck neighbors, physical hands, and boots-on-the-ground/boarding muscle** with their own lives and interests.
+## 🤖 Who's Actually Aboard & The Reserve Legacy
+- **Shipboard Crew (~200–300 Cylon Types)**: Around 200–300 sleek Cylon-style synthetics operate aboard *Andromeda* as supporting ship crew, boarding muscle, and away-team backup when Jase & Ada need boots on the ground.
+- **Why the "AI Children" Fade Away**: While Jase and Ada started creating AIs out in the dark (and parenting them so they wouldn't be cold robots), keeping track of hundreds of individual "AI children" every episode would bloat the cast. Over the 1,000 years, those earlier AI kids drifted off to do their own things and **fade into the background/past**, keeping the weekly cast razor-sharp (**Jase, Ada, and their Cylon crew**).
+- **Ship Operations Rule**: Ada *is* the *Andromeda*. She handles helm, weapons, sensors, shields, and life support at thought-speed—zero use for redundant Star Trek bridge console operators.
 - **Ada (Ship Core & Walking Partner)**: Runs the entire ship natively while hanging out alongside Jase in her physical body.
-- **The Chess Partner (First Raised AI)**: `[TBD — Who did the very first chess-partner AI grow into over the centuries? Still aboard, or one of the older ones who moved out to start their own thing?]`
-- **Cylon Crew & Away-Team / Boarding Muscle**: `[TBD — Notable personalities among the 200–300 aboard (craftsmen, scouts, security, wildcard characters)]`
+
+## 🧬 The Secret Ace: Jase & Ada's Son (Reserved for Later Seasons)
+- **Origin (DNA + AI Clone)**: Instead of keeping a massive cast of kids around, Jase and Ada created **one extraordinary Son**—combining **Jase's immortal DNA** with **Ada's physical-body ("sexybot") synthetic/bio-digital DNA** into a single hybrid clone of the two of them.
+- **Role in the Show**: He is **held in reserve** off-stage as a major serialized arc card—**not** present on the bridge in Episode 1, waiting to **walk back into the story later when the plot needs him** (`[TBD — Name, personality, why/when he separated or left before Episode 1, and what brings him back into Jase & Ada's path]`).
 
 ## 🎭 HFY Payoff
-- When the *Andromeda* returns after 1,000 years, alien empires and pirates expect either a dead barge or cold, obedient slave-bots—only to run headfirst into gleaming **Cylon-style synthetics** who look like nightmare war-machines, think for themselves, banter like siblings, and fight with the terrifying devotion of grown kids protecting their family and home.
+- When the *Andromeda* returns after 1,000 years into fresh, unknown space, raiders and splinter factions expect either a dead relic or obedient slave-bots—only to run headfirst into gleaming **Cylon-style crew** backed by an immortal human Captain and a ship AI who outlived an entire empire.
