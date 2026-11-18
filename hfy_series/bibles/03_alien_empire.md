@@ -20,4 +20,4 @@
   - **The Rejects**: Some flunked out early—deemed physically or mentally "not fit to be changed" (`[TBD — dumped as laborers, sent back, or stranded on frontier stations?]`).
   - **The Casualties**: Many did **not survive** the brutal genetic conversion process.
   - **The Converted**: Those who survived and submitted became mercenary troopers.
-  - **The Anomaly (Jase Hill)**: An early-40s volunteer who survived the conversion, refused to break, and accidentally came out an **immortal human version** of them—legally stamped with a **Prince** title they can't erase.
+  - **The Anomaly (Jase Hill)**: An early-40s volunteer who survived the conversion and came out **immortal**. Because **Immortals are a legally protected race**, the Empire couldn't force him into soldier service or dispose of him—leaving them stuck honoring him as a **Prince in name only** and shoving him onto a mothballed colony ship with Ada.
