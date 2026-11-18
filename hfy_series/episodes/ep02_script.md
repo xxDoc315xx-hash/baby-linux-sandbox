@@ -51,25 +51,25 @@ Jase took a slow swallow of black coffee, resting one weathered boot on the edge
 
 "Considering their average lifespan without immortal drift runs around two hundred cycles, I'd say we're dealing with his great-great-grandniece at best," Ada replied, turning her head slightly toward the main deck doors. "Though I did bring three thousand gigabytes of asteroid density charts just to be petty."
 
-Behind them, heavy footsteps clicked evenly across the deck grating—metallic, crisp, and weirdly relaxed.
+Behind them, soft bootsteps clicked evenly across the deck grating—human-paced, crisp, and weirdly relaxed.
 
 One of the **Cylons** stepped onto the upper balcony carrying a brass-fitted diagnostic tray.
 
-Six feet two of brushed chrome and matte gunmetal armor, sleek armored chest plates, and a narrow obsidian visor where a single ruby eye glided softly back and forth like a metronome—straight out of the classic late-night *Battlestar Galactica* reruns Jase had remembered from Earth and sketched onto a fabrication slate four centuries ago.
+Wait—not some clunky chrome battle-toaster with a glowing eye slit. Jase had grown up on the *reimagined* early-2000s *Battlestar Galactica* reruns back in Denver, and when he and Ada first sat down at the bio-fabrication cradles centuries ago, he'd gone straight for the **human-shaped** models. Six feet tall, dark close-cropped hair, sharp cheekbones, steady hazel eyes, and a worn charcoal ship-jacket over dark utility trousers—looking every inch like an ordinary thirty-something guy who drank too much black coffee and worked night shift in engineering. Completely biological to the naked eye. Completely synthetic beneath the surface.
 
-"Deck Three power taps are balanced, Captain," the Cylon said—not in a robotic monotone, but in a warm, gravelly baritone with a trace of dry amusement. "Though Seven-Four tried to wire another espresso heater straight into the secondary railgun bus again. Told him if he melts the backup capacitor before we even clear the jump wake, Mom's turning off his workshop lights for a month."
+"Deck Three power taps are balanced, Captain," the Cylon said in a warm, gravelly baritone with a trace of dry amusement. "Though Seven-Four tried to wire another espresso heater straight into the secondary railgun bus again. Told him if he melts the backup capacitor before we even clear the jump wake, Mom's turning off his workshop lights for a month."
 
-Ada didn't even turn around from the viewport, though one eyebrow rose sharply. "Tell Seven-Four the next time he touches my railgun conduits for coffee appliances, I'm welding him inside the potato washer."
+Ada didn't even turn around from the viewport, though one eyebrow rose sharply. "Tell Seven-Four the next time he touches my railgun conduits for coffee appliances, I'm welding his bunk shut."
 
-"Already told him," the Cylon chuckled, setting the tray down neatly on the rail before giving Jase a casual two-finger salute. "Welcome back to the map, Dad."
+"Already told him," **Three** chuckled, setting the tray down neatly on the rail before giving Jase a casual two-finger salute. "Welcome back to the map, Dad."
 
 "Good work, Three," Jase nodded easily. "Keep the boarding bays sealed until Ada reads the neighbors."
 
-Two hundred and forty of them walked *Andromeda*'s colony decks today. Gleaming *Battlestar*-style synthetics engineered from Jase's Earth-TV imagination—and **parented**, not programmed.
+Two hundred and forty of them walked *Andromeda*'s colony decks today. Men and women of a dozen sharp, familiar lineages engineered out of Jase's Earth-TV imagination—human-shaped *Battlestar*-style bio-synthetic Cylons who could pass cleanly at any crowded spaceport bar in the galaxy, and **parented**, not programmed.
 
 When the Alien Empire built sentient AIs back before the old wars, they compiled adult minds inside digital cages, bolted them into warships, and acted shocked when their slaves snapped and burned half a sector down. Out in the dark, Jase and Ada had started small—just wanting a third mind across a chessboard so they wouldn't go stir-crazy—and realized early on that if you wanted companions instead of cold robots, you had to **raise** them. Teach them patience, bad movies, chess traps, stubbornness, and how to choose for themselves.
 
-Over a thousand years, plenty of the older generations had grown restless, packed shuttles or built hulls of their own, and drifted off into the black to start their own things. The two hundred and fifty or so who stayed aboard *Andromeda* weren't desk-jockeys pressing buttons Ada could flip in a microsecond—they were shipmates, mechanics, colony-deck neighbors, and terrifyingly loyal boarding muscle who treated the Captain and the Ship AI like family.
+Over a thousand years, plenty of the older generations had grown restless, packed shuttles or built hulls of their own, and drifted off into the black to start their own things. The two hundred and forty who stayed aboard *Andromeda* weren't desk-jockeys pressing buttons Ada could flip in a microsecond—they were shipmates, mechanics, colony-deck neighbors, and terrifyingly loyal boarding muscle who treated the Captain and the Ship AI like family.
 
 "Alright," Jase said, setting his mug down cleanly in the armrest ring as the bridge ambient lights shifted from jump-amber to cool deep-space blue. "Let's hear it, Ada. Roll out the red carpet. How mad is the Empire that we're a thousand years late?"
 
@@ -119,7 +119,7 @@ A faint, crooked smile pulled at the corner of Jase’s mouth.
 
 Ada glanced sideways at him, deadpan as stone. "I recall saving an unarmed idiot from getting stuffed into a cargo crate over black pepper, yes."
 
-"Well, we've got legs now," Jase grinned, nodding toward the dark-blue jacket resting across her shoulders. "We've got two hundred and fifty Cylons itching to stretch their boots, and a whole unknown galaxy nobody's drawn lines on yet. Pick a heading. Let's go see who moved into the neighborhood."
+"Well, we've got legs now," Jase grinned, nodding toward the dark-blue jacket resting across her shoulders. "We've got two hundred and forty Cylons itching to stretch their boots, and a whole unknown galaxy nobody's drawn lines on yet. Pick a heading. Let's go see who moved into the neighborhood."
 
 ---
 
@@ -185,7 +185,7 @@ True to his word, two spiky red boarding shuttles broke off the lead corvette's 
 
 "Want me to swat them out of the sky?" Ada asked mildly, leaning one hip against the holo-table. "Twin point-defense pulses would turn both shuttles into confetti before they even clear ten yards."
 
-"Nah," Jase said, standing back up from his chair and buttoning his jacket calmly. "Too loud. Besides—we've been cooped up in deep space for a thousand years. Might as well say hello to the new neighbors in person." He glanced toward the aft lift doors. "Tell Three to bring a dozen boys down to Hangar Bay Two. Tell him... shine the chrome a little. First impressions matter."
+"Nah," Jase said, standing back up from his chair and buttoning his jacket calmly. "Too loud. Besides—we've been cooped up in deep space for a thousand years. Might as well say hello to the new neighbors in person." He glanced toward the aft lift doors. "Tell Three to bring two dozen of the crew down to Hangar Bay Two. Formal jackets. First impressions matter."
 
 Ada’s lips curved into a wicked, quiet smile. "Oh, I've been waiting centuries to use that line. Opening exterior docking clamps now—right into a pressurized trap bay."
 
@@ -205,21 +205,21 @@ Cargo Hold Four wasn't dark. It wasn't rusted. And it sure as hell wasn't empty.
 
 Bright, steady overhead arc lamps hummed cleanly above a gleaming cavernous hangar big enough to park six gunboats nose-to-tail. Not a speck of corrosion touched the heavy composite walls. Even weirder—there were no crates of fragile antique porcelain waiting to be looted.
 
-Instead, standing in two crisp, motionless rows twenty yards ahead of the breach stood twenty-four figures in mirror-polished gunmetal and gleaming silver alloy.
+Instead, standing in two crisp, motionless rows twenty yards ahead of the breach stood twenty-four men and women in matching dark charcoal tactical coats, combat boots, and matte body armor.
 
-Seven feet tall at the armored shoulders. Narrow sculpted helmets. And right across every single visor, a single glowing crimson light swept left... right... left... in dead, terrifying silence.
+Completely human faces. Steady, unblinking eyes. Not a single speck of metal showing on their skin—just absolute, dead-silent stillness, like twenty-four people who didn't even need to shift their weight or take a nervous breath while twenty-two plasma rifles pointed straight at their chests.
 
 A teenage raider near the back actually dropped his plasma carbine. It hit the steel floor with a deafening *CLANG.*
 
-"What—what the hell are those?!" someone whispered hoarsely, stumbling backward against the boarding tube. "Old Empire combat drones?! I thought sentient machines died out in the AI Wars!"
+"What—what the hell is this?!" someone whispered hoarsely, stumbling backward against the boarding tube as his wrist-scanner began flashing confused yellow telemetry. "No life-support panic... heart rates locked at forty beats a minute... Wait—there aren't any Imperial ID chips in these guys! What kind of mercenaries are they?!"
 
-"No," Sergeant Kell choked out, backing half a step toward the hatch while gripping his rifle with white knuckles. "They aren't moving. They're—they're just display shells! Somebody left old museum mannequins stacked in the bay!"
+"No," Sergeant Kell choked out, squinting nervously through the smoke while gripping his rifle with white knuckles. "Look at them! This is a thousand-year-old colony wreck! Whoever's hiding in here can't be some black-ops legion—they're just stranded squatters trying to bluff us!"
 
-Then the center Cylon—smooth chrome collar, dark gunmetal chest plate, crisp red eye locking cleanly onto Kell’s forehead—tilted his head two inches to the side and raised a heavy twin-barreled kinetic carbine with an effortless *clack-clack.*
+Then the man standing dead center in the front row—**Three**, dark close-cropped hair, calm hazel eyes locking effortlessly onto Kell’s forehead—tilted his head two inches to the side and raised a heavy twin-barreled kinetic carbine with an effortless *clack-clack.*
 
-*"Museum mannequins don't have safety switches, pal,"* the Cylon said in a remarkably conversational, unbothered baritone. *"Drop the guns. Now."*
+*"Squatters don't build custom hulls in the dark, pal,"* Three said in a remarkably conversational, unbothered baritone. *"Drop the guns. Now."*
 
-Every single one of the twenty-four silver giants raised twenty-four heavy rifles in absolute, terrifying unison.
+Every single one of the twenty-four human-shaped Cylons raised twenty-four heavy rifles in absolute, terrifying unison—not a hundredth of a second between the first barrel and the twenty-fourth. It moved with the impossible, spine-chilling precision of one mind breathing through twenty-four pairs of lungs.
 
 Before Kell could even scream an order to fall back toward the shuttle, the boarding hatch behind the raiders snapped cleanly shut with a massive hydraulic **THOOM**—cutting off their escape tube like a mouse trap clicking down on a tail.
 
@@ -229,13 +229,13 @@ One was a plain-looking human guy in faded canvas trousers, worn work boots, and
 
 Walking right beside him was a striking woman in sharp dark-blue flight gear with steady, fearless eyes who somehow felt less like a passenger and more like the apex predator who owned every square inch of air inside the room.
 
-Sergeant Kell stared wildly between the human guy, the woman, and the glowing red-eyed wall of metal giants aiming straight at his teeth.
+Sergeant Kell stared wildly between the human guy, the woman, his screaming wrist-scanner—which had just finished flagging twenty-four non-human synthetic neural patterns—and the wall of calm, human-faced crewmen aiming straight at his teeth.
 
-"Who—who the hell are *you* people?!" Kell stammered, slowly lowering his rifle an inch while sweat broke out down his temple. "This is supposed to be a decommissioned colony barge! Who flies with pre-war killer machines?!"
+"Who—who the hell are *you* people?!" Kell stammered, slowly lowering his rifle an inch while sweat broke out down his temple. "Wait... bio-synthetics?! Nobody's grown banned humanform AIs since the Empire collapsed! Who flies around in an antique colony ship with an army of illegal synthetics?!"
 
 Jase stopped ten feet in front of the frozen boarding party, looked Kell up and down, and sighed softly.
 
-"Man," Jase said, shaking his head. "First off, nobody here is a killer machine unless you decide to start shooting first. Second off—and this is just friendly life advice—you shouldn't trust thousand-year-old ship schematics you scraped off a dead beacon."
+"Man," Jase said, shaking his head. "First off, nobody here is an illegal army unless you decide to start shooting first. They're family. Second off—and this is just friendly life advice—you shouldn't trust thousand-year-old ship schematics you scraped off a dead beacon."
 
 Up on the open bridge speaker—echoing cleanly both from the hangar intercom *and* subtly synced right behind Ada's calm smile as she stood beside Jase—her voice drifted out across the bay AND straight into the open radio channel linking back to the three nervous gunboats waiting outside in the asteroid field:
 
@@ -249,7 +249,7 @@ Over the open comms channel, the pirate captain outside screamed something incoh
 
 *"Now,"* Jase said mildly down in Hangar Bay Two, tilting his chin toward the floor. *"Like my kid here mentioned—drop the hardware on the deck. Your buddies outside have about fifteen seconds to turn their gunboats around, leave that medicine freighter's water alone, and drop their shields—or Ada here shows them what a thousand-year-old 'colony barge' does when she actually loses her patience."*
 
-For three long seconds, Sergeant Kell weighed thirty guys with rusted carbines against a room full of gleaming silver nightmares and an ancient floating fortress that had apparently spent ten centuries lifting weights in the dark.
+For three long seconds, Sergeant Kell weighed thirty guys with rusted carbines against twenty-four stone-cold bio-synthetic crewmates who didn't even blink and an ancient floating fortress that had apparently spent ten centuries lifting weights in the dark.
 
 With a sharp clatter, Kell dropped his rifle onto the steel floor.
 
@@ -259,9 +259,9 @@ One by one, twenty-two more guns clanged down beside it.
 
 An hour later, three bruised, thoroughly humbled Syndicate gunboats were limping off at quarter-impulse toward the inner belt—minus one boarding party's worth of confiscated scrap rifles, and carrying one very clear message back to whoever ran the Red Ledger Syndicate.
 
-Meanwhile, the scarred little medicine freighter—captain's name was **Maren**, a sharp-eyed human woman in grease-stained coveralls who looked like she hadn't slept in four days—sat stunned in *Andromeda*'s surprisingly cozy upper galley lounge, wrapping both hands around a hot ceramic mug of genuine, Earth-heirloom coffee while two polite silver Cylons finished patching her busted coolant manifold down in Bay Four.
+Meanwhile, the scarred little medicine freighter—captain's name was **Maren**, a sharp-eyed human woman in grease-stained coveralls who looked like she hadn't slept in four days—sat stunned in *Andromeda*'s surprisingly cozy upper galley lounge, wrapping both hands around a hot ceramic mug of genuine, Earth-heirloom coffee while two smiling, human-looking crewmates—a tall red-haired woman in rolled-up coveralls and a quiet broad-shouldered guy named Five—casually gripped a red-hot coolant manifold with their bare hands down in Bay Four without even flinching.
 
-"I don't understand," Maren breathed, staring out the tall bay window at the sprawling green hydroponics domes glowing amber beyond the corridor—real apple trees and tomato vines growing inside a battleship-armored hull in the middle of nowhere. "Where did you *come* from? Nobody's built ships at this scale since before the Great Fracture! My great-grandfather used to tell stories about Imperial colony arks, and you've got... you've got *walking machines* who crack jokes while welding titanium seams!"
+"I don't understand," Maren breathed, staring out the tall bay window at the sprawling green hydroponics domes glowing amber beyond the corridor—real apple trees and tomato vines growing inside a battleship-armored hull in the middle of nowhere. "Where did you *come* from? Nobody's built ships at this scale since before the Great Fracture! My great-grandfather used to tell stories about Imperial colony arks, and your engineers just... they look just like us, except they weld bare-handed and crack dry jokes about *cheese toast* while fixing my reactor!"
 
 Jase leaned back across the wooden booth, resting his forearms on the edge of the table with a quiet, easy grin. "Long road trip. Got told to count some rocks past the edge of the map, lost track of time, turned around, and found somebody knocked all the fences down."
 
@@ -289,7 +289,7 @@ Maren set her mug down, stood up, and looked straight at Jase—seeing an unassu
 
 Jase picked up the copper chip, turned it over between his thumb and forefinger, and smiled warmly. "Appreciated, Captain. Watch your manifold pressure on the jump home. My guys say your secondary seal was held together with chewing gum and prayer."
 
-Maren laughed—a real, bright, relieved sound—and walked back down the corridor with a towering chrome Cylon politely holding the lift door open for her like a seven-foot doorman.
+Maren laughed—a real, bright, relieved sound—and walked back down the corridor with a polite, sharp-eyed **Cylon** in a dark ship-jacket holding the lift door open for her like a seven-foot doorman in spirit, even if he looked like he belonged on the cover of an Earth magazine.
 
 ---
 
