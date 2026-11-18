@@ -349,6 +349,9 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
           .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, "")
           // Strip URLs
           .replace(/https?:\/\/\S+/g, "")
+          // Phonetic pronunciation fix so browser TTS says "Ayda" instead of spelling A-D-A or "Add-uh"
+          .replace(/\bAda's\b/g, "Ayda's")
+          .replace(/\bAda\b/g, "Ayda")
           // Clean up multiple spaces/newlines
           .replace(/\s+/g, " ")
           .trim();

@@ -69,6 +69,10 @@ function stripMarkdownForSpeech(text: string): string {
     .replace(/\*([^*]+)\*/g, "$1")
     .replace(/`([^`]+)`/g, "$1")
     .replace(/—/g, ", ")
+    // Phonetic pronunciation fixes for browser TTS engines (visual manuscript stays "Ada")
+    .replace(/\bAda's\b/g, "Ayda's")
+    .replace(/\bAda\b/g, "Ayda")
+    .replace(/\bX4791Z\b/gi, "X 4 7 9 1 Z")
     .replace(/\s+/g, " ")
     .trim();
 }
