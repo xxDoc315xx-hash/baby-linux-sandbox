@@ -7,9 +7,9 @@
 - **Role**: Outcast "Failed Warrior," Captain of the Mothballed Colony Ship
 
 ## 🧬 Origin & "Failure"
-- **How He Was Recruited**: `[TBD — Abducted, volunteered, rescued, or drafted from Earth?]`
-- **The Transformation**: The empire attempted to rewrite Jase into one of their elite warriors. Instead of erasing his humanity and forging a rigid soldier, his human biology and mind absorbed the process on his own terms—making him physically immortal while keeping his human soul, stubbornness, and free will intact.
-- **Why They Consider Him a "Failure"**: `[TBD — Did he refuse to obey a brutal order, fail their psychological conditioning, or did his human emotions break their warrior code?]`
+- **How He Was Recruited**: Part of the **100,000 humans** traded by Earth to the Peacekeeper-style mercenary empire in exchange for a cure. `[TBD — Did Jase volunteer to save someone, get conscripted, or step up willingly?]`
+- **The Transformation**: The empire attempted to genetically rewrite Jase into one of their elite warriors. Instead of erasing his humanity and forging a rigid mercenary soldier, his human biology and mind absorbed the process on his own terms—making him an **immortal human version of them** while keeping his human soul, stubbornness, and free will intact.
+- **Why They Consider Him a "Failure"**: `[TBD — Did he refuse to obey a brutal order, fail their psychological conditioning, or did his human empathy break their mercenary code?]`
 
 ## 🧠 Personality & Voice
 - **Core Traits**: Grounded, stubborn, observant, deeply human despite living among aliens; carries dry humor and zero patience for royal court arrogance.
