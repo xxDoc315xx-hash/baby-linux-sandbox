@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { Ada3DVTuber } from "./Ada3DVTuber";
 import ep01FallbackRaw from "../../hfy_series/episodes/ep01_script.md?raw";
+import ep02FallbackRaw from "../../hfy_series/episodes/ep02_script.md?raw";
 
 interface RawEpisode {
   id: string;
@@ -43,14 +44,24 @@ interface StoryChapter {
   words: number;
 }
 
-const EPISODE_1_CHAPTER_TITLES = [
-  "Part 1 · The Deal on Earth",
-  "Part 2 · The Chair",
-  "Part 3 · Conversion Bay Nine",
-  "Part 4 · Prince in Name Only",
-  "Part 5 · Hull X4791Z & Ada",
-  "Part 6 · Month Four: The Airlock Standoff",
-];
+const EPISODE_CHAPTER_TITLES: Record<number, string[]> = {
+  1: [
+    "Part 1 · The Deal on Earth",
+    "Part 2 · The Chair",
+    "Part 3 · Conversion Bay Nine",
+    "Part 4 · Prince in Name Only",
+    "Part 5 · Hull X4791Z & Ada",
+    "Part 6 · Month Four: The Airlock Standoff",
+  ],
+  2: [
+    "Part 1 · A Thousand Years Later",
+    "Part 2 · Ada's Body, Cylons & Ghosts",
+    "Part 3 · Distress in the Debris Belt",
+    "Part 4 · Boarding Hold Four",
+    "Part 5 · The Great Fracture",
+    "Part 6 · Fresh Unknown Space",
+  ],
+};
 
 function stripMarkdownForSpeech(text: string): string {
   return text
@@ -73,10 +84,8 @@ function parseEpisodeContent(raw: string, episodeNumber: number) {
 
   const ensureChapter = (idx: number, startParaIdx: number) => {
     if (!chapters[idx]) {
-      const fallbackTitle =
-        episodeNumber === 1 && EPISODE_1_CHAPTER_TITLES[idx]
-          ? EPISODE_1_CHAPTER_TITLES[idx]
-          : `Part ${idx + 1}`;
+      const titles = EPISODE_CHAPTER_TITLES[episodeNumber];
+      const fallbackTitle = titles && titles[idx] ? titles[idx] : `Part ${idx + 1}`;
       chapters[idx] = {
         index: idx,
         title: fallbackTitle,
@@ -158,26 +167,43 @@ function formatClock(totalSeconds: number): string {
   return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
 }
 
-function buildFallbackEpisode(): RawEpisode {
-  const wordCount = ep01FallbackRaw
+function countMarkdownWords(raw: string): number {
+  return raw
     .replace(/[#*_`>-]/g, " ")
     .trim()
     .split(/\s+/)
     .filter(Boolean).length;
-  return {
-    id: "ep01",
-    episodeNumber: 1,
-    filename: "ep01_script.md",
-    title: "Episode 1: Prince of Nothing",
-    subtitle: "Two-Part Series Premiere — Part 1 · Spoken Edition",
-    wordCount,
-    estimatedMinutes: Math.max(1, Math.round(wordCount / 148)),
-    content: ep01FallbackRaw,
-  };
+}
+
+function buildFallbackEpisodes(): RawEpisode[] {
+  const ep1Words = countMarkdownWords(ep01FallbackRaw);
+  const ep2Words = countMarkdownWords(ep02FallbackRaw);
+  return [
+    {
+      id: "ep01",
+      episodeNumber: 1,
+      filename: "ep01_script.md",
+      title: "Episode 1: Prince of Nothing",
+      subtitle: "Two-Part Series Premiere — Part 1 · Spoken Edition",
+      wordCount: ep1Words,
+      estimatedMinutes: Math.max(1, Math.round(ep1Words / 148)),
+      content: ep01FallbackRaw,
+    },
+    {
+      id: "ep02",
+      episodeNumber: 2,
+      filename: "ep02_script.md",
+      title: "Episode 2: Ghosts of an Empire",
+      subtitle: "Two-Part Series Premiere — Part 2 · Spoken Edition",
+      wordCount: ep2Words,
+      estimatedMinutes: Math.max(1, Math.round(ep2Words / 148)),
+      content: ep02FallbackRaw,
+    },
+  ];
 }
 
 export default function HfyStoriesPlayer() {
-  const [episodes, setEpisodes] = useState<RawEpisode[]>(() => [buildFallbackEpisode()]);
+  const [episodes, setEpisodes] = useState<RawEpisode[]>(() => buildFallbackEpisodes());
   const [selectedEpisodeId, setSelectedEpisodeId] = useState<string>("ep01");
   const [isLoadingEpisodes, setIsLoadingEpisodes] = useState<boolean>(false);
 
@@ -585,8 +611,22 @@ export default function HfyStoriesPlayer() {
                     type="button"
                     onClick={() => {
                       if (ep.id !== activeEpisode.id) {
-                        handleStop();
+                        playSessionIdRef.current += 1;
+                        isPlayingRef.current = false;
+                        if (typeof window !== "undefined" && "speechSynthesis" in window) {
+                          window.speechSynthesis.cancel();
+                        }
+                        setIsPlaying(false);
+                        setIsPaused(false);
+                        setSpeakingText("");
+                        let savedIdx = 0;
+                        try {
+                          const rawSaved = localStorage.getItem(`hfy_${ep.id}_paragraph_idx`);
+                          const parsed = rawSaved ? parseInt(rawSaved, 10) : 0;
+                          if (Number.isFinite(parsed) && parsed >= 0) savedIdx = parsed;
+                        } catch {}
                         setSelectedEpisodeId(ep.id);
+                        setCurrentParagraphIndex(savedIdx);
                       }
                     }}
                     className={`w-full text-left p-3 rounded-xl border transition-colors cursor-pointer ${
