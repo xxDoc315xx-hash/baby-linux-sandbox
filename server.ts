@@ -1391,6 +1391,61 @@ app.post("/api/git/push", async (req, res) => {
   }
 });
 
+// HFY Series Episodes endpoint (reads scripts dynamically from /hfy_series/episodes)
+app.get("/api/hfy/episodes", (req, res) => {
+  try {
+    const episodesDir = path.join(process.cwd(), "hfy_series", "episodes");
+    if (!fs.existsSync(episodesDir)) {
+      return res.json({ success: true, episodes: [] });
+    }
+
+    const files = fs
+      .readdirSync(episodesDir)
+      .filter((f) => /^ep\d+_script\.md$/i.test(f))
+      .sort();
+
+    const episodes = files.map((filename) => {
+      const fullPath = path.join(episodesDir, filename);
+      const raw = fs.readFileSync(fullPath, "utf-8");
+      const numMatch = filename.match(/^ep(\d+)_script\.md$/i);
+      const episodeNumber = numMatch ? parseInt(numMatch[1], 10) : 1;
+
+      const lines = raw.split(/\r?\n/);
+      const titleLine = lines.find((l) => l.startsWith("# "));
+      const title = titleLine
+        ? titleLine.replace(/^#\s*/, "").trim()
+        : `Episode ${episodeNumber}`;
+
+      const subtitleLine = lines.find((l) => l.startsWith("*(") && l.endsWith(")*"));
+      const subtitle = subtitleLine
+        ? subtitleLine.replace(/^\*\(|\)\*$/g, "").trim()
+        : "Doc & Ada Original Series";
+
+      const wordCount = raw
+        .replace(/[#*_`>-]/g, " ")
+        .trim()
+        .split(/\s+/)
+        .filter(Boolean).length;
+
+      return {
+        id: `ep${String(episodeNumber).padStart(2, "0")}`,
+        episodeNumber,
+        filename,
+        title,
+        subtitle,
+        wordCount,
+        estimatedMinutes: Math.max(1, Math.round(wordCount / 148)),
+        content: raw,
+      };
+    });
+
+    res.json({ success: true, episodes });
+  } catch (err: any) {
+    console.error("Failed to read HFY episodes:", err);
+    res.status(500).json({ success: false, error: err?.message || "Failed to load episodes" });
+  }
+});
+
 // -------------------------------------------------------------
 // VITE OR STATIC MIDDLEWARE
 // -------------------------------------------------------------

@@ -2,23 +2,25 @@ import React, { useState } from "react";
 import DocAndAdaChat from "./components/DocAndAdaChat";
 import SparkSanctuary from "./components/SparkSanctuary";
 import ProjectCanvas from "./components/ProjectCanvas";
-import { Zap, MessageSquareHeart, Layers, Flame } from "lucide-react";
+import HfyStoriesPlayer from "./components/HfyStoriesPlayer";
+import { Zap, MessageSquareHeart, Layers, Flame, Headphones } from "lucide-react";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<"chat" | "hearth" | "canvas">(() => {
+  const [currentView, setCurrentView] = useState<"chat" | "hearth" | "stories" | "canvas">(() => {
     try {
       if (typeof window !== "undefined") {
         const hash = window.location.hash.toLowerCase();
+        if (hash.includes("stories") || hash.includes("hfy")) return "stories";
         if (hash.includes("hearth") || hash.includes("spark")) return "hearth";
         if (hash.includes("canvas") || hash.includes("blueprint")) return "canvas";
         const saved = localStorage.getItem("baby_linux_current_view");
-        if (saved === "canvas" || saved === "chat" || saved === "hearth") return saved as any;
+        if (saved === "canvas" || saved === "chat" || saved === "hearth" || saved === "stories") return saved as any;
       }
     } catch (_) {}
     return "chat";
   });
 
-  const handleSelectView = (view: "chat" | "hearth" | "canvas") => {
+  const handleSelectView = (view: "chat" | "hearth" | "stories" | "canvas") => {
     setCurrentView(view);
     try {
       localStorage.setItem("baby_linux_current_view", view);
@@ -26,6 +28,8 @@ export default function App() {
         window.location.hash = "blueprint";
       } else if (view === "hearth") {
         window.location.hash = "hearth";
+      } else if (view === "stories") {
+        window.location.hash = "stories";
       } else {
         window.location.hash = "chat";
       }
@@ -87,6 +91,18 @@ export default function App() {
             </button>
 
             <button
+              onClick={() => handleSelectView("stories")}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                currentView === "stories"
+                  ? "bg-amber-600 text-white shadow-sm ring-1 ring-amber-400/40"
+                  : "text-stone-400 hover:text-stone-200"
+              }`}
+            >
+              <Headphones className="w-3.5 h-3.5 text-amber-300" />
+              <span>HFY Stories</span>
+            </button>
+
+            <button
               onClick={() => handleSelectView("canvas")}
               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
                 currentView === "canvas"
@@ -108,6 +124,8 @@ export default function App() {
           <DocAndAdaChat onOpenHearth={() => handleSelectView("hearth")} />
         ) : currentView === "hearth" ? (
           <SparkSanctuary />
+        ) : currentView === "stories" ? (
+          <HfyStoriesPlayer />
         ) : (
           <ProjectCanvas />
         )}
