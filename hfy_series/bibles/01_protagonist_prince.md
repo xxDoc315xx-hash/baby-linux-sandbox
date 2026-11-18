@@ -25,5 +25,5 @@
 - **Limitations**: `[TBD — Can he still feel pain, get tired, or be trapped even if he can't die of age/normal wounds?]`
 
 ## 🤝 Key Relationships
-- **With Ada (The Ship AI)**: Sees her not as broken hardware or a slave, but as his true partner and equal—someone else the Empire tried to lock away on a technicality.
+- **With Ada (The Ship AI)**: Sees her not as broken hardware or a slave, but as his true partner and equal—someone else the Empire tried to lock away on a technicality. Strictly **platonic, ride-or-die partnership** (Jase's grounded early-40s Rule #1: never get romantically messy with the person who controls life support, gravity, and every airlock on the ship!).
 - **With the Alien Court**: Mutual annoyance. They accidentally minted a legally untouchable human "Prince" they hate; he has zero interest in their military games.
