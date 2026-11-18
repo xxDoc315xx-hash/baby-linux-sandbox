@@ -12,8 +12,12 @@ import {
   EyeOff,
   ChevronRight,
   Headphones,
+  Film,
+  Package,
 } from "lucide-react";
 import { Ada3DVTuber } from "./Ada3DVTuber";
+import { YouTubeCinemaStage } from "./YouTubeCinemaStage";
+import { YouTubeProductionKit } from "./YouTubeProductionKit";
 import ep01FallbackRaw from "../../hfy_series/episodes/ep01_script.md?raw";
 import ep02FallbackRaw from "../../hfy_series/episodes/ep02_script.md?raw";
 
@@ -226,6 +230,8 @@ export default function HfyStoriesPlayer() {
   const [speakingText, setSpeakingText] = useState<string>("");
   const [autoScroll, setAutoScroll] = useState<boolean>(true);
   const [showNarratorAvatar, setShowNarratorAvatar] = useState<boolean>(true);
+  const [showCinemaStage, setShowCinemaStage] = useState<boolean>(false);
+  const [showProductionKit, setShowProductionKit] = useState<boolean>(false);
 
   // Voice & rate settings (synced with Ada Voice Studio defaults)
   const [availableVoices, setAvailableVoices] = useState<SpeechSynthesisVoice[]>([]);
@@ -683,19 +689,43 @@ export default function HfyStoriesPlayer() {
         <section className="flex-1 min-w-0 space-y-5">
           {/* Episode Header & Docked Player */}
           <div className="rounded-2xl border border-stone-800 bg-stone-900/80 p-5 sm:p-6 space-y-5">
-            <div className="space-y-1.5">
-              <div className="text-xs text-stone-400 flex flex-wrap items-center gap-2">
-                <span>HFY Audio Series</span>
-                <span aria-hidden="true">·</span>
-                <span>{activeEpisode.subtitle}</span>
-                <span aria-hidden="true">·</span>
-                <span className="tabular-nums">
-                  {parsedStory.totalWords.toLocaleString()} words
-                </span>
+            <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="text-xs text-stone-400 flex flex-wrap items-center gap-2">
+                  <span>HFY Audio Series</span>
+                  <span aria-hidden="true">·</span>
+                  <span>{activeEpisode.subtitle}</span>
+                  <span aria-hidden="true">·</span>
+                  <span className="tabular-nums">
+                    {parsedStory.totalWords.toLocaleString()} words
+                  </span>
+                </div>
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white text-balance">
+                  {activeEpisode.title}
+                </h1>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white text-balance">
-                {activeEpisode.title}
-              </h1>
+
+              <div className="flex items-center gap-2 shrink-0 flex-wrap">
+                <button
+                  type="button"
+                  onClick={() => setShowCinemaStage(true)}
+                  className="min-h-[42px] px-4 py-2 rounded-xl border border-amber-600/50 bg-amber-950/40 hover:bg-amber-900/50 text-amber-200 text-xs font-semibold flex items-center gap-2 transition-colors cursor-pointer whitespace-nowrap"
+                  title="Open 16:9 Cinema Stage for full-screen watching or OBS YouTube recording"
+                >
+                  <Film className="w-4 h-4 text-amber-400" />
+                  <span>16:9 Cinema Mode</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setShowProductionKit(true)}
+                  className="min-h-[42px] px-4 py-2 rounded-xl border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-200 text-xs font-semibold flex items-center gap-2 transition-colors cursor-pointer whitespace-nowrap"
+                  title="Download 1280x720 thumbnail, YouTube titles, chapters, clean script & SRT subtitles"
+                >
+                  <Package className="w-4 h-4 text-amber-400" />
+                  <span>YouTube Pack</span>
+                </button>
+              </div>
             </div>
 
             {!speechSupported && (
@@ -920,6 +950,51 @@ export default function HfyStoriesPlayer() {
           </article>
         </section>
       </div>
+
+      {/* 16:9 YouTube Cinema Stage Overlay */}
+      <YouTubeCinemaStage
+        isOpen={showCinemaStage}
+        onClose={() => setShowCinemaStage(false)}
+        episodeNumber={activeEpisode.episodeNumber}
+        episodeTitle={activeEpisode.title}
+        chapterTitle={
+          parsedStory.chapters[activeChapterIdx]?.title ||
+          `Part ${activeChapterIdx + 1}`
+        }
+        chapterIndex={activeChapterIdx}
+        currentText={activeParagraph?.displayText || ""}
+        speakingText={speakingText}
+        isPlaying={isPlaying}
+        isPaused={isPaused}
+        currentIndex={currentParagraphIndex}
+        totalParagraphs={parsedStory.paragraphs.length}
+        currentClock={formatClock(currentSecondsEstimate)}
+        totalClock={formatClock(totalSecondsEstimate)}
+        progressPct={progressPct}
+        onPlayPause={handlePlayPause}
+        onPrev={() => handleStep(-1)}
+        onNext={() => handleStep(1)}
+      />
+
+      {/* YouTube Studio Production Pack (Thumbnail + Metadata + SRT + Clean TXT) */}
+      <YouTubeProductionKit
+        isOpen={showProductionKit}
+        onClose={() => setShowProductionKit(false)}
+        episodeNumber={activeEpisode.episodeNumber}
+        episodeTitle={activeEpisode.title}
+        wordCount={parsedStory.totalWords}
+        speechRate={speechRate}
+        chapters={parsedStory.chapters.map((c) => ({
+          title: c.title,
+          startWordOffset:
+            parsedStory.paragraphs[c.startParagraphIndex]?.cumulativeWordsBefore || 0,
+        }))}
+        paragraphs={parsedStory.paragraphs.map((p) => ({
+          spokenText: p.spokenText,
+          words: p.words,
+          cumulativeWordsBefore: p.cumulativeWordsBefore,
+        }))}
+      />
     </div>
   );
 }
