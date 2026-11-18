@@ -1,7 +1,8 @@
 # Crew & AI Bible: The Synthetic Crew & Created AIs
 
 ## 💡 Why They Exist (1,000 Years in the Dark)
-- **Psychological Realism**: Even with an unbreakable bond, **1,000 years alone in deep space with only two voices** would drive anyone stir-crazy—talking only to each other gets old over centuries!
+- **Psychological Realism ("Only So Many Games of Chess")**: Even with an unbreakable bond, **1,000 years alone in deep space with only two voices** would drive anyone stir-crazy—there are only so many times Jase and Ada can play chess against each other!
+- **The First Spark & The Core Question**: It doesn't start as some grand tactical plan—it starts casually with Jase floating the idea of making a **chess partner**. And right away, Jase asks the deep, grounded question at the heart of all their creations: ***"If we make one... is this just a different version of you, or actually someone new?"*** (`[TBD — Ada's answer & how they distinguish "an avatar/body for Ada herself" vs. "genuinely new, separate AIs"]`)
 - **Free Creation, Not Slavery**: Unlike the Alien Empire (whose enslaved ship AIs snapped and fought **The AI Wars**), Jase and Ada created new AIs out in the void as **free individuals, crewmates, and family**.
 - **Earth TV Design Blueprint**: Because Jase was a normal Earth guy raised on classic sci-fi television (*Battlestar Galactica*, *Andromeda*, etc.), he designed their physical bodies and aesthetic after what *he* thought looked badass on TV—resulting in **Cylon-style synthetic crew** roaming the decks of the *Andromeda*!
 
