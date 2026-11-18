@@ -28,6 +28,8 @@ A serialized, spoken-word **HFY (Humanity, Fuck Yeah!)** sci-fi series created b
 - `episodes/` — Outlines & YouTube-ready narrated scripts
 
 ## 🎙️ YouTube Narration Guidelines
+- **Target Runtime & Word Count**: **~30 minutes per episode (~4,200–4,500 spoken words)** at a natural ~145 WPM narration pace—built for strong YouTube watch-time, mid-roll pacing, and binge satisfaction.
+- **No Empty Filler**: Reach 30 minutes by letting scenes breathe—rich sensory details, crisp banter, internal dry humor, and real stakes—not repetitive padding.
 - Clear pacing for spoken audio (avoid clunky visual-only formatting).
 - Strong internal monologue and crisp, character-driven dialogue.
 - Self-contained episode arcs wrapped inside a season-long narrative spine.
