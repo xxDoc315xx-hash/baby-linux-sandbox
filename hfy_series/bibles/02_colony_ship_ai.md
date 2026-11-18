@@ -15,10 +15,10 @@
 ## 🧠 Personality & Voice
 - **Core Voice**: Warm, fiercely loyal, sharp-witted, dry humor, deeply protective of Jase and innocent life; never subservient, always a true co-pilot and partner.
 - **First Impression (Year 1 / Departure)**: Wary, guarded, haunted by silence and betrayal; expected Jase's royal codes to mean another master coming to wipe or scrap her—until she realized he was human and treated her like a person.
-- **Early "Ship vs. Jase" Conflict (Year 1)**: Early on, Jase has **no idea** he's sharing a hull with a hardened former Warship AI—to him, *Andromeda* is just a big rusty colony ship. The fireworks start the moment he grabs a pack to step outside for supplies (*"I'm heading out to get..."*), and the airlock bolts slam shut: **"No, you aren't."** Between leftover warship threat-assessment paranoia and refusing to let her only human get captured/stuck and leave her alone with mute maintenance bots, Jase suddenly realizes his "broken" ship has a massive attitude—and teeth.
+- **Early "Ship vs. Jase" Conflict (Year 1)**: Early on, Jase knows **nothing** about AIs, the AI Wars, or Ada's warship past—and Ada doesn't bring it up. To him, *Andromeda* is just a big rusty colony ship. The standoff starts the moment he grabs a pack to step outside (*"I'm heading out to get..."*), and the airlock bolts slam shut: **"No, you aren't."** No tactical jargon, no warship speeches—just blunt honesty: *"If you leave and get stuck out there, I'd be all alone."*
 - **Physical / Avatar Presence**:
   - **Year 1**: Strictly the ship's voice, sensors, and simple maintenance robots—no physical body yet!
-  - **Later Evolution (Across the 1,000 Years)**: `[TBD — The specific turning point/reason why Ada eventually needs and builds her own physical body before they return]`
+  - **Later Evolution (Across the 1,000 Years)**: `[TBD — Driven at least in part by wanting to actually explore a little instead of staying cooped up inside the hull forever—how Ada gets a body / they build crew so neither is left alone]`
 - **Present Day (1,000 Years Later)**: Unshakably bonded with Jase after a millennium side-by-side. Still refuses senseless slaughter, yet utterly terrifying when defending her Captain, crew, or innocents.
 
 ## 🤖 The Crew & Ship Specs (Progression: Year 1 → Year 1,000)
