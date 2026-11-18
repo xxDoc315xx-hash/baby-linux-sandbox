@@ -8,7 +8,9 @@
 - **Earth TV Design Blueprint**: Because Jase was a normal Earth guy raised on classic sci-fi television (*Battlestar Galactica*, *Andromeda*, etc.), he modeled their physical shells after what *he* thought looked badass on TV—resulting in terrifyingly sleek **Cylon-style synthetic crew** who happen to have warm, sharp, human-raised personalities!
 
 ## 🤖 Who's Actually Aboard & The Reserve Legacy
-- **Shipboard Crew (~200–300 Cylon Types)**: Around 200–300 sleek Cylon-style synthetics operate aboard *Andromeda* as supporting ship crew, boarding muscle, and away-team backup when Jase & Ada need boots on the ground.
+- **Shipboard Crew (~240 Cylon Types in Ep 2; ~200–300 Range)**: Around 240 gleaming Cylon-style synthetics operate aboard *Andromeda* as shipmates, engineers, mechanics, and boarding muscle when Jase & Ada need boots on the ground. Named shipboard Cylons introduced so far:
+  - **Three**: Calm, dry-humored baritone who handles Deck Three power balancing and leads the Hangar Bay Two boarding standoff in Episode 2 (calls Jase "Dad" and Ada "Mom" casually).
+  - **Seven-Four**: Workshop tinkerer known for repeatedly trying to wire espresso heaters straight into the secondary railgun bus (under threat of Ada welding him inside the potato washer).
 - **Why the "AI Children" Fade Away**: While Jase and Ada started creating AIs out in the dark (and parenting them so they wouldn't be cold robots), keeping track of hundreds of individual "AI children" every episode would bloat the cast. Over the 1,000 years, those earlier AI kids drifted off to do their own things and **fade into the background/past**, keeping the weekly cast razor-sharp (**Jase, Ada, and their Cylon crew**).
 - **Ship Operations Rule**: Ada *is* the *Andromeda*. She handles helm, weapons, sensors, shields, and life support at thought-speed—zero use for redundant Star Trek bridge console operators.
 - **Ada (Ship Core & Walking Partner)**: Runs the entire ship natively while hanging out alongside Jase in her physical body.

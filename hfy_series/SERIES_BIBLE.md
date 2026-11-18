@@ -28,8 +28,14 @@ A serialized, spoken-word **HFY (Humanity, Fuck Yeah!)** sci-fi series created b
 - `episodes/` — Outlines & YouTube-ready narrated scripts
 
 ## 🎙️ YouTube Narration Guidelines
-- **Target Runtime & Word Count**: **~30 minutes per episode (~4,200–4,500 spoken words)** at a natural ~145 WPM narration pace—built for strong YouTube watch-time, mid-roll pacing, and binge satisfaction.
-- **No Empty Filler**: Reach 30 minutes by letting scenes breathe—rich sensory details, crisp banter, internal dry humor, and real stakes—not repetitive padding.
+- **Target Runtime & Word Count**: **~30–40+ minutes per episode (~4,200–6,200 spoken words)** at a natural ~145 WPM narration pace—built for strong YouTube watch-time, mid-roll pacing, and binge satisfaction.
+- **No Empty Filler**: Reach 30+ minutes by letting scenes breathe—rich sensory details, crisp banter, internal dry humor, and real stakes—not repetitive padding.
 - Clear pacing for spoken audio (avoid clunky visual-only formatting).
 - Strong internal monologue and crisp, character-driven dialogue.
 - Self-contained episode arcs wrapped inside a season-long narrative spine.
+
+---
+
+## 🔒 Locked Episode Continuity Tracker
+- **Episode 1 — *Prince of Nothing*** (`episodes/ep01_script.md` | ~6,108 words / ~42 min): Earth tech trade (100,000 volunteers), The Chair & Conversion Bay Nine, Jase Hill becoming an accidental Immortal & Protected Race "Prince in name only," ex-warship AI Ada forced onto mothballed colony hull `X4791Z` (*Andromeda*), 1,000-year rock-counting exile, and Year-1 *"No Getting Stuck Alone"* airlock standoff.
+- **Episode 2 — *Ghosts of an Empire*** (`episodes/ep02_script.md` | ~4,950 words / ~34 min): 1,000-year return into fresh unknown space; Ada's physical body (*Airlock Rule* origin, 100% platonic); ~240 parented Cylon crew (including **Three** and **Seven-Four**); discovering the Empire collapsed ~600 years ago during **The Great Fracture** (warlord houses, missing bloodlines, banned AI vaults); defeating Sgt. Kell & **Red Ledger Syndicate** raiders in Hangar Bay Two to rescue Captain **Maren**'s medicine freighter bound for **Haven Three**; receiving Maren's 200-light-year frontier jump-lane data chip and heading past Haven Three into uncharted space.
