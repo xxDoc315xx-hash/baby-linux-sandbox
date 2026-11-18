@@ -18,7 +18,9 @@ A serialized, spoken-word **HFY (Humanity, Fuck Yeah!)** sci-fi series created b
 4. **Protected Race Loophole (Prince in Name Only)**: Because **Immortals are a legally protected race**, the Empire couldn't force Jase into disposable soldier service or kill him. Legally forced to honor him as a **Prince in name only**, they had to get rid of him cleanly.
 5. **The *Andromeda* (`X4791Z`) & Ada**: They stuck him with a modified, self-sustaining colony ship (`X4791Z` to them, ***Andromeda*** to Jase) and a **"broken" sentient AI named Ada**—the lone ship who refused to fight or kill during **The AI Wars**.
 6. **The 1,000-Year Exile ("Survey Mission")**: To get rid of both problems permanently without breaking Protected Race laws, the Empire gave them a bogus 1,000-year bureaucratic mission (e.g., counting barren rocks past the edge of the map).
-7. **Where the Show Starts — THE RETURN INTO UNKNOWN SPACE (Year 1,000+)**: The series opens **1,000 years later**, when Jase and the *Andromeda* finally return—only to discover **the Alien Empire that exiled them has fallen into ruin**, leaving **fresh, unknown space** in its wake. No longer a rookie outcast and a half-dead relic, **Ada has her own physical body**, they run a **Cylon-style synthetic crew**, and they carry **1,000 years of deep-space survival, upgrades, secrets, and pure badassery** (plus a **DNA/AI Son** out in the galaxy waiting for later seasons).
+7. **Two-Part Series Premiere & Ongoing Show**:
+   - **Episode 1 (Origin & Year 1)**: Covers Earth's trade, The Chair, Jase becoming an immortal "Prince in name only," boarding *Andromeda* (`X4791Z`) with Ada, and the Year-1 *"Ship vs. Jase"* standoff in the dark.
+   - **Episode 2 (The Return — Year 1,000+)**: Jumps 1,000 years ahead as *Andromeda* returns with **Ada's physical body**, a **Cylon-style crew (~200–300)**, and **1,000 years of upgrades**—only to discover **the Alien Empire has fallen into ruin**, opening **fresh, unknown space** for Episode 3+ (while holding Jase & Ada's **DNA/AI Son** in reserve for later seasons).
 
 
 ## 📁 Folder Structure
