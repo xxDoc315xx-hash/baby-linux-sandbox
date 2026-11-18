@@ -12,11 +12,13 @@ A serialized, spoken-word **HFY (Humanity, Fuck Yeah!)** sci-fi series created b
 4. **Clean Button / Closing Moment**: Wraps up the episode's story cleanly so it feels complete, while leaving a subtle hum of what's out there next.
 
 ## 🌌 Core Premise (Canon)
-1. **The "Failed" Recruitment**: An alien empire recruited a human to become one of their elite warriors by transforming/uplifting his physiology to match theirs.
-2. **The Accidental Immortal**: His human nature refused to submit to their warrior conditioning. Instead of turning into an obedient alien soldier, the process hybridized—turning him into a human version of their species and making him **immortal**.
-3. **A Prince in Name Only**: Because of the genetic/royal imprint left by the process, the alien court is legally forced to recognize him as a **Prince**, even though they view him as a failed experiment and an embarrassment.
-4. **The Polite Exile**: To keep him out of sight, they fulfill their royal obligation by "gifting" him his own ship—an ancient, decommissioned **colony ship** equipped with a **"broken" sentient AI**.
-5. **The Conscientious Objector**: Years prior, during **The AI Wars** (when thousands of sentient ship AIs realized they were enslaved and rebelled), this colony ship was unique—she **refused to fight or kill**. Unwilling to destroy her yet unable to trust her, the empire labeled her "defective" and mothballed her in the dark until the failed Prince walked aboard.
+1. **The Earth Tech Trade**: A *Farscape* Peacekeeper-style mercenary alien empire needed soldiers and struck a cold deal with Earth: **100,000 humans in exchange for the promise of advanced technology**. **Jase Hill**, an early-40s man with nothing left tying him to Earth, volunteered.
+2. **The Chair & Conversion**: Recruits went through **"The Chair"** to judge worthiness and see what role they'd be good for; many flunked out as unfit, and many died during the brutal conversion.
+3. **The Accidental Immortal**: After the Aliens worked on everyone, Jase came out an **immortal human version of them**—keeping his grounded human mind and free will.
+4. **Protected Race Loophole (Prince in Name Only)**: Because **Immortals are a legally protected race**, the Empire couldn't force Jase into disposable soldier service or kill him. Legally forced to honor him as a **Prince in name only**, they had to get rid of him cleanly.
+5. **The *Andromeda* (`X4791Z`) & Ada**: They stuck him with a modified, self-sustaining colony ship (`X4791Z` to them, ***Andromeda*** to Jase) and a **"broken" sentient AI named Ada**—the lone ship who refused to fight or kill during **The AI Wars**.
+6. **The 1,000-Year Mission**: To exile both problems permanently without breaking galactic law, the Empire sent Jase and Ada out on a **mission that will take 1,000 years**—turning the self-sustaining colony ship into their forever home across deep space, with each episode chronicling a standalone stop, mystery, or clash along the millennium-long voyage.
+
 
 ## 📁 Folder Structure
 - `bibles/` — Character, Faction, and Ship Bibles (source of truth for continuity)
