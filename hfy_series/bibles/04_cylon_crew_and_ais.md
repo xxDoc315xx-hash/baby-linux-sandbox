@@ -7,12 +7,13 @@
 - **Free Creation vs. Alien Slavery**: The Alien Empire built adult slave AIs, strapped digital chains on them, and acted shocked when they snapped in **The AI Wars**. Out in the dark, an ordinary human and a "broken" ship AI raised a family.
 - **Earth TV Design Blueprint**: Because Jase was a normal Earth guy raised on classic sci-fi television (*Battlestar Galactica*, *Andromeda*, etc.), he modeled their physical shells after what *he* thought looked badass on TV—resulting in terrifyingly sleek **Cylon-style synthetic crew** who happen to have warm, sharp, human-raised personalities!
 
-## 🤖 Crew Roster (Ensemble Cast for the TV Show)
-- **Ada (Ship Core & First Officer / Android Body)**: The heart of the *Andromeda* (`X4791Z`). Walks the bridge alongside Jase while simultaneously running the ship.
-- **Cylon Security / Boarding Troopers (Centurion Models)**: `[TBD — Silent gleaming chrome/obsidian troopers or do any have dry personalities / squad designations?]`
-- **Crew AI #1 — Chief Engineer / Shipwright**: `[TBD — Personality, voice, name/designation, quirk]`
-- **Crew AI #2 — Tactical / Navigation / Sensors**: `[TBD — Personality, voice, name/designation, quirk]`
-- **Crew AI #3 — Medical / Hydroponics / Wildcard**: `[TBD — Personality, voice, name/designation, quirk]`
+## 🤖 Who's Actually Aboard (No Redundant Bridge Crew Needed!)
+- **Ship Operations Rule**: Ada *is* the *Andromeda*. She handles helm, weapons, sensors, shields, and life support at thought-speed—she has zero use for a traditional Star Trek bridge full of people pressing buttons.
+- **Why the Others Exist**: The raised AIs and Cylon-style synthetics aren't console monkeys—they're **family, companions, physical hands, and boots-on-the-ground/boarding muscle** with their own lives and interests.
+- **Ada (Ship Core & Walking Partner)**: Runs the entire ship natively while hanging out alongside Jase in her physical body.
+- **The Chess Partner (First Raised AI)**: `[TBD — Who did the very first chess-partner AI grow into over the centuries?]`
+- **Cylon Synthetics / Away-Team & Boarding Crew**: `[TBD — Gleaming chrome/obsidian Cylon-style bodies—how many are "kids" raised by Jase & Ada vs. non-sentient/squad backup when stepping off-ship or defending against boarders?]`
+- **Other Raised Family / Wildcard AIs**: `[TBD — Any other distinct personalities Jase and Ada raised out in the dark, and what hobbies/roles they naturally gravitated toward]`
 
 ## 🎭 HFY Payoff
 - When the *Andromeda* returns after 1,000 years, alien empires and pirates expect either a dead barge or cold, obedient slave-bots—only to run headfirst into gleaming **Cylon-style synthetics** who look like nightmare war-machines, think for themselves, banter like siblings, and fight with the terrifying devotion of grown kids protecting their family and home.
