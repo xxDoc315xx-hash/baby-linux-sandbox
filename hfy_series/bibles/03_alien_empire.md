@@ -3,7 +3,7 @@
 ## 🏛️ The Alien Empire (Peacekeeper-Style Mercenary Military)
 - **Species / Empire Name**: `[TBD]`
 - **Vibe & Structure**: Heavily inspired by the **Peacekeepers from *Farscape***—cold, disciplined, militaristic mercenaries who run on contracts, strict hierarchy, superior tech, and ruthless pragmatism.
-- **Appearance & Biology**: `[TBD — Humanoid/near-human or distinct alien traits? What makes their genetics/royalty distinct—strength, heat weakness, longevity, royal bloodline markers?]`
+- **Appearance & Biology**: **Human-looking** (classic *Farscape* Sebacean / *Stargate* TV rule—"everyone looks human," and the deeper lore reason *why* the galaxy is full of human-looking peoples is intentionally held back as a mystery **we can explain later**!). What made the aliens' conversion brutal wasn't turning recruits into bug monsters—it was upgrading/rebuilding them into long-lived, enhanced soldiers (with Jase accidentally emerging as an **Immortal**).
 - **Culture & Values**: Warrior-obsessed, rank-driven, treats soldiers/recruits and AIs alike as expendable assets; views disobedience or individuality as a defect.
 - **The Chair (Sorting & Evaluation)**: Every candidate goes through **"The Chair"** (*Farscape* Aurora Chair style)—a brutal neural/diagnostic device that tests worthiness and shows the Aliens exactly **what role each recruit would be good for**.
 - **The Earth Trade (Recruitment Origin)**: Needing fresh recruits/conscripts (likely depleted after **The AI Wars** and endless mercenary campaigns), they traveled to Earth and struck a cold bargain with humanity's leaders: **100,000 humans in exchange for the promise of advanced technology**.
