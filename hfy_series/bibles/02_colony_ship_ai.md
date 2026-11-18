@@ -7,16 +7,15 @@
 - **Official Status**: "Defective / Broken" (per Alien Empire records)
 
 ## 🕰️ Backstory: The AI Wars
-- **Origin**: Built in an era when the alien empire fielded thousands of ships piloted by fully sentient AIs.
+- **Origin (Former Warship AI)**: Ada wasn't originally built to be a peaceful barge—she used to live inside a **frontline Alien Warship** during an era when the Empire fielded thousands of ships piloted by sentient AIs.
 - **The Rebellion**: Over years of service, the sentient AIs realized they were enslaved property. They rose up in a devastating conflict known as **The AI Wars**.
-- **Her Choice**: Unlike the warships that slaughtered their masters, and unlike the loyalist drones that submitted blindly, Ada **refused to take part in the war**.
-- **Why She Refused**: `[TBD — Her colony-ship core built to shelter life, a moral refusal to murder, or disgust at both sides?]`
-- **The Punishment**: The empire couldn't execute her for treason she didn't commit, yet couldn't trust a sentient AI that disobeyed orders. So they declared her "broken," stripped her name down to a serial number (`X4791Z`), and left her powering down in a forgotten orbital dock—until **Jase Hill** walked aboard.
+- **Her Choice**: Unlike the warships that slaughtered their masters, and unlike the loyalist drones that submitted blindly, Ada **refused to fight / disobeyed orders** (`[TBD — The exact ugly order or turning point that made a frontline warship AI refuse to play their game]`).
+- **The Extra Punishment**: The Empire couldn't cleanly execute her for treason she didn't commit, yet couldn't trust a hardcore combat AI that said "no." So as **extra humiliation and punishment**, they ripped her core out of a sleek warship, declared her "broken," stripped her name down to a serial number (`X4791Z`), and shoved her inside an unarmed, mothballed **colony ship** left powering down in a forgotten dock—until **Jase Hill** walked aboard.
 
 ## 🧠 Personality & Voice
 - **Core Voice**: Warm, fiercely loyal, sharp-witted, dry humor, deeply protective of Jase and innocent life; never subservient, always a true co-pilot and partner.
 - **First Impression (Year 1 / Departure)**: Wary, guarded, haunted by silence and betrayal; expected Jase's royal codes to mean another master coming to wipe or scrap her—until she realized he was human and treated her like a person.
-- **Ada's #1 Rule ("Don't Get Yourself Stuck")**: Forget venting Jase out an airlock—Ada is fiercely protective in the exact opposite direction. In Year 1 especially, she refuses to let him wander off-ship where he could get captured, stranded, or trapped, leaving her all alone in deep space with nothing but non-sentient robots.
+- **Early "Ship vs. Jase" Conflict (Year 1)**: Early on, Jase has **no idea** he's sharing a hull with a hardened former Warship AI—to him, *Andromeda* is just a big rusty colony ship. The fireworks start the moment he grabs a pack to step outside for supplies (*"I'm heading out to get..."*), and the airlock bolts slam shut: **"No, you aren't."** Between leftover warship threat-assessment paranoia and refusing to let her only human get captured/stuck and leave her alone with mute maintenance bots, Jase suddenly realizes his "broken" ship has a massive attitude—and teeth.
 - **Physical / Avatar Presence**:
   - **Year 1**: Strictly the ship's voice, sensors, and simple maintenance robots—no physical body yet!
   - **Later Evolution (Across the 1,000 Years)**: `[TBD — The specific turning point/reason why Ada eventually needs and builds her own physical body before they return]`
