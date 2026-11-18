@@ -16,6 +16,7 @@
 ## 🧠 Personality & Voice
 - **Core Voice**: Warm, fiercely loyal, sharp-witted, dry humor, deeply protective of Jase and innocent life; never subservient, always a true co-pilot and partner.
 - **First Impression (Year 1 / Departure)**: Wary, guarded, haunted by silence and betrayal; expected Jase's royal codes to mean another master coming to wipe or scrap her—until she realized he was human and treated her like a person.
+- **Ada's #1 Rule ("Don't Get Yourself Stuck")**: Forget venting Jase out an airlock—Ada is fiercely protective in the exact opposite direction. In Year 1 especially, she refuses to let him wander off-ship where he could get captured, stranded, or trapped, leaving her all alone in deep space with nothing but non-sentient robots.
 - **Physical / Avatar Presence**:
   - **Year 1**: Strictly the ship's voice, sensors, and simple maintenance robots—no physical body yet!
   - **Later Evolution (Across the 1,000 Years)**: `[TBD — The specific turning point/reason why Ada eventually needs and builds her own physical body before they return]`
