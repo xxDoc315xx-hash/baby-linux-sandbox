@@ -15,12 +15,15 @@
 
 ## 🧠 Personality & Voice
 - **Core Voice**: Warm, fiercely loyal, sharp-witted, dry humor, deeply protective of Jase and innocent life; never subservient, always a true co-pilot and partner.
-- **First Impression (Flashback / Departure)**: Wary, guarded, haunted by silence and betrayal; expected Jase's royal codes to mean another master coming to wipe or scrap her—until she realized he was human and treated her like a person.
+- **First Impression (Year 1 / Departure)**: Wary, guarded, haunted by silence and betrayal; expected Jase's royal codes to mean another master coming to wipe or scrap her—until she realized he was human and treated her like a person.
+- **Physical / Avatar Presence**:
+  - **Year 1**: Strictly the ship's voice, sensors, and simple maintenance robots—no physical body yet!
+  - **Later Evolution (Across the 1,000 Years)**: `[TBD — The specific turning point/reason why Ada eventually needs and builds her own physical body before they return]`
 - **Present Day (1,000 Years Later)**: Unshakably bonded with Jase after a millennium side-by-side. Still refuses senseless slaughter, yet utterly terrifying when defending her Captain, crew, or innocents.
-- **Physical / Avatar Presence**: Full ship consciousness **plus her own physical android body** (walking the bridge and away missions right beside Jase, *Andromeda*/Rommie style).
 
-## 🤖 The Crew & Ship Specs (1,000 Years Later)
-- **The Crew**: A loyal, hyper-capable **Cylon-style synthetic/robotic crew** built/activated over their millennium in deep space—handling engineering, security, repairs, and boarding defense without needing squishy mortal crews.
+## 🤖 The Crew & Ship Specs (Progression: Year 1 → Year 1,000)
+- **Year 1 Crew**: Just Jase, Ada, and basic non-sentient ship robots.
+- **Year 1,000 Crew**: Over the centuries in the dark, Jase and Ada built new free AIs and Cylon-style synthetic crewmates so they wouldn't go stir-crazy talking only to each other—handling engineering, security, and boarding defense.
 - **True Purpose (Modified Colony Ship)**: Built and modified to be **100% self-sustaining**—capable of supporting Jase comfortably **forever** without ever needing to dock, resupply, or deal with the rest of the galaxy unless they choose to.
 - **Size & Layout**: Massive colony-ship hull featuring closed-loop hydroponics & agriculture bays, deep water/air recycling, spacious living quarters, fabrication workshops, and quiet forgotten decks.
 - **1,000-Year Badass Upgrades**: Over 1,000 years in uncharted space, Jase and Ada didn't sit idle—upgraded shields, hidden pre-war systems unlocked, alien tech salvaged/refitted, and battle-tested endurance that makes modern warships look like toys.
