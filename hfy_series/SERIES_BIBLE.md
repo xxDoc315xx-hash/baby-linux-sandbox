@@ -17,7 +17,8 @@ A serialized, spoken-word **HFY (Humanity, Fuck Yeah!)** sci-fi series created b
 3. **The Accidental Immortal**: After the Aliens worked on everyone, Jase came out an **immortal human version of them**—keeping his grounded human mind and free will.
 4. **Protected Race Loophole (Prince in Name Only)**: Because **Immortals are a legally protected race**, the Empire couldn't force Jase into disposable soldier service or kill him. Legally forced to honor him as a **Prince in name only**, they had to get rid of him cleanly.
 5. **The *Andromeda* (`X4791Z`) & Ada**: They stuck him with a modified, self-sustaining colony ship (`X4791Z` to them, ***Andromeda*** to Jase) and a **"broken" sentient AI named Ada**—the lone ship who refused to fight or kill during **The AI Wars**.
-6. **The 1,000-Year Mission**: To exile both problems permanently without breaking galactic law, the Empire sent Jase and Ada out on a **mission that will take 1,000 years**—turning the self-sustaining colony ship into their forever home across deep space, with each episode chronicling a standalone stop, mystery, or clash along the millennium-long voyage.
+6. **The 1,000-Year Exile ("Survey Mission")**: To get rid of both problems permanently without breaking Protected Race laws, the Empire gave them a bogus 1,000-year bureaucratic mission (e.g., counting barren rocks past the edge of the map).
+7. **Where the Show Starts — THE RETURN (Year 1,000+)**: The series opens **1,000 years later**, when Jase and the *Andromeda* finally come back into known space. They are no longer a rookie outcast and a half-dead relic—**Ada has her own physical body**, they run a **Cylon-style synthetic crew**, and they carry **1,000 years of deep-space survival, upgrades, secrets, and pure badassery** against a galaxy that forgot why they shouldn't mess with an immortal human and a pre-war ship.
 
 
 ## 📁 Folder Structure
