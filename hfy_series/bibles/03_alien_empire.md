@@ -14,13 +14,16 @@
 - **Aftermath**: `[TBD — How did the Peacekeeper-style empire survive or outlaw sentient AIs afterward?]`
 - **Impact on the Present**: Explains why the Colony Ship (**Ada**) is an ancient, rare survivor—and why the Command/Court was disgusted by her refusal to fight, labeling her "broken" and dumping her on their outcast "Prince."
 
-## 🌍 Earth (1,000 Years Ago — Distant Past)
-- **Earth Falls Away**: By the time the show begins (**1,000 years after Jase left**), Earth is no longer part of the active story—it is a millennium in the rearview mirror. Earth's role in the canon is the **origin**: selling 100,000 humans for tech, and giving Jase his 21st-century pop-culture memories (*Andromeda*, *Battlestar Galactica*, *Farscape*) that quietly shape the tech and crew he builds in deep space.
-- **Fate of the 100,000 (Historical Origin)**:
-  - **The Rejects**: Some flunked out early—deemed physically or mentally "not fit to be changed."
-  - **The Casualties**: Many did **not survive** the brutal genetic conversion process.
-  - **The Converted**: Those who survived and submitted became mercenary troopers.
-  - **The Anomaly (Jase Hill)**: An early-40s volunteer who survived the conversion and came out **immortal**. Because **Immortals are a legally protected race**, the Empire couldn't force him into soldier service or dispose of him—leaving them stuck honoring him as a **Prince in name only** and shoving him onto a mothballed colony ship with Ada for 1,000 years.
+## 🌍 Earth (1,000 Years Ago — Lost Coordinates & Silent Mystery)
+- **Earth Has No Voice Yet (Location Lost)**: Earth's coordinates were **lost** during the centuries after *The Great Fracture*, and **Earth has no active voice, faction seat, or presence on the galactic stage right now.**
+- **Goldilocks Distance Rule**: Earth is technically **close enough to travel to** with proper deep-space jump drives, *yet* tucked **far enough out in an ignored backwater** that none of the 12+ Galactic Powers know or care about it.
+- **Role in Canon**: Gives Jase his 90s-kid memories and origin—while leaving three rich slow-burn mysteries we can unpack naturally across later episodes:
+  1. **How & Why the Aliens Went to Earth**: Not necessarily a random coincidence—why did the Empire trek all the way out to a quiet backwater planet for 100,000 humans in the first place? (`[TBD — Ties potentially to the "everyone looks human" mystery]`)
+  2. **Fate of the 100,000 Chair Survivors**:
+     - **The Rejects**: Flunked out early as physically or mentally unfit (`[TBD — Returned? Marooned? Dumped somewhere?]`).
+     - **The Casualties**: Did **not survive** the brutal genetic conversion process.
+     - **The Converted Survivors**: Those who survived The Chair and became long-lived Empire mercenary troopers (`[TBD — What happened to them and their descendants over 1,000 years and The Great Fracture? Could any survivors' descendants form a faction among the 12+ Powers?]`).
+     - **The Anomaly (Jase Hill)**: An early-40s volunteer who survived conversion and came out **immortal**. Because **Immortals are a legally protected race**, the Empire couldn't force him into soldier service or dispose of him—leaving them stuck honoring him as a **Prince in name only** and shoving him onto a mothballed colony ship with Ada for 1,000 years.
 
 ## 🏚️ Year 1,000 Status: Fallen Into Ruin (Fresh Unknown Space)
 - **Collapse of the Empire ("The Great Fracture" — ~600 Years Prior)**: Roughly six centuries before *Andromeda*'s return, the Alien Empire collapsed inward. Running short on soldiers and trust, its modified mercenary legions fractured into rival warlord houses while central fleets burned half their own shipyards fighting over an ancient succession crisis involving **missing bloodlines** and **banned AI vaults** nobody could crack.
