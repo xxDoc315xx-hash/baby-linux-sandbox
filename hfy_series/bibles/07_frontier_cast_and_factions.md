@@ -20,23 +20,24 @@
 ## 🪨 Location Lock: Haven Three & The 20+ Neutral Settlements
 - **What Her Neutral Space Actually Looks Like**: **Haven Three** isn't alone—there are **20+ similar "Haven" settlements and neutral worlds** scattered across the Widowed Previous Queen's territory/system!
 - **Held Together by Grit & Loyalty**: Her entire Neutral Space is barely held together by **her sheer grit** and the fierce loyalty of ordinary families, miners, and haulers like **Captain Maren**. Because the marriage treaty bought independence rather than a large standing navy, **she simply doesn't have the ships or the men to patrol every lane, chase off pirates like Red Ledger, and give everyone the safety she desperately wants to give them.**
-- **How Neutral Space Stays Free (The Marriage Treaty)**: **Haven Three and the 20+ Neutral settlements remain independent because of a political marriage treaty** between her daughter (**the New Queen**) and **the Current King** of a neighboring Major Galactic Power.
+- **How Neutral Space Stays Free (The Marriage Treaty)**: **Haven Three and the 20+ Neutral settlements remain independent because of a political marriage treaty** between her daughter (**Queen Lyra**) and **King Marcus** of **The Sovereign Reach** (Power #1 of the 12+ Major Galactic Powers).
 - **Distrust vs. Respect Rule (Why Jase & Ada Even Got a Meeting)**:
   - When Jase, *Andromeda*, and Captain Maren show up at **Haven Three**, the Neutral Space locals **still meet them with uneasy distrust** (anti-AI galaxy + 1,000-year-old Paper Prince + synthetic Cilons).
-  - **HOWEVER**, Jase & Ada risked their necks to save **Maren** and Haven Three's medicine without asking for a dime—and **protecting one of their own** is the *one thing* Neutral Space people deeply respect. That earned respect—not blind worship—is the exact reason Haven Three passes word up and **why the Widowed Queen agreed to meet Jase and Ada at all!**
+  - **HOWEVER**, Jase & Ada risked their necks to save **Maren** and Haven Three's medicine without asking for a dime—and **protecting one of their own** is the *one thing* Neutral Space people deeply respect. That earned respect—not blind worship—is the exact reason Haven Three passes word up and **why Queen Evelyn agreed to meet Jase and Ada at all!**
 
-## 👑 Royal Family Bibles (One of the 12+ Galactic Powers)
-- **The Widowed Previous Queen (Ancient Survivor & Ada's Witness)** `[Name: TBD]`:
+## 👑 Royal Family & Power #1 Bible: The Sovereign Reach
+- **Galactic Power #1 — The Sovereign Reach**: Major neighboring power out beyond Neutral Space ruled by **King Marcus** and **Queen Lyra**. Strict, law-bound, and structured—keeps its treaty word protecting **Queen Evelyn's** 20+ Neutral settlements without gifting her a free fleet to police them.
+- **Queen Evelyn — The Widowed Previous Queen (Ancient Survivor & Ada's Witness)**:
   - **1,000-Year Link**: Long-lived people (1,000+ years not unusual)—was alive when Jase & Ada were shipped off, and was **a child when Warship Ada became famous for refusing to kill her Captain and crew during the AI Wars**.
   - **Everything a Queen Should Be**: Dignified, brave, tireless, deeply compassionate, and commands fierce loyalty from her people without ever abusing power—yet stretched to breaking point trying to protect **20+ neutral settlements** with too few ships and too few men.
-  - **The Silent Burden**: Arranged her daughter's marriage to the Current King in exchange for **being allowed to keep Neutral Space free**. She thinks about it constantly and **quietly fears her daughter despises her** for forcing the match.
+  - **The Silent Burden**: Arranged **Lyra's** marriage to **King Marcus** in exchange for **being allowed to keep Neutral Space free**. She thinks about it constantly and **quietly fears her daughter despises her** for forcing the match.
   - **Bond With Ada**: Two pre-Fracture survivors carrying old duty and sacrifice in silence—she recognizes Ada on sight/voice and **reveals Ada's true Warship fame to Jase** in Episode 3.
   - **How She Acts Every Time**: Warm yet razor-sharp; never pulls empty rank; listens closely, refuses to let innocent settlements starve or burn, and carries the quiet exhaustion of holding twenty worlds together on pure willpower.
-- **The New Queen (Her Daughter)** `[Name: TBD]`:
-  - **The Truth About the Marriage**: Was *not* fond of the arranged marriage at first—yet over time came to **deeply respect and feel grateful for her mother's sacrifice** to save and protect their people and keep Neutral Space shielded.
-  - **How She Acts Every Time**: Composed, sharp-eyed, duty-first royal who doesn't sugarcoat politics; holds quiet love/respect for her mother even if old distance between them makes it hard to say aloud.
-- **The Current King (Her Husband)** `[Name: TBD]`:
-  - **Character Lock**: **Strict, yet genuinely fair.** Honors his word, enforces law without cruelty, **truly loves his wife (the New Queen), and never mistreats her**—making him a complex, honorable leader of one of the 12 Powers rather than a cheap cartoon tyrant.
+- **Queen Lyra — The New Queen (Evelyn's Daughter, Kinda Named After Her Mom)**:
+  - **The Truth About the Marriage**: Was *not* fond of the arranged marriage at first—yet over time came to **deeply respect and feel grateful for her mother Evelyn's sacrifice** to save and protect their people and keep Neutral Space shielded.
+  - **How She Acts Every Time**: Composed, sharp-eyed, duty-first royal who doesn't sugarcoat politics; holds quiet love and respect for her mother even if old distance between them makes it hard to say aloud.
+- **King Marcus — The Current King (Lyra's Husband)**:
+  - **Character Lock**: **Strict, yet genuinely fair.** Honors his treaty word, enforces law without cruelty, **truly loves his wife Queen Lyra, and never mistreats her**—making him a complex, honorable leader of **The Sovereign Reach** rather than a cheap cartoon tyrant.
 
 ---
 
