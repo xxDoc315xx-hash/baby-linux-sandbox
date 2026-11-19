@@ -17,16 +17,24 @@
   - **3-Second Stress Reaction**: Hugs asteroid cover, vents non-essential mass to save water/air, and protects her crew/cargo first—never rolls over quietly unless outgunned ten-to-one.
   - **Blind Spot / Flaw**: Takes suicidal cargo runs when innocent families need supplies (medicine/water), even when Syndicate patrols own the belt.
 
-## 🪨 Location Lock: Haven Three & Its Royal Protectors
+## 🪨 Location Lock: Haven Three & Its Royal Treaty
 - **What Haven Three Is**: A modest forty-family independent settlement inside Neutral Space, supplied by haulers like Maren.
-- **Who Protects It (MAJOR SEASON 1 LINK)**: **Haven Three is under the personal protection of the Widowed Previous Queen**—who stepped back from the throne when **her Daughter became the New Queen** of one of the **12+ Major Galactic Powers**!
-  - **The Widowed Previous Queen (Ancient Survivor & Witness)**:
-    - **1,000-Year Link (Nothing Unusual)**: Comes from a **long-lived people** where living 1,000+ years isn't considered shocking—she **was already alive when Jase & Ada were shipped off, and was literally a child when Ada the Warship became famous for refusing to kill her own Captain and crew during the AI Wars!**
-    - **Bond With Ada (NOT Jase!)**: It's **the Old Queen and Ada** who have everything in common—two veterans of the pre-Fracture era who share old military weight, grief, and a fierce code to shield small worlds like Haven Three.
-    - **The Episode 3 Payoff**: Meeting *Andromeda* allows the Old Queen to recognize Ada's true legacy and **finally reveal to Jase (and the audience) how famous Ada used to be as a Warship—and why she was punished onto a colony barge anyway!**
-    - `[TBD — Queen's name, exact voice/mannerisms, and what kind of ship/guard she keeps in semi-retirement]`
-  - **The New Queen (Her Daughter)**: `[TBD — Name, voice, her Galactic Power's name/vibe, and whether Mother & Daughter share a warm bond, quiet friction over Neutral Space, or political rivalry]`
-  - **Why This Links *Andromeda* to the Galaxy**: Word of an unassuming guy on a green-dome barge saving Haven Three reaches a Former Queen who remembers *what* Ada used to be—giving Jase & Ada their first genuine personal anchor among the **12 Powers**!
+- **How Neutral Space Stays Free (The Marriage Treaty)**: **Haven Three and the Widowed Queen's Neutral Space remain independent because of a political marriage treaty** between her daughter (**the New Queen**) and **the Current King** of a neighboring Major Galactic Power.
+- **Distrust vs. Respect Rule (Why Jase & Ada Even Got a Meeting)**:
+  - When Jase, *Andromeda*, and Captain Maren show up at **Haven Three**, the Neutral Space locals **still meet them with uneasy distrust** (anti-AI galaxy + 1,000-year-old Paper Prince + synthetic Cilons).
+  - **HOWEVER**, Jase & Ada risked their necks to save **Maren** and Haven Three's medicine without asking for a dime—and **protecting one of their own** is the *one thing* Neutral Space people deeply respect. That earned respect—not blind worship—is the exact reason Haven Three passes word up and **why the Widowed Queen agreed to meet Jase and Ada at all!**
+
+## 👑 Royal Family Bibles (One of the 12+ Galactic Powers)
+- **The Widowed Previous Queen (Ancient Survivor & Ada's Witness)** `[Name: TBD]`:
+  - **1,000-Year Link**: Long-lived people (1,000+ years not unusual)—was alive when Jase & Ada were shipped off, and was **a child when Warship Ada became famous for refusing to kill her Captain and crew during the AI Wars**.
+  - **The Silent Burden**: Arranged her daughter's marriage to the Current King in exchange for **being allowed to keep Neutral Space safe**. She thinks about it constantly and **quietly fears her daughter despises her** for forcing the match.
+  - **Bond With Ada**: Two pre-Fracture survivors carrying old duty and sacrifice in silence—she recognizes Ada on sight/voice and **reveals Ada's true Warship fame to Jase** in Episode 3.
+  - **How She Acts Every Time**: Measured, unsentimental, fiercely protective of Neutral Space families; hides guilt behind calm regal poise; warms only slightly when someone proves through actions (not titles) that they shield ordinary people.
+- **The New Queen (Her Daughter)** `[Name: TBD]`:
+  - **The Truth About the Marriage**: Was *not* fond of the arranged marriage at first—yet over time came to **deeply respect and feel grateful for her mother's sacrifice** to save and protect their people and keep Neutral Space shielded.
+  - **How She Acts Every Time**: Composed, sharp-eyed, duty-first royal who doesn't sugarcoat politics; holds quiet love/respect for her mother even if old distance between them makes it hard to say aloud.
+- **The Current King (Her Husband)** `[Name: TBD]`:
+  - **Character Lock**: **Strict, yet genuinely fair.** Honors his word, enforces law without cruelty, **truly loves his wife (the New Queen), and never mistreats her**—making him a complex, honorable leader of one of the 12 Powers rather than a cheap cartoon tyrant.
 
 ---
 
