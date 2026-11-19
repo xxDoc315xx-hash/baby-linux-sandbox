@@ -20,6 +20,7 @@ import { YouTubeCinemaStage } from "./YouTubeCinemaStage";
 import { YouTubeProductionKit } from "./YouTubeProductionKit";
 import ep01FallbackRaw from "../../hfy_series/episodes/ep01_script.md?raw";
 import ep02FallbackRaw from "../../hfy_series/episodes/ep02_script.md?raw";
+import ep03FallbackRaw from "../../hfy_series/episodes/ep03_script.md?raw";
 
 interface RawEpisode {
   id: string;
@@ -64,6 +65,15 @@ const EPISODE_CHAPTER_TITLES: Record<number, string[]> = {
     "Part 4 · Boarding Hold Four",
     "Part 5 · The Great Fracture",
     "Part 6 · Fresh Unknown Space",
+  ],
+  3: [
+    "Part 1 · Less Than Nothing & Missing Charts",
+    "Part 2 · Cold Welcome at Haven Three",
+    "Part 3 · The Queen & The Warship",
+    "Part 4 · Twenty-Two Worlds on Grit",
+    "Part 5 · Haven Nine & Unit Four-Nine",
+    "Part 6 · A Queen's Word",
+    "Part 7 · Foothold in the Dark",
   ],
 };
 
@@ -186,6 +196,7 @@ function countMarkdownWords(raw: string): number {
 function buildFallbackEpisodes(): RawEpisode[] {
   const ep1Words = countMarkdownWords(ep01FallbackRaw);
   const ep2Words = countMarkdownWords(ep02FallbackRaw);
+  const ep3Words = countMarkdownWords(ep03FallbackRaw);
   return [
     {
       id: "ep01",
@@ -206,6 +217,16 @@ function buildFallbackEpisodes(): RawEpisode[] {
       wordCount: ep2Words,
       estimatedMinutes: Math.max(1, Math.round(ep2Words / 148)),
       content: ep02FallbackRaw,
+    },
+    {
+      id: "ep03",
+      episodeNumber: 3,
+      filename: "ep03_script.md",
+      title: "Episode 3: A Queen's Word",
+      subtitle: "Season 1, Episode 3 · Spoken Edition",
+      wordCount: ep3Words,
+      estimatedMinutes: Math.max(1, Math.round(ep3Words / 148)),
+      content: ep03FallbackRaw,
     },
   ];
 }

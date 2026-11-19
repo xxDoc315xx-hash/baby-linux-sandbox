@@ -48,8 +48,8 @@ function getBackdropForScene(episodeNumber: number, chapterIndex: number): strin
     if (chapterIndex === 3 || chapterIndex === 4) return ep01ShipDockImg;
     return ep01DeepSpaceImg;
   }
-  // Episode 2 visual rotation across the ship & deep-space bridges
-  if (chapterIndex === 0 || chapterIndex === 5) return ep01DeepSpaceImg;
+  // Episode 2+ visual rotation across the ship & deep-space bridges
+  if (chapterIndex === 0 || chapterIndex === 5 || chapterIndex === 6) return ep01DeepSpaceImg;
   if (chapterIndex === 1 || chapterIndex === 4) return ep01ThumbImg;
   return ep01ShipDockImg;
 }

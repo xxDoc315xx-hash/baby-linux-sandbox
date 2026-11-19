@@ -64,10 +64,16 @@ export const YouTubeProductionKit: React.FC<YouTubeProductionKitProps> = ({
           "The Aliens Accidentally Made a Human Immortal—So They Made Him a Prince and Exiled Him | HFY",
           "Prince of Nothing (Ep. 1) — Stuck for 1,000 Years With a Ship AI Who Refuses to Let Him Leave | HFY",
         ]
-      : [
+      : episodeNumber === 2
+      ? [
           "They Returned After 1,000 Years to Find the Alien Empire in Ruins | HFY Sci-Fi (Ep. 2)",
           "Pirates Tried to Rob an 'Unarmed' 1,000-Year-Old Colony Ship—And Met Its Cilon Crew | HFY",
           "Ghosts of an Empire (Ep. 2) — One Immortal Human, a Warship AI, and Fresh Unknown Space | HFY",
+        ]
+      : [
+          "A Frontier Queen Recognized the 'Broken' Colony Ship AI as a Legendary Rebel Warship | HFY (Ep. 3)",
+          "Why Nobody Dares Trust a 1,000-Year-Old AI—Until She Bleeds for a Frontier Station | HFY Sci-Fi",
+          "A Queen's Word (Ep. 3) — Earth Is Missing, Neutral Space Is Starving, and Andromeda Chooses a Side | HFY",
         ];
 
   const chapterLines = chapters
@@ -80,7 +86,9 @@ export const YouTubeProductionKit: React.FC<YouTubeProductionKitProps> = ({
   const ytDescription =
     episodeNumber === 1
       ? `Earth traded 100,000 volunteers for the promise of alien technology. Jase Hill—an ordinary guy in his early forties with nothing left to lose—survived The Chair and came out an immortal human variant. Because Immortals are a legally protected race, the alien mercenary empire couldn't execute him or shove him into the trenches. So they crowned him a "Prince in name only," dumped him aboard a forgotten colony barge (X4791Z) with a supposedly "broken" ship AI named Ada, and ordered them on a 1,000-year survey mission beyond the edge of the map.\n\nEpisode 1 of our serialized HFY Sci-Fi Audio Show!\n\nChapters:\n${chapterLines}\n\n#HFY #SciFiStory #HumanityFuckYeah #AudioDrama #SpaceOpera`
-      : `One thousand years after being exiled past the edge of mapped space, Jase Hill and the modified colony ship Andromeda return—with Ada now walking the decks in her own body and ~240 parented Cilon-style crewmates aboard. Expecting an angry alien fleet waiting at the border, they instead find shattered beacons and the ruins of an empire that collapsed centuries ago... right before frontier raiders mistake Andromeda for an unarmed antique barge.\n\nEpisode 2 of our serialized HFY Sci-Fi Audio Show!\n\nChapters:\n${chapterLines}\n\n#HFY #SciFiStory #HumanityFuckYeah #AudioDrama #SpaceOpera`;
+      : episodeNumber === 2
+      ? `One thousand years after being exiled past the edge of mapped space, Jase Hill and the modified colony ship Andromeda return—with Ada now walking the decks in her own body and ~240 parented Cilon-style crewmates aboard. Expecting an angry alien fleet waiting at the border, they instead find shattered beacons and the ruins of an empire that collapsed centuries ago... right before frontier raiders mistake Andromeda for an unarmed antique barge.\n\nEpisode 2 of our serialized HFY Sci-Fi Audio Show!\n\nChapters:\n${chapterLines}\n\n#HFY #SciFiStory #HumanityFuckYeah #AudioDrama #SpaceOpera`
+      : `Realizing Ada's navigation vaults hold zero records pointing back toward Earth, Jase Hill, XO Bob, and Andromeda drop into Neutral Space seeking archives at Haven Three. There, widowed Queen Evelyn recognizes Ada's pre-war face from the darkest hours of The AI Wars—just before Red Ledger raiders strike Haven Nine and Andromeda proves why respect on the frontier is earned in blood, not titles.\n\nEpisode 3 of our serialized HFY Sci-Fi Audio Show!\n\nChapters:\n${chapterLines}\n\n#HFY #SciFiStory #HumanityFuckYeah #AudioDrama #SpaceOpera`;
 
   const ytTags =
     "HFY, HFY stories, Humanity Fuck Yeah, Sci-Fi Audio Story, Space Opera, Colony Ship AI, Immortal Human HFY, Andromeda inspired sci fi, HFY 30 minute story, Sci Fi Narration";
@@ -113,21 +121,21 @@ export const YouTubeProductionKit: React.FC<YouTubeProductionKitProps> = ({
       // Kicker
       ctx.fillStyle = "#f59e0b";
       ctx.font = "700 28px 'Plus Jakarta Sans', Arial, sans-serif";
-      ctx.fillText(
-        episodeNumber === 1 ? "HFY SERIES · EPISODE 1" : "HFY SERIES · EPISODE 2",
-        64,
-        130
-      );
+      ctx.fillText(`HFY SERIES · EPISODE ${episodeNumber}`, 64, 130);
 
       // Main Headline
       const headlineLines =
         thumbStyle === "hook"
           ? episodeNumber === 1
             ? ["EXILED FOR", "1,000 YEARS", "ON A 'BROKEN'", "SHIP"]
-            : ["1,000 YEARS", "LATER...", "THE EMPIRE", "IS GONE"]
+            : episodeNumber === 2
+            ? ["1,000 YEARS", "LATER...", "THE EMPIRE", "IS GONE"]
+            : ["THE QUEEN", "KNEW HER", "REAL WARSHIP", "NAME"]
           : episodeNumber === 1
           ? ["PRINCE OF", "NOTHING", "JASE & ADA"]
-          : ["GHOSTS OF", "AN EMPIRE", "UNKNOWN SPACE"];
+          : episodeNumber === 2
+          ? ["GHOSTS OF", "AN EMPIRE", "UNKNOWN SPACE"]
+          : ["A QUEEN'S", "WORD", "HAVEN THREE"];
 
       ctx.font = "800 84px 'Plus Jakarta Sans', Arial, sans-serif";
       let y = 240;
