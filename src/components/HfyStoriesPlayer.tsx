@@ -59,7 +59,7 @@ const EPISODE_CHAPTER_TITLES: Record<number, string[]> = {
   ],
   2: [
     "Part 1 · A Thousand Years Later",
-    "Part 2 · Ada's Body, Cylons & Ghosts",
+    "Part 2 · Ada's Body, Cilons & Ghosts",
     "Part 3 · Distress in the Debris Belt",
     "Part 4 · Boarding Hold Four",
     "Part 5 · The Great Fracture",

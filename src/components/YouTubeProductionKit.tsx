@@ -66,7 +66,7 @@ export const YouTubeProductionKit: React.FC<YouTubeProductionKitProps> = ({
         ]
       : [
           "They Returned After 1,000 Years to Find the Alien Empire in Ruins | HFY Sci-Fi (Ep. 2)",
-          "Pirates Tried to Rob an 'Unarmed' 1,000-Year-Old Colony Ship—And Met Its Cylon Crew | HFY",
+          "Pirates Tried to Rob an 'Unarmed' 1,000-Year-Old Colony Ship—And Met Its Cilon Crew | HFY",
           "Ghosts of an Empire (Ep. 2) — One Immortal Human, a Warship AI, and Fresh Unknown Space | HFY",
         ];
 
@@ -80,7 +80,7 @@ export const YouTubeProductionKit: React.FC<YouTubeProductionKitProps> = ({
   const ytDescription =
     episodeNumber === 1
       ? `Earth traded 100,000 volunteers for the promise of alien technology. Jase Hill—an ordinary guy in his early forties with nothing left to lose—survived The Chair and came out an immortal human variant. Because Immortals are a legally protected race, the alien mercenary empire couldn't execute him or shove him into the trenches. So they crowned him a "Prince in name only," dumped him aboard a forgotten colony barge (X4791Z) with a supposedly "broken" ship AI named Ada, and ordered them on a 1,000-year survey mission beyond the edge of the map.\n\nEpisode 1 of our serialized HFY Sci-Fi Audio Show!\n\nChapters:\n${chapterLines}\n\n#HFY #SciFiStory #HumanityFuckYeah #AudioDrama #SpaceOpera`
-      : `One thousand years after being exiled past the edge of mapped space, Jase Hill and the modified colony ship Andromeda return—with Ada now walking the decks in her own body and ~240 parented Cylon-style crewmates aboard. Expecting an angry alien fleet waiting at the border, they instead find shattered beacons and the ruins of an empire that collapsed centuries ago... right before frontier raiders mistake Andromeda for an unarmed antique barge.\n\nEpisode 2 of our serialized HFY Sci-Fi Audio Show!\n\nChapters:\n${chapterLines}\n\n#HFY #SciFiStory #HumanityFuckYeah #AudioDrama #SpaceOpera`;
+      : `One thousand years after being exiled past the edge of mapped space, Jase Hill and the modified colony ship Andromeda return—with Ada now walking the decks in her own body and ~240 parented Cilon-style crewmates aboard. Expecting an angry alien fleet waiting at the border, they instead find shattered beacons and the ruins of an empire that collapsed centuries ago... right before frontier raiders mistake Andromeda for an unarmed antique barge.\n\nEpisode 2 of our serialized HFY Sci-Fi Audio Show!\n\nChapters:\n${chapterLines}\n\n#HFY #SciFiStory #HumanityFuckYeah #AudioDrama #SpaceOpera`;
 
   const ytTags =
     "HFY, HFY stories, Humanity Fuck Yeah, Sci-Fi Audio Story, Space Opera, Colony Ship AI, Immortal Human HFY, Andromeda inspired sci fi, HFY 30 minute story, Sci Fi Narration";

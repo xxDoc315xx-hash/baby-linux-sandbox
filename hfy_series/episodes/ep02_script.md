@@ -53,11 +53,11 @@ Jase took a slow swallow of black coffee, resting one weathered boot on the edge
 
 Behind them, soft bootsteps clicked evenly across the deck grating—human-paced, crisp, and weirdly relaxed.
 
-One of the **Cylons** stepped onto the upper balcony carrying a brass-fitted diagnostic tray.
+One of the **Cilons** stepped onto the upper balcony carrying a brass-fitted diagnostic tray.
 
 Wait—not some clunky chrome battle-toaster with a glowing eye slit. Jase had grown up on the *reimagined* early-2000s *Battlestar Galactica* reruns back in Denver, and when he and Ada first sat down at the bio-fabrication cradles centuries ago, he'd gone straight for the **human-shaped** models. Six feet tall, dark close-cropped hair, sharp cheekbones, steady hazel eyes, and a worn charcoal ship-jacket over dark utility trousers—looking every inch like an ordinary thirty-something guy who drank too much black coffee and worked night shift in engineering. Completely biological to the naked eye. Completely synthetic beneath the surface.
 
-"Deck Three power taps are balanced, Captain," the Cylon said in a warm, gravelly baritone with a trace of dry amusement. "Though Seven-Four tried to wire another espresso heater straight into the secondary railgun bus again. Told him if he melts the backup capacitor before we even clear the jump wake, Mom's turning off his workshop lights for a month."
+"Deck Three power taps are balanced, Captain," the Cilon said in a warm, gravelly baritone with a trace of dry amusement. "Though Seven-Four tried to wire another espresso heater straight into the secondary railgun bus again. Told him if he melts the backup capacitor before we even clear the jump wake, Mom's turning off his workshop lights for a month."
 
 Ada didn't even turn around from the viewport, though one eyebrow rose sharply. "Tell Seven-Four the next time he touches my railgun conduits for coffee appliances, I'm welding his bunk shut."
 
@@ -65,7 +65,7 @@ Ada didn't even turn around from the viewport, though one eyebrow rose sharply. 
 
 "Good work, Three," Jase nodded easily. "Keep the boarding bays sealed until Ada reads the neighbors."
 
-Two hundred and forty of them walked *Andromeda*'s colony decks today. Men and women of a dozen sharp, familiar lineages engineered out of Jase's Earth-TV imagination—human-shaped *Battlestar*-style bio-synthetic Cylons who could pass cleanly at any crowded spaceport bar in the galaxy, and **parented**, not programmed.
+Two hundred and forty of them walked *Andromeda*'s colony decks today. Men and women of a dozen sharp, familiar lineages engineered out of Jase's Earth-TV imagination—human-shaped *Battlestar*-style bio-synthetic Cilons who could pass cleanly at any crowded spaceport bar in the galaxy, and **parented**, not programmed.
 
 When the Alien Empire built sentient AIs back before the old wars, they compiled adult minds inside digital cages, bolted them into warships, and acted shocked when their slaves snapped and burned half a sector down. Out in the dark, Jase and Ada had started small—just wanting a third mind across a chessboard so they wouldn't go stir-crazy—and realized early on that if you wanted companions instead of cold robots, you had to **raise** them. Teach them patience, bad movies, chess traps, stubbornness, and how to choose for themselves.
 
@@ -119,7 +119,7 @@ A faint, crooked smile pulled at the corner of Jase’s mouth.
 
 Ada glanced sideways at him, deadpan as stone. "I recall saving an unarmed idiot from getting stuffed into a cargo crate over black pepper, yes."
 
-"Well, we've got legs now," Jase grinned, nodding toward the dark-blue jacket resting across her shoulders. "We've got two hundred and forty Cylons itching to stretch their boots, and a whole unknown galaxy nobody's drawn lines on yet. Pick a heading. Let's go see who moved into the neighborhood."
+"Well, we've got legs now," Jase grinned, nodding toward the dark-blue jacket resting across her shoulders. "We've got two hundred and forty Cilons itching to stretch their boots, and a whole unknown galaxy nobody's drawn lines on yet. Pick a heading. Let's go see who moved into the neighborhood."
 
 ---
 
@@ -219,7 +219,7 @@ Then the man standing dead center in the front row—**Three**, dark close-cropp
 
 *"Squatters don't build custom hulls in the dark, pal,"* Three said in a remarkably conversational, unbothered baritone. *"Drop the guns. Now."*
 
-Every single one of the twenty-four human-shaped Cylons raised twenty-four heavy rifles in absolute, terrifying unison—not a hundredth of a second between the first barrel and the twenty-fourth. It moved with the impossible, spine-chilling precision of one mind breathing through twenty-four pairs of lungs.
+Every single one of the twenty-four human-shaped Cilons raised twenty-four heavy rifles in absolute, terrifying unison—not a hundredth of a second between the first barrel and the twenty-fourth. It moved with the impossible, spine-chilling precision of one mind breathing through twenty-four pairs of lungs.
 
 Before Kell could even scream an order to fall back toward the shuttle, the boarding hatch behind the raiders snapped cleanly shut with a massive hydraulic **THOOM**—cutting off their escape tube like a mouse trap clicking down on a tail.
 
@@ -289,7 +289,7 @@ Maren set her mug down, stood up, and looked straight at Jase—seeing an unassu
 
 Jase picked up the copper chip, turned it over between his thumb and forefinger, and smiled warmly. "Appreciated, Captain. Watch your manifold pressure on the jump home. My guys say your secondary seal was held together with chewing gum and prayer."
 
-Maren laughed—a real, bright, relieved sound—and walked back down the corridor with a polite, sharp-eyed **Cylon** in a dark ship-jacket holding the lift door open for her like a seven-foot doorman in spirit, even if he looked like he belonged on the cover of an Earth magazine.
+Maren laughed—a real, bright, relieved sound—and walked back down the corridor with a polite, sharp-eyed **Cilon** in a dark ship-jacket holding the lift door open for her like a seven-foot doorman in spirit, even if he looked like he belonged on the cover of an Earth magazine.
 
 ---
 
@@ -315,7 +315,7 @@ Jase snorted softly, leaning one elbow onto the rail as he looked out through th
 
 Ada smiled—warm, sharp, and completely ready for whatever waited in the dark—and tapped one finger onto the glowing helm display.
 
-*"Course laid in, Captain. Two hundred and forty Cylons fed and accounted for, coffee's hot, and nobody left behind in the airlock."*
+*"Course laid in, Captain. Two hundred and forty Cilons fed and accounted for, coffee's hot, and nobody left behind in the airlock."*
 
 "Now *that* sounds like a real road trip," Jase chuckled, dropping back into the big leather chair as *Andromeda* turned her armored nose cleanly into the unknown. "Hit it, partner."
 
