@@ -12,17 +12,35 @@
 - **Ship Operations Rule**: Ada *is* the *Andromeda*. She handles helm, weapons, sensors, shields, and life support at thought-speed—zero use for redundant Star Trek bridge console operators.
 - **The Four Crew Divisions**:
   1. **Soldiers / Security** *(Commanded directly by Ada; **Three** leads field boarding/tactical teams)*
-  2. **Medics** *(Away-team trauma care & ship med-bay—`[TBD — Chief Medic name & voice card]`)*
-  3. **Pilots** *(Shuttle, scout & away-pod flight wing—`[TBD — Lead Pilot name & voice card]`)*
-  4. **Engineers / Workshop** *(Fabrication, hull systems & maintenance—includes **Five** and tinkering **Seven-Four**)*
-- **Two-Tier Crew Solution (Names vs. Expendable "Red Shirts")**:
-  - **Tier 1 — The Raised Originals (Named Inner Family)**: The core original AIs Jase and Ada personally **raised/parented** around chessboards and Earth movies during the early centuries in the deep (their story is slated for a dedicated **1,000-Year Deep Space Flashback Episode**!). They have **personal names** (`[TBD — Confirm personal names/callsign links]`) while still using classic duty callsigns (`Three`, `Five`, etc.) on military watch.
+  2. **Medics** *(Led by **Bones**, Chief Medic — away-team trauma care & ship med-bay)*
+  3. **Pilots** *(Led by **Maverick**, Lead Pilot — shuttle, scout & away-pod flight wing)*
+  4. **Engineers / Workshop** *(Led alongside **Bob** by **Five** and tinkering **Seven-Four** — fabrication, hull systems & maintenance)*
+- **Two-Tier Crew Solution (Raised Family Names vs. Expendable "Red Shirts")**:
+  - **Tier 1 — The Raised Originals (Named Inner Family)**: The core original AIs Jase and Ada personally **raised/parented** around chessboards and 90s Earth movies during the early centuries in the deep (their upbringing is slated for a dedicated **1,000-Year Deep Space Flashback Episode**!).
+    - **Why Numbered & 90s-Kid Names Both Make Sense**: **Three**, **Five**, and **Seven-Four** **kept their birth-order cradle numbers as their chosen names** because that's literally who they've been since day one. Later specialists took affectionate **90s-kid nicknames** from Jase's Earth movie/TV lens (**Bones**, **Maverick**)—giving readers instant shorthand for who each person is!
   - **Tier 2 — The Standing Ship Force (~220+ Numbered "Red Shirt" Specialists)**: Later-batch adult Cilon soldiers, medics, pilots, and deck techs activated off the human-shaped templates so *Andromeda* has real boots on the ground for dangerous missions. Treated well and sharp in combat, they wear the division loadouts and take real casualties when an ambush goes hot—preserving genuine *Red Shirt* stakes without killing Jase & Ada's raised core family every week.
-- **Named/Active Crew Already Seen in Episode 2**:
-  - **Three**: Calm, dry-humored baritone; Ada's right-hand Tactical/Security Sergeant who runs Hangar Bay Two standoffs (calls Jase "Dad" and Ada "Mom" casually).
-  - **Five**: Broad-shouldered, quiet Bay Four engineer who welds coolant manifolds bare-handed while joking about cheese toast.
-  - **Seven-Four**: Workshop tinkerer known for repeatedly trying to wire espresso heaters straight into the secondary railgun bus (under threat of Ada welding his bunk shut).
-- **Why Earlier "AI Children" Faded Into the Background**: Over 1,000 years, earlier raised generations drifted off to explore or build lives of their own, keeping the active ship cast crisp (**Jase, Ada, Tier 1 division leads, and Tier 2 numbered squads**).
+
+## 🔒 Named Core Crew — Voice & Consistency Locks
+- **Three — Tactical / Boarding Lead (Division: Soldiers & Security)**
+  - **Look & Origin**: Six feet tall, close-cropped dark hair, sharp cheekbones, hazel eyes, charcoal tactical jacket. Kept his birth-order name **Three**; answers directly to **Ada** on tactical readiness.
+  - **Voice & 3-Second Stress Reaction**: Warm, dry-humored, deadpan baritone; calls Jase *"Dad"* and Ada *"Mom"* off-the-cuff. Under fire, tilts his head two inches and gets *eerily calm* while synchronizing squad sightlines.
+  - **Blind Spot / Never Does**: Zero theatrical bravado; sometimes takes Ada's drills *too* literally until Jase tells him to loosen up.
+- **Bones — Chief Medic (Division: Medics)**
+  - **Origin & Name**: Named by Jase straight out of 90s *Star Trek* nostalgia—the ship's blunt, big-hearted head doctor who runs Med-Bay and patches up away teams (including discovering Jase's biology alongside him when accidents happen!).
+  - **Voice & 3-Second Stress Reaction**: Grumpy, fiercely caring bedside bark (*"Hold still before I sedate you with a wrench"*). When plasma starts flying, automatically tackles triage first and argues about safety regulations *while* stapling wounds shut.
+  - **Blind Spot / Never Does**: Never sugarcoats medical odds—will scold a 1,000-year-old immortal Captain and a warship AI alike if they skip post-op scans.
+- **Maverick — Lead Pilot (Division: Pilots)**
+  - **Origin & Name**: Named from Jase's 90s *Top Gun* nostalgia—the ship's ace shuttle, drop-pod, and fighter-scout pilot (because Ada flies the half-mile-long *Andromeda* herself, **Maverick** handles everything that launches *out* of her bays!).
+  - **Voice & 3-Second Stress Reaction**: Effortless cocky grin, quick radio banter, treats asteroid slaloms like joyrides. Under enemy lock, grins *wider*, kills auxiliary chatter, and threads needles nobody sane would fly through.
+  - **Blind Spot / Never Does**: Chronic rule-bender in atmosphere/tight debris—constantly makes Ada threaten to shut off his inertial dampeners; never leaves an away team stranded without dust-off extraction.
+- **Five — Heavy Systems / Bay Engineer (Division: Engineers)**
+  - **Look & Origin**: Broad-shouldered, quiet, unflappable Bay Four chief engineer who kept his birth-order name.
+  - **Voice & 3-Second Stress Reaction**: Economical words, mild dry humor (will bare-hand weld a red-hot coolant manifold while casually chatting about cheese toast). Never panics; simply walks straight toward whichever fire is biggest with a torch.
+- **Seven-Four — Tinkering / Ordnance Specialist (Division: Engineers)**
+  - **Origin**: Kept his birth-order designation; brilliant shipboard fabricator/tinkerer who gets bored between jumps.
+  - **Voice & 3-Second Stress Reaction**: Curious, slightly hyper mechanical problem-solver who sees *"secondary railgun bus"* and thinks *"great power tap for espresso heaters."* Under threat of Ada welding his bunk shut, ducks behind **Five** or **Bob** cleanly.
+
+- **Why Earlier "AI Children" Faded Into the Background**: Over 1,000 years, earlier raised generations drifted off to explore or build lives of their own, keeping the active ship cast crisp (**Jase, Ada, Bob, Tier 1 division leads, and Tier 2 numbered squads**).
 
 ## 🧬 The Secret Ace: Jase & Ada's Son (Reserved for Later Seasons)
 - **Origin (DNA + AI Clone)**: Instead of keeping a massive cast of kids around, Jase and Ada created **one extraordinary Son**—combining **Jase's immortal DNA** with **Ada's physical-body ("sexybot") synthetic/bio-digital DNA** into a single hybrid clone of the two of them.
