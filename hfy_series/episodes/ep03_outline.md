@@ -7,15 +7,17 @@ Anchor **Jase, Ada, XO Bob, and the Cilon crew** inside the new galaxy after Epi
 
 ## 📋 Scene-by-Scene Beat Sheet (~35–40 Min Spoken Audio | ~4,800–5,200 Words Target)
 
-### 1. Cold Open (~60–90 sec) — Less Than Nothing
-- **Standalone Anchor**: Quick 60-second grounding for any drop-in listener—Earth is lost a thousand years behind them, the Empire that branded Jase Hill an immortal "Prince in name only" has been dust for six centuries, and now he's steering a half-mile upgraded colony ship (*Andromeda*) across fresh, unknown space.
-- **Morning-After Weight**: The rush of beating Episode 2's pirates fades. Jase sits on the quiet bridge with black coffee, feeling the real gut-punch: everyone who exiled him is dead, his "Prince" title is worth *even less than nothing* now, and without a real link in this galaxy, they're just ghosts drifting past someone else's porch.
+### 1. Cold Open (~60–90 sec) — Less Than Nothing (And No Way Home?)
+- **Standalone Anchor**: Quick 60-second grounding for any drop-in listener—Earth is a thousand years behind them, the Empire that branded Jase Hill an immortal "Prince in name only" has been dust for six centuries, and now he's steering a half-mile upgraded colony ship (*Andromeda*) across fresh, unknown space.
+- **Morning-After Weight & The Throwaway Earth Line**: The rush of beating Episode 2's pirates fades. Jase sits on the quiet bridge with black coffee, feeling the real gut-punch: everyone who exiled him is dead, and his "Prince" title is worth *even less than nothing* now. Looking at the dead border map, Jase drops a casual throwaway line: *"Well, nobody's left to write me a ticket—what do you say we swing back toward Earth and see who's keeping the lights on?"*
+  - **Ada checks her navigation banks and stops**: **"I have no records of Earth, Captain."** (`The old mothballed barge logs were scrubbed/incomplete—or somebody erased them centuries ago.`)
 - **Introducing the Bridge Dynamic (`XO Bob`!)**:
   - Ada already flies the entire ship herself at thought-speed—Jase had zero need for a bridge crew. The *only* reason command billets exist is because **Ada insisted** on proper warship structure.
   - Standing rigidly beside Jase's leather chair with his magnetic boots clamped to the deck grating is **XO Bob**: six hundred pounds of dented, welded maintenance metal, barely sentient, predating Ada's humanoid body—whom Jase wryly named First Officer (`"Pipe fixed. Threat zero."`) while Ada quietly grumbles over private comms.
 
-### 2. Act I — Landing at Haven Three (Uneasy Distrust vs. Earned Respect)
-- **Entering Queen Evelyn's System**: Captain **Maren** guides *Andromeda* toward **Haven Three**—revealing this isn't just one lonely rock, but a strained web of **20+ neutral settlements** barely held together by **Queen Evelyn's** sheer grit and the fierce loyalty of regular people.
+### 2. Act I — Why Haven Three? & The Cold Welcome (Uneasy Distrust vs. Earned Respect)
+- **Maren's Tip ("The Queen Might Know")**: Checking in with Captain **Maren** ahead on the trade lane, Jase casually asks if anyone in her 200-LY jump charts remembers an old outer arm called Earth. Maren shakes her head—working haulers don't have thousand-year charts—then adds: *"If anyone out here still keeps pre-Fracture star records or remembers before the Fall, it's **Queen Evelyn** at **Haven Three**. Worth asking—if she'll see you."* That gives Jase & Ada a real reason to turn toward Haven Three!
+- **Entering Queen Evelyn's System**: *Andromeda* reaches **Haven Three**—revealing this isn't just one lonely rock, but a strained web of **20+ neutral settlements** barely held together by **Queen Evelyn's** sheer grit and the fierce loyalty of regular people.
 - **Shuttle Down (`Maverick` & `Bones`)**:
   - Rather than looming over a small forty-family station with half a mile of warship broadsides, Jase takes a shuttle down with **Ada** (wearing polite, crisp military composure), **XO Bob**, **Bones** (griping the whole descent while packing extra med supplies for station families), and **Maverick** at the stick (threading tight debris lanes purely to show off until Ada threatens to shut off his inertial dampeners).
 - **The Cold Dockside Welcome (Anti-AI Distrust Rule)**:
