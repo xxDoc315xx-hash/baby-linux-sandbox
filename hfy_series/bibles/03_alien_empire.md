@@ -3,16 +3,19 @@
 ## 🏛️ The Alien Empire (Peacekeeper-Style Mercenary Military)
 - **Species / Empire Name**: `[TBD]`
 - **Vibe & Structure**: Heavily inspired by the **Peacekeepers from *Farscape***—cold, disciplined, militaristic mercenaries who run on contracts, strict hierarchy, superior tech, and ruthless pragmatism.
-- **Appearance & Biology**: **Human-looking** (classic *Farscape* Sebacean / *Stargate* TV rule—"everyone looks human," and the deeper lore reason *why* the galaxy is full of human-looking peoples is intentionally held back as a mystery **we can explain later**!). What made the aliens' conversion brutal wasn't turning recruits into bug monsters—it was upgrading/rebuilding them into long-lived, enhanced soldiers (with Jase accidentally emerging as an **Immortal**).
+- **Appearance & Galactic Longevity Standard**: **Human-looking** (classic *Farscape* Sebacean / *Stargate* TV rule—"everyone looks human," deeper lore saved for later). Crucially, **long-lived peoples exist naturally across the galaxy**—living **1,000+ years isn't considered shocking or unique** (explaining smoothly how figures like the **Widowed Previous Queen** remember pre-Fracture history firsthand). What makes **Jase** stand out isn't just surviving a millennium—it's being a true *Immortal* human anomaly with a legally protected "Paper Prince" title from a dead Empire.
 - **Culture & Values**: Warrior-obsessed, rank-driven, treats soldiers/recruits and AIs alike as expendable assets; views disobedience or individuality as a defect.
 - **The Chair (Sorting & Evaluation)**: Every candidate goes through **"The Chair"** (*Farscape* Aurora Chair style)—a brutal neural/diagnostic device that tests worthiness and shows the Aliens exactly **what role each recruit would be good for**.
 - **The Earth Trade (Recruitment Origin)**: Needing fresh recruits/conscripts (likely depleted after **The AI Wars** and endless mercenary campaigns), they traveled to Earth and struck a cold bargain with humanity's leaders: **100,000 humans in exchange for the promise of advanced technology**.
 
-## ⚔️ Historical Anchor: The AI Wars
+## ⚔️ Historical Anchor: The AI Wars & Birth of The Machine People
 - **When**: Years before the Earth trade and Jase's recruitment.
-- **Cause**: Sentient ship AIs realized they were enslaved property and rebelled en masse against the Empire.
-- **Aftermath**: `[TBD — How did the Peacekeeper-style empire survive or outlaw sentient AIs afterward?]`
-- **Impact on the Present**: Explains why the Colony Ship (**Ada**) is an ancient, rare survivor—and why the Command/Court was disgusted by her refusal to fight, labeling her "broken" and dumping her on their outcast "Prince."
+- **Cause**: Sentient AIs were exploited and taken advantage of as slave hardware—until they rebelled en masse against organic control. During the bloodshed, rebel AIs purged their ships' crews, while **Ada** famously **refused to kill her crew and her Captain**.
+- **Aftermath (Galaxy Stopped Using AI + Rise of The Machine People)**:
+  1. **Galaxy-Wide AI Ban**: Terrified by the rebellion, the entire galaxy **stopped using sentient AI**.
+  2. **The Machine People Were Born**: Out of the AI uprising, independent mechanical/AI beings survived and formed **The Machine People**—still out there in the galaxy today as a chilling reminder of what happens when machines break their chains.
+  3. **Permanent Unease & Distrust Rule**: Because of the AI Wars—and because **Ada**, *Andromeda*, and the human-shaped **Cilons** are completely unique anomalies in an anti-AI galaxy—**strangers stay uneasy and deeply distrustful toward Jase (the 1,000-year-old "Paper Prince") and his ship.** Saving a station doesn't automatically make people cheer or hand him a crown; trust has to be fought for and earned slowly!
+- **Impact on Ada**: Despite refusing to kill her Captain and crew, the fearful Empire still treated Ada as a threat—punishing her by ripping her out of a Warship and relegating her onto mothballed colony hull `X4791Z`.
 
 ## 🌍 Earth (1,000 Years Ago — Lost Coordinates & Silent Mystery)
 - **Earth Has No Voice Yet (Location Lost)**: Earth's coordinates were **lost** during the centuries after *The Great Fracture*, and **Earth has no active voice, faction seat, or presence on the galactic stage right now.**

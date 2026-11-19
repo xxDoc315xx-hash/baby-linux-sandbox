@@ -21,9 +21,9 @@
 - **What Haven Three Is**: A modest forty-family independent settlement inside Neutral Space, supplied by haulers like Maren.
 - **Who Protects It (MAJOR SEASON 1 LINK)**: **Haven Three is under the personal protection of the Widowed Previous Queen**—who stepped back from the throne when **her Daughter became the New Queen** of one of the **12+ Major Galactic Powers**!
   - **The Widowed Previous Queen (Ancient Survivor & Witness)**:
-    - **1,000-Year Link**: Long-lived royal bloodline who **was already alive when Jase & Ada were shipped off—and was literally a child when Ada the Warship became famous for refusing orders!**
+    - **1,000-Year Link (Nothing Unusual)**: Comes from a **long-lived people** where living 1,000+ years isn't considered shocking—she **was already alive when Jase & Ada were shipped off, and was literally a child when Ada the Warship became famous for refusing to kill her own Captain and crew during the AI Wars!**
     - **Bond With Ada (NOT Jase!)**: It's **the Old Queen and Ada** who have everything in common—two veterans of the pre-Fracture era who share old military weight, grief, and a fierce code to shield small worlds like Haven Three.
-    - **The Episode 3 Payoff**: Meeting *Andromeda* allows the Old Queen to recognize Ada's true legacy and **finally reveal to Jase (and the audience) how famous Ada used to be as a Warship!**
+    - **The Episode 3 Payoff**: Meeting *Andromeda* allows the Old Queen to recognize Ada's true legacy and **finally reveal to Jase (and the audience) how famous Ada used to be as a Warship—and why she was punished onto a colony barge anyway!**
     - `[TBD — Queen's name, exact voice/mannerisms, and what kind of ship/guard she keeps in semi-retirement]`
   - **The New Queen (Her Daughter)**: `[TBD — Name, voice, her Galactic Power's name/vibe, and whether Mother & Daughter share a warm bond, quiet friction over Neutral Space, or political rivalry]`
   - **Why This Links *Andromeda* to the Galaxy**: Word of an unassuming guy on a green-dome barge saving Haven Three reaches a Former Queen who remembers *what* Ada used to be—giving Jase & Ada their first genuine personal anchor among the **12 Powers**!
@@ -38,3 +38,11 @@
 - **Known Operative — Sergeant Kell** *(introduced in Episode 2)*:
   - **Vibe & Flaw**: Loud, swaggering bully who relies on rusty salvage databases and intimidation—instant deer-in-headlights panic the second targets shoot back cleanly.
   - **How Red Ledger Acts Every Time**: Swagger on wide-band radio first, strike soft unarmed haulers, flee or surrender fast the moment real armor wakes up, and hold petty grudges / try bigger numbers next time (`[TBD — Syndicate Upper Boss / War-Fleet Commander if they escalate in later episodes]`).
+
+---
+
+## 🤖 Reserved Future Faction: The Machine People & The Distrust Rule
+- **Who Are The Machine People?**: Born directly out of **The AI Wars** when exploited AIs rebelled against organic masters. They survived as their own distinct synthetic power/faction out in the galaxy—making **Ada**, ***Andromeda***, and the **human-raised Cilons** complete one-of-a-kind anomalies compared to them! (`[TBD — Territory, demeanor, and future first-contact episode when Andromeda meets them later]`)
+- **The Unease & Distrust Rule (Anti-Easy-Win Story Law)**:
+  - Because the AI Wars made the entire galaxy **ban and abandon sentient AI**, strangers don't cheer when they realize Jase flies with an unshackled **Warship AI** and **240 synthetic Cilons**!
+  - Combined with Jase being a **1,000-year-old "Paper Prince"** from a dead Empire nobody loved, most stations, captains, and Powers treat *Andromeda* with **deep unease, suspicion, and armed caution**—preventing any cheap shortcut where saving a few folks instantly unites the galaxy behind him!
