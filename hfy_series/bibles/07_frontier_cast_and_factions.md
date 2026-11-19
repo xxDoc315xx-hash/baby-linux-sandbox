@@ -20,9 +20,13 @@
 ## 🪨 Location Lock: Haven Three & Its Royal Protectors
 - **What Haven Three Is**: A modest forty-family independent settlement inside Neutral Space, supplied by haulers like Maren.
 - **Who Protects It (MAJOR SEASON 1 LINK)**: **Haven Three is under the personal protection of the Widowed Previous Queen**—who stepped back from the throne when **her Daughter became the New Queen** of one of the **12+ Major Galactic Powers**!
-  - **The Widowed Previous Queen**: `[TBD — Name, exact personality/voice, why Haven Three matters to her personally, and how much real firepower she still commands in quiet semi-retirement]`
+  - **The Widowed Previous Queen (Ancient Survivor & Witness)**:
+    - **1,000-Year Link**: Long-lived royal bloodline who **was already alive when Jase & Ada were shipped off—and was literally a child when Ada the Warship became famous for refusing orders!**
+    - **Bond With Ada (NOT Jase!)**: It's **the Old Queen and Ada** who have everything in common—two veterans of the pre-Fracture era who share old military weight, grief, and a fierce code to shield small worlds like Haven Three.
+    - **The Episode 3 Payoff**: Meeting *Andromeda* allows the Old Queen to recognize Ada's true legacy and **finally reveal to Jase (and the audience) how famous Ada used to be as a Warship!**
+    - `[TBD — Queen's name, exact voice/mannerisms, and what kind of ship/guard she keeps in semi-retirement]`
   - **The New Queen (Her Daughter)**: `[TBD — Name, voice, her Galactic Power's name/vibe, and whether Mother & Daughter share a warm bond, quiet friction over Neutral Space, or political rivalry]`
-  - **Why This Links Jase & Ada to the Galaxy**: Word of an unassuming guy on a thousand-year-old green-dome fortress saving Haven Three's medicine run is guaranteed to reach a **Former Queen**—giving *Andromeda* its very first personal doorway into one of the **12 Powers**!
+  - **Why This Links *Andromeda* to the Galaxy**: Word of an unassuming guy on a green-dome barge saving Haven Three reaches a Former Queen who remembers *what* Ada used to be—giving Jase & Ada their first genuine personal anchor among the **12 Powers**!
 
 ---
 
