@@ -17,7 +17,7 @@
 ## 🌍 Earth (1,000 Years Ago — Lost Coordinates & Silent Mystery)
 - **Earth Has No Voice Yet (Location Lost)**: Earth's coordinates were **lost** during the centuries after *The Great Fracture*, and **Earth has no active voice, faction seat, or presence on the galactic stage right now.**
 - **Goldilocks Distance Rule**: Earth is technically **close enough to travel to** with proper deep-space jump drives, *yet* tucked **far enough out in an ignored backwater** that none of the 12+ Galactic Powers know or care about it.
-- **Role in Canon**: Gives Jase his 90s-kid memories and origin—while leaving three rich slow-burn mysteries we can unpack naturally across later episodes:
+- **Role in Canon**: Gives Jase his 90s-kid memories and origin—while leaving three rich slow-burn mysteries we can unpack naturally across later seasons *(with any major Earth Chair-survivor descendant pockets held back for **Season 3+** so Season 1 focuses on establishing Jase & Ada in the new galaxy)*:
   1. **How & Why the Aliens Went to Earth**: Not necessarily a random coincidence—why did the Empire trek all the way out to a quiet backwater planet for 100,000 humans in the first place? (`[TBD — Ties potentially to the "everyone looks human" mystery]`)
   2. **Fate of the 100,000 Chair Survivors**:
      - **The Rejects**: Flunked out early as physically or mentally unfit (`[TBD — Returned? Marooned? Dumped somewhere?]`).

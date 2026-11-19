@@ -1,8 +1,9 @@
 # Frontier Cast & Galactic Powers Bible (`07_frontier_cast_and_factions.md`)
 
-## 🌌 Macro Galaxy Map (Post-*Great Fracture*)
-1. **The Neutral Space**: A larger unaligned buffer zone of free mining rocks, independent settlements (like **Haven Three**), trade relays, and struggling civilian haulers (like **Captain Maren**). No unified navy protects it—so ordinary towns and freighters survive on grit, trade chips, and luck.
-2. **The 12+ Major Galactic Powers**: Out beyond Neutral Space, **at least 12 distinct galactic powers** (warlord splinter houses, trade federations, regional coalitions, ideological blocs, and emerging star nations) now hold shifting borders across the shattered remains of the old Empire.
+## 🌌 Macro Galaxy Map & Season 1 Pacing Rule
+1. **Season 1 Core Focus**: **Establish *Andromeda* in the new galaxy.** Jase, Ada, Bob, and the Cilons aren't finding lost Earth colonies or claiming permanent empires yet (save any **Earth Chair-survivor descendant pockets** for **Season 3+**!). Right now, it's about making allies, learning the rules of the **12+ Powers**, and carving out a real foothold in this galaxy after 1,000 years away.
+2. **The Neutral Space**: A larger unaligned buffer zone of free mining rocks, independent settlements (like **Haven Three**), trade relays, and struggling civilian haulers (like **Captain Maren**). No single unified navy polices all of it—though certain border worlds survive under quiet special arrangements.
+3. **The 12+ Major Galactic Powers**: Out beyond Neutral Space, **at least 12 distinct galactic powers** now hold shifting borders across the shattered remains of the old Empire—including the **Royal Power** ruled by the **New Queen** (whose widowed mother quietly protects **Haven Three**!).
    - *Writers' Room Rule*: Keep the 12 powers modular (`[TBD — Add & lock each Power's dedicated faction card as Andromeda enters their territory in Season 1+]`) so every new civilization introduced stays 100% distinct and consistent whenever revisited.
 
 ---
@@ -16,9 +17,12 @@
   - **3-Second Stress Reaction**: Hugs asteroid cover, vents non-essential mass to save water/air, and protects her crew/cargo first—never rolls over quietly unless outgunned ten-to-one.
   - **Blind Spot / Flaw**: Takes suicidal cargo runs when innocent families need supplies (medicine/water), even when Syndicate patrols own the belt.
 
-## 🪨 Location Lock: Haven Three (Neutral Space Port)
-- **What It Is**: A modest forty-family independent settlement inside Neutral Space—representative of dozens of small, scrappy free communities surviving without Imperial charters.
-- **Role in the Show**: Safe neutral anchor / quiet reminder of *who* Jase and Ada are looking out for out in the black (supply rumors, local mechanics, grateful ordinary people—the exact opposite of the cold Empire Court).
+## 🪨 Location Lock: Haven Three & Its Royal Protectors
+- **What Haven Three Is**: A modest forty-family independent settlement inside Neutral Space, supplied by haulers like Maren.
+- **Who Protects It (MAJOR SEASON 1 LINK)**: **Haven Three is under the personal protection of the Widowed Previous Queen**—who stepped back from the throne when **her Daughter became the New Queen** of one of the **12+ Major Galactic Powers**!
+  - **The Widowed Previous Queen**: `[TBD — Name, exact personality/voice, why Haven Three matters to her personally, and how much real firepower she still commands in quiet semi-retirement]`
+  - **The New Queen (Her Daughter)**: `[TBD — Name, voice, her Galactic Power's name/vibe, and whether Mother & Daughter share a warm bond, quiet friction over Neutral Space, or political rivalry]`
+  - **Why This Links Jase & Ada to the Galaxy**: Word of an unassuming guy on a thousand-year-old green-dome fortress saving Haven Three's medicine run is guaranteed to reach a **Former Queen**—giving *Andromeda* its very first personal doorway into one of the **12 Powers**!
 
 ---
 
