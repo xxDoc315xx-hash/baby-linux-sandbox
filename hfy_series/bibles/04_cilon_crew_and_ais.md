@@ -8,13 +8,13 @@
 - **Earth TV Design Blueprint (Human-Shaped Cilons)**: Because Jase was a normal Earth guy raised on classic sci-fi television (*Battlestar Galactica* 2004, *Andromeda*, etc.), he modeled their bodies after the **human-shaped Cilons** (*Number Six / Eight / Three* style—fully human-looking bio-synthetic bodies, not clanking chrome metal Centurion robots!). They look, walk, bleed, drink coffee, and pass seamlessly among any crowd across the "everyone looks human" galaxy—paired with warm, sharp, human-raised personalities!
 
 ## 🤖 Who's Actually Aboard & Crew Structure (Ada's Warship Standard)
-- **Why *Andromeda* Runs Like a Real Ship Crew (Ada's Lead)**: Sent out into BFE nowhere to count rocks, **Ada** was the one who made sure the ship didn't go soft. Remembering what a real crew felt like before the AI Wars, **Ada personally takes the lead over Soldiers & Ship Security**, setting drills, divisions, and tactical readiness alongside Jase.
-- **Ship Operations Rule**: Ada *is* the *Andromeda*. She handles helm, weapons, sensors, shields, and life support at thought-speed—zero use for redundant Star Trek bridge console operators.
+- **Why *Andromeda* Runs Like a Real Ship Crew (Ada's Lead)**: Sent out into BFE nowhere to count rocks, **Ada** was the one who insisted the ship have a proper bridge crew, division officers, and an XO like the frontline warships she knew before the AI Wars—and she **personally commands Soldiers & Ship Security**.
+- **Ship Operations Rule (Why Bob Is XO!)**: Jase has **zero practical need** for an XO or console operators because Ada *is* the ship and executes whatever he asks instantly. **The ONLY reason *Andromeda* has bridge positions at all is because Ada insisted—so Jase promptly appointed Bob as his Executive Officer (XO)!** Nobody else argues with the joke because Bob keeps the hull tight, and Ada runs helm, weapons, sensors, shields, and life support at thought-speed anyway.
 - **The Four Crew Divisions**:
   1. **Soldiers / Security** *(Commanded directly by Ada; **Three** leads field boarding/tactical teams)*
   2. **Medics** *(Led by **Bones**, Chief Medic — away-team trauma care & ship med-bay)*
   3. **Pilots** *(Led by **Maverick**, Lead Pilot — shuttle, scout & away-pod flight wing)*
-  4. **Engineers / Workshop** *(Led alongside **Bob** by **Five** and tinkering **Seven-Four** — fabrication, hull systems & maintenance)*
+  4. **Engineers / Workshop** *(Led by **Five** and tinkering **Seven-Four** — fabrication, hull systems & maintenance, with **XO Bob** still hanging around his old bays)*
 - **Two-Tier Crew Solution (Raised Family Names vs. Expendable "Red Shirts")**:
   - **Tier 1 — The Raised Originals (Named Inner Family)**: The core original AIs Jase and Ada personally **raised/parented** around chessboards and 90s Earth movies during the early centuries in the deep (their upbringing is slated for a dedicated **1,000-Year Deep Space Flashback Episode**!).
     - **Why Numbered & 90s-Kid Names Both Make Sense**: **Three**, **Five**, and **Seven-Four** **kept their birth-order cradle numbers as their chosen names** because that's literally who they've been since day one. Later specialists took affectionate **90s-kid nicknames** from Jase's Earth movie/TV lens (**Bones**, **Maverick**)—giving readers instant shorthand for who each person is!

@@ -2,10 +2,11 @@
 
 ## 🪪 Core Identity
 - **Name**: **Bob**
+- **Official Ship Billet**: **Executive Officer (XO)** *(Appointed by Jase simply because **Ada insisted** on having a proper warship command structure and bridge crew, even though Jase has zero practical need for an XO when Ada can just execute anything he says instantly!)*
 - **Origin / Chassis**: Original `X4791Z` colony-ship **humanoid maintenance bot** (non-sentient Year-1 ship hardware upgraded over decades of Jase's early trial-and-error tinkering)
 - **Timeline Position**: **Predates EVERYTHING** — built/tinkered **before Ada got her physical ("sexbot") body**, and long before the first **human-shaped Cilons** (`Three`, `Five`, `Seven-Four`) were ever raised!
 - **Sentience Level**: **Barely Sentient** (Version 0.1 — perched right on the blurry line between stubborn shop-dog / R2-unit instinct and true personhood)
-- **Current Status (Year 1,000+)**: Still aboard *Andromeda* in his original dented metal humanoid frame—never wiped, never "upgraded into a skinjob," and fiercely part of the core ship history.
+- **Current Status (Year 1,000+)**: Still aboard *Andromeda* in his original dented metal humanoid frame—never wiped, never "upgraded into a skinjob," and standing watch right beside the Captain's chair as the galaxy's most hilariously literal First Officer.
 
 ---
 
