@@ -42,9 +42,9 @@
 
 - **Why Earlier "AI Children" Faded Into the Background**: Over 1,000 years, earlier raised generations drifted off to explore or build lives of their own, keeping the active ship cast crisp (**Jase, Ada, Bob, Tier 1 division leads, and Tier 2 numbered squads**).
 
-## 🧬 The Secret Ace: Jase & Ada's Son (Reserved for Later Seasons)
-- **Origin (DNA + AI Clone)**: Instead of keeping a massive cast of kids around, Jase and Ada created **one extraordinary Son**—combining **Jase's immortal DNA** with **Ada's physical-body ("sexybot") synthetic/bio-digital DNA** into a single hybrid clone of the two of them.
-- **Role in the Show**: He is **held in reserve** off-stage as a major serialized arc card—**not** present on the bridge in Episode 1, waiting to **walk back into the story later when the plot needs him** (`[TBD — Name, personality, why/when he separated or left before Episode 1, and what brings him back into Jase & Ada's path]`).
+## 🧬 The Secret Ace: Daemon — Jase & Ada's Son (Reserved Vault — `06_daemon_reserve_son.md`)
+- **Origin (DNA + AI Hybrid)**: **Daemon** is NOT random template Cilon flesh—he is Jase and Ada's one-of-a-kind Son combining **Jase's Immortal DNA** with **Ada's physical-body synthetic/bio-digital code**. Too willful (just like both parents!) to stay quietly parked on deck, he holds no military rank yet **every Cilon instinctively treats him as a Prince like his father**—and through Jase's DNA, he is a **true heir to the fallen Alien Empire**.
+- **Strict Reserve Rule**: Held completely off-screen in `06_daemon_reserve_son.md` for later seasons—do **NOT** introduce him early until Doc calls his arc onto the board.
 
 ## 🎭 HFY Payoff
 - When the *Andromeda* returns after 1,000 years into fresh, unknown space, raiders and splinter factions expect either a dead relic or obedient slave-bots—only to run headfirst into human-looking **Cilon soldiers, medics, pilots, and engineers** backed by an immortal human Captain and a former warship AI who outlived an entire empire.
