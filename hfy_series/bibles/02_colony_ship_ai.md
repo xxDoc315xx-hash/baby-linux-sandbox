@@ -35,7 +35,8 @@
 
 ## 🤖 The Crew & Ship Specs (Progression: Year 1 → Year 1,000)
 - **Year 1 Crew**: Just Jase, Ada, and basic non-sentient ship robots.
-- **Year 1,000 Crew**: Over the centuries in the dark, Jase and Ada built new free AIs and Cilon-style synthetic crewmates so they wouldn't go stir-crazy talking only to each other—handling engineering, security, and boarding defense.
+- **Year 1,000 Crew**: Over the centuries in the dark, Jase and Ada built new free AIs and Cilon-style synthetic crewmates so they wouldn't go stir-crazy talking only to each other—handling engineering, medical bays, shuttle flight wings, and boarding defense.
+- **Commander of Soldiers & Security (Ada Takes the Lead)**: When they were exiled to BFE nowhere to count rocks, **Ada** was the one who insisted the ship's force act like a real crew—patterned after what she knew as a pre-war warship. **Ada personally leads Soldiers & Ship Security**, setting drills, tactics, armor discipline, and boarding readiness (with **Three** serving as her top field tactical lead) so nobody aboard ever gets caught flat-footed.
 - **True Purpose (Modified Colony Ship)**: Built and modified to be **100% self-sustaining**—capable of supporting Jase comfortably **forever** without ever needing to dock, resupply, or deal with the rest of the galaxy unless they choose to.
 - **Size & Layout**: Massive colony-ship hull featuring closed-loop hydroponics & agriculture bays, deep water/air recycling, spacious living quarters, fabrication workshops, and quiet forgotten decks.
 - **1,000-Year Badass Upgrades**: Over 1,000 years in uncharted space, Jase and Ada didn't sit idle—upgraded shields, hidden pre-war systems unlocked, alien tech salvaged/refitted, and battle-tested endurance that makes modern warships look like toys.
