@@ -45,15 +45,19 @@ Bob's amber optic clicked down three millimeters toward the bridge rail, lingere
 
 Across the deck beside the central holo-table, **Ada** stepped out from the aft corridor lift in her crisp dark-blue flight jacket and navy boots, arms folded neatly behind her back as she watched the dented metal robot clamped motionless beside the Captain's armrest.
 
-Even after nine centuries of sharing a bridge, Ada still wore the unmistakable composure of a former frontline warship—sharp eyes missing nothing, shoulders squared cleanly, though the faintest twitch near the corner of her mouth gave her away whenever she looked at Jase's chosen First Officer.
+Even after nine centuries of sharing a bridge, Ada still wore the unmistakable composure of a former frontline warship—sharp eyes missing nothing, shoulders squared cleanly, though a genuinely fond glint softened the corner of her gaze whenever she checked on Jase's chosen First Officer.
 
-Over the quiet private ship-comm channel directly into Jase’s ear—never loud enough to wound Bob’s remarkably stubborn pride—Ada sighed softly. *"Captain, I am going to remind you for the four-hundredth time: when I asked you to establish proper command billets, I meant a disciplined tactical officer. Not an industrial welding mule who threatens my engineers with a four-foot breaker bar."*
+"Good catch, Bob," Ada said evenly aloud—no private-channel whispering, speaking straight to him like the proper officer he was. "Though if Seven-Four asks politely next time, try letting him keep at least one spool of wire before you reach for the four-foot breaker bar."
 
-Jase didn't blink, taking a slow sip of coffee while replying aloud. "Hey, you wanted a chain of command, partner. Nobody on this deck checks more corners than Bob. Besides, he kept me alive fifty years before either of us had shoes."
+*"He never asks,"* Bob stated flatly, entirely unbothered. *"Good catch, though."*
+
+Jase hid a warm grin behind his coffee mug before nodding toward Ada. "Hey, you wanted a real chain of command, partner. Nobody on this deck checks more corners than Bob. Kept me alive fifty years before either of us had shoes."
+
+"I'm not complaining, Captain," Ada smiled gently, resting a hand lightly on the rim of the holo-table. "You could have picked far worse watch-mates in the dark."
 
 *"Used to be ceiling,"* Bob remarked mildly to the room in general, optic lens drifting straight up toward Ada's primary optical pickup in the bulkhead overhead before snapping back forward. *"Good ceiling, though."*
 
-Ada pressed her lips together for two whole seconds, fighting a sharp smile before pivoting crisply back toward the holo-table. "Regardless. **Haven Three**'s outer sector beacon is four hours ahead along Captain Maren's jump lane. Once we top off local freight charts, we can decide which border territory to probe next."
+Ada's smile widened just a fraction before she pivoted crisply back toward the glowing map. "Regardless. **Haven Three**'s outer sector beacon is four hours ahead along Captain Maren's jump lane. Once we top off local freight charts, we can decide which border territory to probe next."
 
 Jase leaned forward, resting his elbows on his knees as he squinted down at the amber projection spinning slowly between them. All those scattered frontier lanes—and behind them, nothing but dead gray relays stretching back toward the shattered ruins of an empire that used to run the map.
 
@@ -141,7 +145,7 @@ Jase's Chief Medic wore a faded short-sleeved blue tunic over dark utility trous
 
 "Don't bother speeding up for my sake, hotshot," **Bones** snapped dryly, glaring up at Maverick from under heavy eyebrows before nodding at two heavy gray supply crates strapped near the aft bulkhead. "Brought four dozen broad-spectrum antibiotic packs and clean filter membranes for their station clinic. According to Maren's telemetry, half these neutral towns are patching lungs together with boiled salt water because syndicate raiders keep bleeding the supply lanes dry. And Captain—before you ask—no, I haven't forgotten you still refused to let me run a full cellular scan after that bulkhead wrench dropped on your shin Tuesday."
 
-"Shin felt fine," Jase shrugged easily, dropping into the jump seat beside Ada as the shuttle ramp hissed shut and **XO Bob** bolted his magnetic boots cleanly onto the center cargo deck—standing motionless like a six-hundred-pound iron coatrack nobody dared bump into.
+"Shin felt fine," Jase shrugged easily, dropping into the jump seat beside Ada as the shuttle ramp hissed shut and **XO Bob** bolted his magnetic boots cleanly onto the center cargo deck—six hundred pounds of solid iron armor standing silent watch over the whole cabin.
 
 "Yeah, well, *'felt fine'* isn't a medical chart," Bones muttered darkly, snapping his harness buckle tight with an angry click. "One of these days an accident's going to actually scratch that magic hide of yours, and you and I are both going to find out the hard way what happens when an Immortal forgets to duck."
 
@@ -241,7 +245,7 @@ Her spine straightened into razor-sharp, textbook pre-war military posture. Hand
 
 "Captain Jase Hill," Evelyn said warmly, though her voice carried an edge like tempered iron underneath the hospitality. "Maren tells me you embarrassed three **Red Ledger** gunboats with an antique colony barge and handed back her ship without asking a single credit." She gestured calmly toward the wooden chairs beside her desk. "That buys you a seat in my space, Captain—even if half my dock crew spent the last hour arguing whether to weld the shuttle bay shut until you left."
 
-"Fair enough," Jase smiled faintly, dropping easily into one of the wooden chairs while nodding once toward **Bob** blocking the door ("He's harmless unless you're a leaky valve"). "Honestly, ma'am, we didn't drop in looking to make anyone nervous. Just passing through—had a quick question nobody out on the trade lanes could answer, and Maren thought maybe you'd heard rumors from before the Fall."
+"Fair enough," Jase smiled faintly, dropping easily into one of the wooden chairs while nodding once toward **Bob** holding the doorway ("Don't mind him, ma'am—my XO just takes his watch seriously"). "Honestly, ma'am, we didn't drop in looking to make anyone nervous. Just passing through—had a quick question nobody out on the trade lanes could answer, and Maren thought maybe you'd heard rumors from before the Fall."
 
 Evelyn's gray eyes stayed calm and patient as she leaned lightly against her desk edge. "Before the Fracture is a long walk back, Captain. Even for long-lived folk. What exactly are you looking for?"
 
@@ -551,7 +555,7 @@ Jase raised one eyebrow over the rim of his coffee mug, glancing down at the cri
 
 "Knowing warships, Captain," Ada replied smoothly, stepping calmly up beside his chair as the bridge lights settled into steady watch hum. "I doubt anyone on that border is looking to be polite."
 
-Jase grinned faintly, took a warm sip of coffee, and leaned back cleanly against the rail—not a dead empire's **Paper Prince** anymore, just an ordinary guy with a ship full of stubborn family, one hard-headed welding mule for a First Officer, and a brand-new galaxy finally starting to notice they'd arrived.
+Jase grinned faintly, took a warm sip of coffee, and leaned back cleanly against the rail—not a dead empire's **Paper Prince** anymore, just an ordinary guy with a ship full of stubborn family, one fiercely loyal, iron-headed First Officer, and a brand-new galaxy finally starting to notice they'd arrived.
 
 ---
 *To be continued in Episode 4...*

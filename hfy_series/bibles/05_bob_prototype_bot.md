@@ -21,7 +21,7 @@
 ---
 
 ## 🧠 Personality, Look & Relationships (Locked Canon)
-- **Physical Appearance**: Dented, heavy-duty metal humanoid maintenance frame—scuffed industrial alloy, weld scars, exposed hydraulics, mismatched replacement shoulder plates, and heavy wrench-grip hands. Zero synthetic skin. Looks like a battle-scarred shop mule standing next to glossy humans.
+- **Physical Appearance**: Dented, heavy-duty metal humanoid maintenance frame—scuffed industrial alloy, weld scars, exposed hydraulics, mismatched replacement shoulder plates, and heavy wrench-grip hands. Zero synthetic skin. Stands like a battle-scarred heavyweight veteran beside the Cilon crew—and nobody aboard treats him as anything less than family.
 - **Core Trait — Hard-Headed & Barely Sentient**:
   - **Simple, Literal Mind**: Bob doesn't give philosophical speeches about freedom or read poetry. He grasps concrete things: *his pipes, his wrenches, Jase, Ada, and things that are broken.*
   - **Immovable Stubbornness**: Once Bob locks onto a job or an opinion (*"Valve leaks. Staying here."* / *"No touch."*), nobody—not Three, not Maverick, not even Ada—can easily talk him off it. If someone tries to shove him aside, he weighs six hundred pounds of welded iron and simply *does not move*.
@@ -33,5 +33,6 @@
 - **Voice & Cadence**: Minimalist, clipped, mechanical-blunt phrases (2–6 words max, or loud hydraulic grunts / heavy optical clicks when annoyed—never chatty, never eloquent).
 - **Default 3-Second Stress Reaction**: **Zero tactical hesitation—pure blunt force.** Doesn't duck behind crates or calculate firing arcs; grabs the nearest fifty-pound steel pipe/welder, plants his magnetic boots, and steps straight into the danger to hit whatever broke or hurt Jase.
 - **What Bob NEVER Does**: Never gives long speeches, never backs down from an argument (even when he's 100% wrong), never abandons a half-finished repair, and never willingly wears human skin or fancy uniforms.
+- **Crew Respect Law (NO Picking On Bob)**: **We do NOT pick on Bob.** Neither Jase nor Ada ever mocks Bob behind his back, calls him names like "mule" or "appliance," or treats him like a disposable joke. Dry deadpan banter happens openly like old family, and everyone aboard—from Jase and Ada down to the Cilons—genuinely respects and looks out for the tough old bot who kept Jase alive during the earliest years in the dark.
 - **Blind Spot / Flaw**: Because he's **barely sentient and hard-headed**, nuanced diplomacy and stealth completely fly over his metal head—if Jase wants a quiet sneaky negotiation, *do not let Bob wait near an unlocked tool locker!*
 
