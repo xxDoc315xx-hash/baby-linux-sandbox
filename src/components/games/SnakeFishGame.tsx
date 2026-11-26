@@ -7,6 +7,7 @@ type Dir = { x: number; y: number };
 
 interface SnakeFishGameProps {
   muted: boolean;
+  isFullscreen?: boolean;
 }
 
 const GRID = 20;
@@ -14,7 +15,7 @@ const CELL = 24;
 const CANVAS_SIZE = GRID * CELL; // 480x480
 const BEST_KEY = "doc_ada_game_snake_best";
 
-export const SnakeFishGame: React.FC<SnakeFishGameProps> = ({ muted }) => {
+export const SnakeFishGame: React.FC<SnakeFishGameProps> = ({ muted, isFullscreen = false }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [gameState, setGameState] = useState<GameState>("TITLE_MENU");
   const [score, setScore] = useState<number>(0);
@@ -218,8 +219,8 @@ export const SnakeFishGame: React.FC<SnakeFishGameProps> = ({ muted }) => {
   }, []);
 
   return (
-    <div className="space-y-4">
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-3 rounded-xl bg-stone-900 border border-stone-800">
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-800">
         <div className="flex items-center gap-5 text-sm font-mono tabular-nums">
           <div>
             <span className="text-stone-400 text-xs mr-1.5">Score</span>
@@ -234,7 +235,7 @@ export const SnakeFishGame: React.FC<SnakeFishGameProps> = ({ muted }) => {
           <button
             type="button"
             onClick={() => setGameState((p) => (p === "PLAYING" ? "PAUSED" : "PLAYING"))}
-            className="min-h-[40px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-200 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+            className="min-h-[38px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-200 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
           >
             {gameState === "PAUSED" ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
             <span>{gameState === "PAUSED" ? "Resume" : "Pause"}</span>
@@ -242,8 +243,14 @@ export const SnakeFishGame: React.FC<SnakeFishGameProps> = ({ muted }) => {
         )}
       </div>
 
-      <div className="flex flex-col lg:flex-row items-center justify-center gap-8 rounded-xl border border-stone-800 bg-stone-900/70 p-4 sm:p-6">
-        <div className="relative rounded-xl overflow-hidden border border-stone-700 bg-slate-950 shadow-xl w-full max-w-[480px]">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-6 rounded-xl border border-stone-800 bg-stone-900/70 p-3 sm:p-4">
+        <div
+          className={`relative rounded-xl overflow-hidden border border-stone-700 bg-slate-950 shadow-xl w-full ${
+            isFullscreen
+              ? "max-w-[clamp(260px,calc(100vh-195px),540px)]"
+              : "max-w-[clamp(260px,calc(100vh-275px),480px)]"
+          }`}
+        >
           <canvas
             ref={canvasRef}
             width={CANVAS_SIZE}

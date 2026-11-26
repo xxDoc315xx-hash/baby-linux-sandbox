@@ -15,6 +15,7 @@ type Street = "IDLE" | "PREFLOP" | "FLOP" | "TURN" | "RIVER" | "SHOWDOWN";
 
 interface PokerGameProps {
   muted: boolean;
+  isFullscreen?: boolean;
 }
 
 const STARTING_STACK = 1000;
@@ -93,8 +94,8 @@ const MiniCard: React.FC<{ card?: PokerCard; hidden?: boolean; compact?: boolean
   compact = false,
 }) => {
   const sizeClass = compact
-    ? "w-12 h-16 sm:w-14 sm:h-20"
-    : "w-16 h-24 sm:w-20 sm:h-28";
+    ? "w-11 h-15 sm:w-12 sm:h-17"
+    : "w-13 h-19 sm:w-16 sm:h-23";
 
   if (hidden || !card) {
     return (
@@ -141,7 +142,7 @@ const MiniCard: React.FC<{ card?: PokerCard; hidden?: boolean; compact?: boolean
   );
 };
 
-export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
+export const PokerGame: React.FC<PokerGameProps> = ({ muted, isFullscreen = false }) => {
   const [seats, setSeats] = useState<SeatPlayer[]>(() => {
     let savedChips = STARTING_STACK;
     try {
@@ -608,9 +609,9 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
   const opponents = seats.slice(1);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Top Info Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-3 rounded-xl bg-stone-900 border border-stone-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-800">
         <div className="flex flex-wrap items-center gap-5 text-sm">
           <div className="flex items-center gap-1.5 font-mono tabular-nums">
             <Coins className="w-4 h-4 text-amber-400" />
@@ -628,7 +629,7 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
         <button
           type="button"
           onClick={resetEntireTable}
-          className="min-h-[40px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-300 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+          className="min-h-[38px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-300 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Reset Table ($1,000)</span>
@@ -637,11 +638,13 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
 
       {/* Felt Poker Table */}
       <div
-        className="rounded-2xl border-4 border-[#3E2723] p-5 sm:p-8 shadow-2xl flex flex-col justify-between gap-7"
+        className={`rounded-2xl border-4 border-[#3E2723] shadow-2xl flex flex-col justify-between ${
+          isFullscreen ? "p-4 sm:p-6 gap-5" : "p-3.5 sm:p-5 gap-3.5"
+        }`}
         style={{ backgroundColor: "#0F5132" }}
       >
         {/* Top Row: Maverick, Ada, Tux Jr. */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {opponents.map((bot, idx) => {
             const seatIndex = idx + 1;
             const isActive = activeIdx === seatIndex;
@@ -651,7 +654,7 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
             return (
               <div
                 key={bot.id}
-                className={`rounded-xl p-3.5 border transition-colors ${
+                className={`rounded-xl p-2.5 sm:p-3 border transition-colors ${
                   bot.folded || bot.busted
                     ? "bg-black/25 border-emerald-200/10 opacity-65"
                     : isActive
@@ -659,7 +662,7 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
                     : "bg-black/30 border-emerald-200/20"
                 }`}
               >
-                <div className="flex items-center justify-between gap-2 mb-2.5">
+                <div className="flex items-center justify-between gap-2 mb-1.5">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold text-sm text-white">{bot.name}</span>
                     {isDealer && (
@@ -672,7 +675,7 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
                 </div>
 
                 <div className="flex items-center justify-between gap-3">
-                  <div className="flex items-center gap-1.5 min-h-[68px] sm:min-h-[80px]">
+                  <div className="flex items-center gap-1.5 min-h-[60px] sm:min-h-[68px]">
                     {bot.holeCards.length > 0 && !bot.busted ? (
                       bot.holeCards.map((c) => (
                         <MiniCard key={c.id} card={c} hidden={!revealCards} compact />
@@ -701,23 +704,23 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
         </div>
 
         {/* Center Board & Pot */}
-        <div className="py-4 border-y border-emerald-200/15 flex flex-col items-center gap-4">
+        <div className="py-3 border-y border-emerald-200/15 flex flex-col items-center gap-2.5">
           <div className="flex items-center gap-4 text-sm font-mono tabular-nums">
             <span className="text-emerald-100/80">Pot</span>
-            <span className="text-xl font-bold text-amber-300">${pot.toLocaleString()}</span>
+            <span className="text-lg sm:text-xl font-bold text-amber-300">${pot.toLocaleString()}</span>
             {street !== "IDLE" && (
               <span className="text-xs text-emerald-100/70 font-sans">· {street}</span>
             )}
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5">
             {Array.from({ length: 5 }).map((_, i) =>
               community[i] ? (
                 <MiniCard key={community[i].id} card={community[i]} />
               ) : (
                 <div
                   key={i}
-                  className="w-16 h-24 sm:w-20 sm:h-28 rounded-lg border border-dashed border-emerald-200/25 flex items-center justify-center text-[11px] text-emerald-200/35"
+                  className="w-13 h-19 sm:w-16 sm:h-23 rounded-lg border border-dashed border-emerald-200/25 flex items-center justify-center text-[11px] text-emerald-200/35"
                 >
                   {i < 3 ? "Flop" : i === 3 ? "Turn" : "River"}
                 </div>
@@ -725,13 +728,13 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
             )}
           </div>
 
-          <p className="text-sm sm:text-base font-semibold text-white text-center">
+          <p className="text-xs sm:text-sm font-semibold text-white text-center">
             {tableMessage}
           </p>
         </div>
 
         {/* Bottom Player Seat (You) & Action Bar */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
@@ -739,8 +742,8 @@ export const PokerGame: React.FC<PokerGameProps> = ({ muted }) => {
                   humanSeat.holeCards.map((c) => <MiniCard key={c.id} card={c} />)
                 ) : (
                   <>
-                    <div className="w-16 h-24 sm:w-20 sm:h-28 rounded-lg border border-dashed border-emerald-200/30" />
-                    <div className="w-16 h-24 sm:w-20 sm:h-28 rounded-lg border border-dashed border-emerald-200/30" />
+                    <div className="w-13 h-19 sm:w-16 sm:h-23 rounded-lg border border-dashed border-emerald-200/30" />
+                    <div className="w-13 h-19 sm:w-16 sm:h-23 rounded-lg border border-dashed border-emerald-200/30" />
                   </>
                 )}
               </div>

@@ -21,6 +21,7 @@ import { playGameSound } from "./gameAudio";
 
 interface ChessGameProps {
   muted: boolean;
+  isFullscreen?: boolean;
 }
 
 interface MoveRecord {
@@ -114,7 +115,7 @@ const ChessPieceSvg: React.FC<{ piece: Piece }> = ({ piece }) => {
   );
 };
 
-export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
+export const ChessGame: React.FC<ChessGameProps> = ({ muted, isFullscreen = false }) => {
   const [playerColor, setPlayerColor] = useState<Color>("w");
   const [difficulty, setDifficulty] = useState<Difficulty>("tactical");
   const [game, setGame] = useState<GameState>(() => createInitialGameState());
@@ -294,9 +295,9 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
     : "Ada is calculating...";
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Top Controls Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-3 rounded-xl bg-stone-900 border border-stone-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-800">
         <div className="flex flex-wrap items-center gap-4 text-sm">
           <span className={`font-semibold ${status.inCheck && !status.over ? "text-amber-400" : "text-white"}`}>
             {statusLabel}
@@ -361,10 +362,16 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
       </div>
 
       {/* Main Board + Move History Split */}
-      <div className="flex flex-col lg:flex-row gap-6 items-start">
-        {/* Chessboard Container (Full Size All The Time) */}
+      <div className="flex flex-col lg:flex-row gap-5 items-start justify-center">
+        {/* Chessboard Container (Sized to fit full 8x8 board inside screen height) */}
         <div className="w-full lg:flex-1 flex flex-col items-center">
-          <div className="relative w-full rounded-xl overflow-hidden border-4 border-[#3E2723] shadow-2xl bg-[#3E2723]">
+          <div
+            className={`relative w-full rounded-xl overflow-hidden border-4 border-[#3E2723] shadow-2xl bg-[#3E2723] ${
+              isFullscreen
+                ? "max-w-[clamp(280px,calc(100vh-175px),760px)]"
+                : "max-w-[clamp(280px,calc(100vh-250px),680px)]"
+            }`}
+          >
             <div className="grid grid-cols-8 grid-rows-8 aspect-square w-full">
               {displayRanks.map((r) =>
                 displayFiles.map((c) => {

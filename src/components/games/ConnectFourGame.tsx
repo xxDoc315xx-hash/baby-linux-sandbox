@@ -7,6 +7,7 @@ type Difficulty = "casual" | "tactical" | "core";
 
 interface ConnectFourGameProps {
   muted: boolean;
+  isFullscreen?: boolean;
 }
 
 const ROWS = 6;
@@ -225,7 +226,7 @@ function pickAiColumn(board: Cell[][], difficulty: Difficulty): number {
   return chosen >= 0 ? chosen : valid[0];
 }
 
-export const ConnectFourGame: React.FC<ConnectFourGameProps> = ({ muted }) => {
+export const ConnectFourGame: React.FC<ConnectFourGameProps> = ({ muted, isFullscreen = false }) => {
   const [board, setBoard] = useState<Cell[][]>(() => createBoard());
   const [turn, setTurn] = useState<1 | 2>(1);
   const [difficulty, setDifficulty] = useState<Difficulty>("tactical");
@@ -328,9 +329,9 @@ export const ConnectFourGame: React.FC<ConnectFourGameProps> = ({ muted }) => {
       : "Ada is choosing a column...";
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* HUD & Difficulty Controls */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-3 rounded-xl bg-stone-900 border border-stone-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-800">
         <div className="flex flex-wrap items-center gap-4 text-sm">
           <span className="font-semibold text-white">{statusText}</span>
           <span className="text-xs text-stone-400 font-mono tabular-nums">
@@ -368,7 +369,7 @@ export const ConnectFourGame: React.FC<ConnectFourGameProps> = ({ muted }) => {
           <button
             type="button"
             onClick={resetMatch}
-            className="min-h-[40px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-200 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+            className="min-h-[38px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-200 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>New Match</span>
@@ -377,10 +378,16 @@ export const ConnectFourGame: React.FC<ConnectFourGameProps> = ({ muted }) => {
       </div>
 
       {/* Board Surface */}
-      <div className="flex flex-col items-center justify-center rounded-xl border border-stone-800 bg-stone-900/70 p-4 sm:p-8">
-        <div className="w-full max-w-[520px] select-none">
+      <div className="flex flex-col items-center justify-center rounded-xl border border-stone-800 bg-stone-900/70 p-3 sm:p-4">
+        <div
+          className={`w-full select-none ${
+            isFullscreen
+              ? "max-w-[clamp(280px,calc((100vh-270px)*1.16),540px)]"
+              : "max-w-[clamp(260px,calc((100vh-345px)*1.16),480px)]"
+          }`}
+        >
           {/* Column Drop Buttons */}
-          <div className="grid grid-cols-7 gap-2 sm:gap-3 mb-3 px-2">
+          <div className="grid grid-cols-7 gap-2 mb-2 px-2">
             {Array.from({ length: COLS }).map((_, col) => {
               const canDrop = winner === 0 && turn === 1 && getDropRow(board, col) >= 0;
               return (
@@ -392,10 +399,10 @@ export const ConnectFourGame: React.FC<ConnectFourGameProps> = ({ muted }) => {
                   onMouseLeave={() => setHoverCol(null)}
                   onClick={() => handlePlayerDrop(col)}
                   aria-label={`Drop piece in column ${col + 1}`}
-                  className="h-9 rounded-lg flex items-center justify-center cursor-pointer disabled:cursor-default transition-transform duration-150"
+                  className="h-7 rounded-lg flex items-center justify-center cursor-pointer disabled:cursor-default transition-transform duration-150"
                 >
                   <div
-                    className={`w-6 h-6 sm:w-7 sm:h-7 rounded-full transition-opacity duration-150 ${
+                    className={`w-5 h-5 sm:w-6 sm:h-6 rounded-full transition-opacity duration-150 ${
                       canDrop && hoverCol === col
                         ? "bg-amber-400 opacity-100 scale-105"
                         : canDrop
@@ -409,8 +416,8 @@ export const ConnectFourGame: React.FC<ConnectFourGameProps> = ({ muted }) => {
           </div>
 
           {/* Board Frame */}
-          <div className="rounded-2xl bg-slate-800 border-2 border-slate-700 p-2.5 sm:p-4 shadow-2xl">
-            <div className="grid grid-cols-7 gap-2 sm:gap-3">
+          <div className="rounded-2xl bg-slate-800 border-2 border-slate-700 p-2.5 sm:p-3 shadow-2xl">
+            <div className="grid grid-cols-7 gap-2">
               {board.map((row, rIdx) =>
                 row.map((cell, cIdx) => {
                   const winning = isWinCell(rIdx, cIdx);

@@ -15,6 +15,7 @@ type RoundPhase = "BETTING" | "PLAYER_TURN" | "DEALER_TURN" | "ROUND_OVER";
 
 interface BlackjackGameProps {
   muted: boolean;
+  isFullscreen?: boolean;
 }
 
 const SUITS: Suit[] = ["♠", "♥", "♦", "♣"];
@@ -59,8 +60,8 @@ function handTotal(cards: PlayingCard[]): number {
 const CardView: React.FC<{ card: PlayingCard; hidden?: boolean }> = ({ card, hidden }) => {
   if (hidden) {
     return (
-      <div className="w-20 h-28 sm:w-24 sm:h-34 rounded-xl bg-stone-900 border-2 border-amber-500/60 shadow-lg flex items-center justify-center select-none">
-        <div className="w-14 h-22 sm:w-16 sm:h-26 rounded-lg border border-amber-500/30 bg-amber-950/40 flex items-center justify-center text-amber-400/70 font-serif font-bold text-lg">
+      <div className="w-16 h-24 sm:w-20 sm:h-28 rounded-xl bg-stone-900 border-2 border-amber-500/60 shadow-lg flex items-center justify-center select-none">
+        <div className="w-11 h-18 sm:w-14 sm:h-22 rounded-lg border border-amber-500/30 bg-amber-950/40 flex items-center justify-center text-amber-400/70 font-serif font-bold text-base">
           A
         </div>
       </div>
@@ -69,23 +70,23 @@ const CardView: React.FC<{ card: PlayingCard; hidden?: boolean }> = ({ card, hid
 
   const isRed = card.suit === "♥" || card.suit === "♦";
   return (
-    <div className="w-20 h-28 sm:w-24 sm:h-34 rounded-xl bg-white border border-stone-300 shadow-lg p-2 flex flex-col justify-between select-none transition-transform duration-150 hover:-translate-y-1">
+    <div className="w-16 h-24 sm:w-20 sm:h-28 rounded-xl bg-white border border-stone-300 shadow-lg p-1.5 sm:p-2 flex flex-col justify-between select-none transition-transform duration-150 hover:-translate-y-1">
       <div className={`text-left leading-none font-bold ${isRed ? "text-red-600" : "text-stone-900"}`}>
-        <div className="text-base sm:text-lg font-mono">{card.rank}</div>
-        <div className="text-sm">{card.suit}</div>
+        <div className="text-sm sm:text-base font-mono">{card.rank}</div>
+        <div className="text-xs sm:text-sm">{card.suit}</div>
       </div>
-      <div className={`text-center text-2xl sm:text-3xl leading-none ${isRed ? "text-red-600" : "text-stone-900"}`}>
+      <div className={`text-center text-xl sm:text-2xl leading-none ${isRed ? "text-red-600" : "text-stone-900"}`}>
         {card.suit}
       </div>
       <div className={`text-right leading-none font-bold rotate-180 ${isRed ? "text-red-600" : "text-stone-900"}`}>
-        <div className="text-base sm:text-lg font-mono">{card.rank}</div>
-        <div className="text-sm">{card.suit}</div>
+        <div className="text-sm sm:text-base font-mono">{card.rank}</div>
+        <div className="text-xs sm:text-sm">{card.suit}</div>
       </div>
     </div>
   );
 };
 
-export const BlackjackGame: React.FC<BlackjackGameProps> = ({ muted }) => {
+export const BlackjackGame: React.FC<BlackjackGameProps> = ({ muted, isFullscreen = false }) => {
   const [chips, setChips] = useState<number>(() => {
     try {
       const saved = localStorage.getItem(CHIPS_STORAGE_KEY);
@@ -279,9 +280,9 @@ export const BlackjackGame: React.FC<BlackjackGameProps> = ({ muted }) => {
       : handTotal(dealerHand);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Top Info Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-3 rounded-xl bg-stone-900 border border-stone-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-800">
         <div className="flex flex-wrap items-center gap-5 text-sm">
           <div className="flex items-center gap-1.5 font-mono tabular-nums">
             <Coins className="w-4 h-4 text-amber-400" />
@@ -307,7 +308,7 @@ export const BlackjackGame: React.FC<BlackjackGameProps> = ({ muted }) => {
             setPhase("BETTING");
             setOutcomeMsg("Bankroll reset to 500 chips.");
           }}
-          className="min-h-[40px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-300 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+          className="min-h-[38px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-300 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
         >
           <RotateCcw className="w-3.5 h-3.5" />
           <span>Reset Bankroll</span>
@@ -316,20 +317,22 @@ export const BlackjackGame: React.FC<BlackjackGameProps> = ({ muted }) => {
 
       {/* Classic Felt Table Surface */}
       <div
-        className="rounded-xl border-4 border-[#3E2723] p-6 sm:p-8 shadow-2xl min-h-[460px] flex flex-col justify-between gap-8"
+        className={`rounded-xl border-4 border-[#3E2723] shadow-2xl flex flex-col justify-between ${
+          isFullscreen ? "p-5 sm:p-7 gap-5" : "p-4 sm:p-5 gap-4"
+        }`}
         style={{ backgroundColor: "#0F5132" }}
       >
         {/* Dealer Zone */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           <div className="flex items-center justify-between text-xs font-medium text-emerald-100/90">
             <span>Dealer · Ada &amp; Tux Jr.</span>
             <span className="font-mono tabular-nums">
               {dealerHand.length > 0 ? `Showing: ${dealerVisibleTotal}` : "Waiting for deal"}
             </span>
           </div>
-          <div className="flex flex-wrap items-center gap-3 min-h-[120px] sm:min-h-[138px]">
+          <div className="flex flex-wrap items-center gap-3 min-h-[96px] sm:min-h-[112px]">
             {dealerHand.length === 0 ? (
-              <div className="w-20 h-28 sm:w-24 sm:h-34 rounded-xl border border-dashed border-emerald-300/30 flex items-center justify-center text-xs text-emerald-200/50">
+              <div className="w-16 h-24 sm:w-20 sm:h-28 rounded-xl border border-dashed border-emerald-300/30 flex items-center justify-center text-xs text-emerald-200/50">
                 Dealer
               </div>
             ) : (
@@ -342,11 +345,11 @@ export const BlackjackGame: React.FC<BlackjackGameProps> = ({ muted }) => {
 
         {/* Table Center Message */}
         <div className="text-center py-2 border-y border-emerald-200/15">
-          <p className="text-base sm:text-lg font-semibold text-white">{outcomeMsg}</p>
+          <p className="text-sm sm:text-base font-semibold text-white">{outcomeMsg}</p>
         </div>
 
         {/* Player Zone + Controls */}
-        <div className="space-y-5">
+        <div className="space-y-3">
           <div className="flex items-center justify-between text-xs font-medium text-emerald-100/90">
             <span>Your Hand</span>
             <span className="font-mono tabular-nums">
@@ -354,9 +357,9 @@ export const BlackjackGame: React.FC<BlackjackGameProps> = ({ muted }) => {
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 min-h-[120px] sm:min-h-[138px]">
+          <div className="flex flex-wrap items-center gap-3 min-h-[96px] sm:min-h-[112px]">
             {playerHand.length === 0 ? (
-              <div className="w-20 h-28 sm:w-24 sm:h-34 rounded-xl border border-dashed border-emerald-300/30 flex items-center justify-center text-xs text-emerald-200/50">
+              <div className="w-16 h-24 sm:w-20 sm:h-28 rounded-xl border border-dashed border-emerald-300/30 flex items-center justify-center text-xs text-emerald-200/50">
                 Player
               </div>
             ) : (

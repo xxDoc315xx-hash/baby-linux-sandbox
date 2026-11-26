@@ -132,25 +132,21 @@ export default function GamesArcade() {
       ref={stageRef}
       className={
         isFullscreen
-          ? "fixed inset-0 z-50 bg-stone-950 overflow-y-auto px-4 sm:px-8 py-4 sm:py-5 flex flex-col gap-4"
-          : `${activeGame === "chess" ? "max-w-7xl" : "max-w-5xl"} w-full mx-auto px-4 sm:px-6 py-6 space-y-6`
+          ? "fixed inset-0 z-50 bg-stone-950 overflow-y-auto px-4 sm:px-6 py-3 flex flex-col gap-3"
+          : `${activeGame === "chess" ? "max-w-7xl" : "max-w-6xl"} w-full mx-auto px-4 sm:px-6 py-3 space-y-3`
       }
     >
       {/* Header & Game Switcher */}
       <div
-        className={`flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-stone-800 ${
-          isFullscreen ? "max-w-7xl w-full mx-auto pb-3" : "pb-5"
+        className={`flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-stone-800 ${
+          isFullscreen ? "max-w-7xl w-full mx-auto pb-2.5" : "pb-3"
         }`}
       >
         <div>
-          <h2
-            className={`font-bold text-white tracking-tight ${
-              isFullscreen ? "text-xl sm:text-2xl" : "text-2xl sm:text-3xl"
-            }`}
-          >
+          <h2 className="font-bold text-white tracking-tight text-xl sm:text-2xl">
             Games Lounge
           </h2>
-          <p className="text-sm text-stone-400 mt-0.5">
+          <p className="text-xs sm:text-sm text-stone-400">
             {currentMeta.label} <span aria-hidden="true">·</span> {currentMeta.genre}{" "}
             <span aria-hidden="true">·</span> Kick back with Ada &amp; Tux Jr.
           </p>
@@ -178,7 +174,7 @@ export default function GamesArcade() {
             type="button"
             onClick={toggleMuted}
             aria-label={muted ? "Unmute game sounds" : "Mute game sounds"}
-            className="min-h-[40px] px-3 py-2 rounded-xl border border-stone-800 bg-stone-900 hover:bg-stone-800 text-stone-300 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+            className="min-h-[38px] px-3 py-1.5 rounded-xl border border-stone-800 bg-stone-900 hover:bg-stone-800 text-stone-300 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
           >
             {muted ? (
               <VolumeX className="w-4 h-4 text-stone-400" />
@@ -192,7 +188,7 @@ export default function GamesArcade() {
             type="button"
             onClick={toggleFullscreen}
             aria-label={isFullscreen ? "Exit Full Screen" : "Full Screen"}
-            className={`min-h-[40px] px-3.5 py-2 rounded-xl border text-xs font-semibold flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 transition-colors ${
+            className={`min-h-[38px] px-3.5 py-1.5 rounded-xl border text-xs font-semibold flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 transition-colors ${
               isFullscreen
                 ? "bg-amber-600 border-amber-500 text-white hover:bg-amber-500"
                 : "border-stone-800 bg-stone-900 hover:bg-stone-800 text-stone-200"
@@ -216,11 +212,11 @@ export default function GamesArcade() {
       {/* Active Game Viewport */}
       <div className={isFullscreen ? "max-w-7xl w-full mx-auto flex-1 flex flex-col justify-start" : ""}>
         {activeGame === "frontier" && <FrontierDefenseGame muted={muted} isFullscreen={isFullscreen} />}
-        {activeGame === "chess" && <ChessGame muted={muted} />}
-        {activeGame === "poker" && <PokerGame muted={muted} />}
-        {activeGame === "blackjack" && <BlackjackGame muted={muted} />}
-        {activeGame === "connect4" && <ConnectFourGame muted={muted} />}
-        {activeGame === "snake" && <SnakeFishGame muted={muted} />}
+        {activeGame === "chess" && <ChessGame muted={muted} isFullscreen={isFullscreen} />}
+        {activeGame === "poker" && <PokerGame muted={muted} isFullscreen={isFullscreen} />}
+        {activeGame === "blackjack" && <BlackjackGame muted={muted} isFullscreen={isFullscreen} />}
+        {activeGame === "connect4" && <ConnectFourGame muted={muted} isFullscreen={isFullscreen} />}
+        {activeGame === "snake" && <SnakeFishGame muted={muted} isFullscreen={isFullscreen} />}
       </div>
     </div>
   );

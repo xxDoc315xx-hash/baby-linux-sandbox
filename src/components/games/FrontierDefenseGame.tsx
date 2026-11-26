@@ -686,9 +686,9 @@ export const FrontierDefenseGame: React.FC<FrontierDefenseGameProps> = ({
   const shieldLabel = shield > 50 ? "STABLE" : shield > 25 ? "CAUTION" : "CRITICAL";
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Unobtrusive Top HUD Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-4 px-4 py-3 rounded-xl bg-stone-900 border border-stone-800">
+      <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-800">
         <div className="flex flex-wrap items-center gap-5 text-sm">
           <div className="font-mono tabular-nums">
             <span className="text-stone-400 text-xs mr-1.5">Score</span>
@@ -719,7 +719,7 @@ export const FrontierDefenseGame: React.FC<FrontierDefenseGameProps> = ({
           <button
             type="button"
             onClick={() => setAutoFire((v) => !v)}
-            className={`min-h-[40px] px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 transition-colors ${
+            className={`min-h-[38px] px-3 py-1.5 rounded-lg border text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0 transition-colors ${
               autoFire
                 ? "bg-amber-600/20 border-amber-500/50 text-amber-300"
                 : "bg-stone-950 border-stone-800 text-stone-400 hover:text-stone-200"
@@ -733,7 +733,7 @@ export const FrontierDefenseGame: React.FC<FrontierDefenseGameProps> = ({
             <button
               type="button"
               onClick={togglePause}
-              className="min-h-[40px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-200 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
+              className="min-h-[38px] px-3.5 py-1.5 rounded-lg border border-stone-700 bg-stone-950 hover:bg-stone-800 text-stone-200 text-xs font-medium flex items-center gap-1.5 cursor-pointer whitespace-nowrap shrink-0"
             >
               {gameState === "PAUSED" ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
               <span>{gameState === "PAUSED" ? "Resume" : "Pause"}</span>
@@ -744,8 +744,10 @@ export const FrontierDefenseGame: React.FC<FrontierDefenseGameProps> = ({
 
       {/* Playfield Stage */}
       <div
-        className={`relative rounded-xl overflow-hidden border border-stone-800 bg-stone-950 shadow-xl ${
-          isFullscreen ? "mx-auto w-full max-w-[min(1150px,calc((100vh-190px)*1.72))]" : ""
+        className={`relative mx-auto w-full rounded-xl overflow-hidden border border-stone-800 bg-stone-950 shadow-xl ${
+          isFullscreen
+            ? "max-w-[min(1150px,calc((100vh-175px)*1.72))]"
+            : "max-w-[min(920px,calc((100vh-250px)*1.72))]"
         }`}
       >
         <canvas
