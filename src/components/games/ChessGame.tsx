@@ -365,7 +365,7 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
         {/* Chessboard Container (Full Size All The Time) */}
         <div className="w-full lg:flex-1 flex flex-col items-center">
           <div className="relative w-full rounded-xl overflow-hidden border-4 border-[#3E2723] shadow-2xl bg-[#3E2723]">
-            <div className="grid grid-cols-8 aspect-square w-full">
+            <div className="grid grid-cols-8 grid-rows-8 aspect-square w-full">
               {displayRanks.map((r) =>
                 displayFiles.map((c) => {
                   const idx = rcToIdx(r, c);
@@ -389,13 +389,13 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
                       type="button"
                       onClick={() => handleSquareClick(idx)}
                       aria-label={`${"abcdefgh"[c]}${8 - r}`}
-                      className={`relative flex items-center justify-center cursor-pointer transition-colors ${bgClass} ${
+                      className={`relative w-full h-full aspect-square overflow-hidden flex items-center justify-center cursor-pointer transition-colors ${bgClass} ${
                         isCheckedKing ? "ring-4 ring-inset ring-red-600 bg-red-400/70" : ""
                       }`}
                     >
                       {showRankLabel && (
                         <span
-                          className={`absolute top-0.5 left-1 text-[10px] font-mono font-bold leading-none select-none ${
+                          className={`absolute top-1 left-1.5 text-[10px] sm:text-xs font-mono font-bold leading-none select-none ${
                             isLight ? "text-[#7a5434]" : "text-[#edd9b9]"
                           }`}
                         >
@@ -404,7 +404,7 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
                       )}
                       {showFileLabel && (
                         <span
-                          className={`absolute bottom-0.5 right-1 text-[10px] font-mono font-bold leading-none select-none ${
+                          className={`absolute bottom-1 right-1.5 text-[10px] sm:text-xs font-mono font-bold leading-none select-none ${
                             isLight ? "text-[#7a5434]" : "text-[#edd9b9]"
                           }`}
                         >
@@ -415,7 +415,7 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
                       {piece && <ChessPieceSvg piece={piece} />}
 
                       {isTarget && !piece && (
-                        <span className="w-3.5 h-3.5 rounded-full bg-stone-900/35 pointer-events-none" />
+                        <span className="w-[26%] h-[26%] rounded-full bg-stone-900/35 pointer-events-none" />
                       )}
                       {isTarget && piece && (
                         <span className="absolute inset-1 rounded-full border-4 border-stone-900/45 pointer-events-none" />
