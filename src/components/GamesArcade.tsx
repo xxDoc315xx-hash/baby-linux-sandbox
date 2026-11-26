@@ -5,12 +5,14 @@ import { BlackjackGame } from "./games/BlackjackGame";
 import { ConnectFourGame } from "./games/ConnectFourGame";
 import { SnakeFishGame } from "./games/SnakeFishGame";
 import { ChessGame } from "./games/ChessGame";
+import { PokerGame } from "./games/PokerGame";
 
-type GameId = "frontier" | "chess" | "blackjack" | "connect4" | "snake";
+type GameId = "frontier" | "chess" | "poker" | "blackjack" | "connect4" | "snake";
 
 const GAMES: { id: GameId; label: string; genre: string }[] = [
   { id: "frontier", label: "Frontier Defense", genre: "Space Shooter" },
   { id: "chess", label: "Chess vs. Ada", genre: "Full Rules Strategy" },
+  { id: "poker", label: "Texas Hold'em", genre: "4-Seat Poker Table" },
   { id: "blackjack", label: "Cozy Blackjack", genre: "Card Table" },
   { id: "connect4", label: "Four-in-a-Row", genre: "Board Game" },
   { id: "snake", label: "Fish Hunt", genre: "Classic Arcade" },
@@ -26,6 +28,7 @@ export default function GamesArcade() {
       if (
         saved === "frontier" ||
         saved === "chess" ||
+        saved === "poker" ||
         saved === "blackjack" ||
         saved === "connect4" ||
         saved === "snake"
@@ -214,6 +217,7 @@ export default function GamesArcade() {
       <div className={isFullscreen ? "max-w-7xl w-full mx-auto flex-1 flex flex-col justify-start" : ""}>
         {activeGame === "frontier" && <FrontierDefenseGame muted={muted} isFullscreen={isFullscreen} />}
         {activeGame === "chess" && <ChessGame muted={muted} />}
+        {activeGame === "poker" && <PokerGame muted={muted} />}
         {activeGame === "blackjack" && <BlackjackGame muted={muted} />}
         {activeGame === "connect4" && <ConnectFourGame muted={muted} />}
         {activeGame === "snake" && <SnakeFishGame muted={muted} />}
