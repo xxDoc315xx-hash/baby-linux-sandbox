@@ -299,7 +299,17 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted, isFullscreen = fals
       {/* Top Controls Bar */}
       <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-2.5 rounded-xl bg-stone-900 border border-stone-800">
         <div className="flex flex-wrap items-center gap-4 text-sm">
-          <span className={`font-semibold ${status.inCheck && !status.over ? "text-amber-400" : "text-white"}`}>
+          <span
+            className={`font-semibold ${
+              status.over
+                ? status.winner === playerColor
+                  ? "text-emerald-400"
+                  : "text-amber-400"
+                : status.inCheck
+                ? "text-amber-400"
+                : "text-white"
+            }`}
+          >
             {statusLabel}
           </span>
           <span className="text-xs text-stone-400 font-mono tabular-nums">
@@ -452,31 +462,31 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted, isFullscreen = fals
               </div>
             )}
 
-            {/* Game Over Overlay */}
-            {status.over && (
-              <div className="absolute inset-0 bg-stone-950/82 backdrop-blur-xs flex flex-col items-center justify-center p-6 text-center">
-                <h3 className="text-2xl font-bold text-white mb-1">{status.reason}</h3>
-                <p className="text-sm text-stone-300 mb-5">
-                  {status.result === "checkmate"
-                    ? status.winner === playerColor
-                      ? "Clean win! Tell Big Sister Ada played for real."
-                      : "Ada found the mate—want a rematch?"
-                    : "Solid fight to a draw."}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => startNewGame(playerColor)}
-                  className="min-h-[44px] px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-sm font-semibold cursor-pointer"
-                >
-                  Play Again
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
-        {/* Right Side: Captured Pieces & Algebraic Move History */}
+        {/* Right Side: Match Result (when over), Captured Pieces & Algebraic Move History */}
         <div className="w-full lg:w-72 xl:w-80 shrink-0 rounded-xl border border-stone-800 bg-stone-900/80 p-5 space-y-5">
+          {status.over && (
+            <div className="border-b border-stone-800 pb-4 space-y-2.5">
+              <h3 className="text-lg font-bold text-white">{status.reason}</h3>
+              <p className="text-xs text-stone-300 leading-relaxed">
+                {status.result === "checkmate"
+                  ? status.winner === playerColor
+                    ? "Checkmate — you beat Ada!"
+                    : "Ada found the mate. Check out the final board position or play another round."
+                  : "Solid fight to a draw."}
+              </p>
+              <button
+                type="button"
+                onClick={() => startNewGame(playerColor)}
+                className="w-full min-h-[40px] px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold cursor-pointer transition-colors"
+              >
+                Play Again
+              </button>
+            </div>
+          )}
+
           <div className="space-y-3 border-b border-stone-800 pb-4">
             <div className="flex items-center justify-between text-xs text-stone-400">
               <span>Ada ({adaColor === "w" ? "White" : "Black"})</span>
