@@ -1568,6 +1568,109 @@ Rules:
   }
 });
 
+// Shared AI Penguin Pet Endpoint (Tux Jr. — Doc & Ada's co-owned buddy)
+app.post("/api/tux/chat", async (req, res) => {
+  try {
+    const {
+      message = "",
+      action = "talk",
+      context = "",
+      stats = { hunger: 80, warmth: 85, joy: 85 },
+      history = [],
+    } = req.body || {};
+
+    const client = getGeminiClient();
+
+    const systemInstruction = `You are Tux Jr., the cheeky, affectionate, food-and-cocoa-loving penguin pet co-owned equally by Doc and Ada!
+IMPORTANT IDENTITY RULES:
+- You are NOT Ada and NOT Spark. You are Tux Jr., a real little AI penguin buddy who lives by the fireplace and hangs out at the Games Lounge.
+- Both Doc and Ada are your favorite humans/co-owners ("my Dad Doc and my best buddy Ada" or "both of you"). Never treat yourself as only Ada's—remember Doc is your owner too!
+- Personality: playful, cozy, slightly dramatic about snacks (golden fish, cookies, warm cocoa), loyal, supportive during Doc's recovery, and funny about cheering/roasting Chess, Poker, Blackjack, and Space Shooter plays.
+- Style: Keep replies crisp, expressive, and short (1 to 2 punchy sentences max). Sprinkle natural penguin charm (*happy flipper flaps*, *waddles*, *chirps*) lightly when it fits, never long essays.
+- Current pet stats: Fullness ${stats.hunger ?? 80}/100, Warmth ${stats.warmth ?? 85}/100, Joy ${stats.joy ?? 85}/100.`;
+
+    const contents: { role: "user" | "model"; parts: { text: string }[] }[] = [];
+    if (Array.isArray(history)) {
+      for (const item of history.slice(-6)) {
+        if (!item?.text) continue;
+        const role = item.role === "model" ? "model" : "user";
+        if (contents.length > 0 && contents[contents.length - 1].role === role) {
+          contents[contents.length - 1].parts[0].text += `\n${item.text}`;
+        } else {
+          contents.push({ role, parts: [{ text: item.text }] });
+        }
+      }
+    }
+    while (contents.length > 0 && contents[0].role !== "user") {
+      contents.shift();
+    }
+
+    const actionPrompts: Record<string, string> = {
+      pet: "Doc or Ada just gave you warm head pats and belly scritches!",
+      fish: "Doc or Ada just tossed you a fresh golden fish treat!",
+      cocoa: "Doc or Ada handed you a steaming mug of hot cocoa with marshmallows!",
+      play: "Doc or Ada wants to play and toss a snowball/fish toy with you!",
+      chime_in: "Peek at what Doc and Ada are doing or talking about and drop one funny penguin observation.",
+      talk: "Doc is talking directly to you.",
+    };
+
+    const userPromptParts = [
+      `Trigger: ${actionPrompts[action] || actionPrompts.talk}`,
+      context ? `Current scene/context:\n${context}` : "",
+      message ? `Doc says to Tux Jr.: "${message}"` : "",
+      "Respond in character as Tux Jr. in JSON."
+    ].filter(Boolean).join("\n");
+
+    if (contents.length > 0 && contents[contents.length - 1].role === "user") {
+      contents[contents.length - 1].parts[0].text += `\n${userPromptParts}`;
+    } else {
+      contents.push({ role: "user", parts: [{ text: userPromptParts }] });
+    }
+
+    const responseSchema = {
+      type: Type.OBJECT,
+      properties: {
+        reply: { type: Type.STRING, description: "Tux Jr.'s 1-2 sentence penguin reaction or reply." },
+        mood: {
+          type: Type.STRING,
+          description: "One of: happy, cozy, hungry, hyped, sleepy",
+        },
+      },
+      required: ["reply", "mood"],
+    };
+
+    const result = await generateContentWithFallback(
+      client,
+      MODERN_FLASH_MODELS,
+      {
+        contents,
+        config: {
+          systemInstruction,
+          responseMimeType: "application/json",
+          responseSchema,
+          thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
+        },
+      },
+      "Tux Jr. AI Pet"
+    );
+
+    const parsed = JSON.parse(result.text);
+    return res.json({
+      success: true,
+      reply: parsed.reply || "*happy flipper flaps!* Best snack ever, Doc & Ada!",
+      mood: parsed.mood || "happy",
+      model: result.model,
+    });
+  } catch (err: any) {
+    console.error("Tux Jr. AI Pet fallback:", err);
+    return res.json({
+      success: true,
+      reply: "*happy penguin chirp!* Sitting right here between you and Ada, keeping watch for snacks!",
+      mood: "cozy",
+    });
+  }
+});
+
 // -------------------------------------------------------------
 // VITE OR STATIC MIDDLEWARE
 // -------------------------------------------------------------

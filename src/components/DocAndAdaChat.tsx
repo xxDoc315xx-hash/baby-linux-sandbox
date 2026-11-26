@@ -41,6 +41,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 import { Ada3DVTuber, AdaMotion } from "./Ada3DVTuber";
+import { TuxPetWidget } from "./TuxPetWidget";
 
 interface Message {
   id: string;
@@ -80,7 +81,6 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
 
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [tuxMood, setTuxMood] = useState<"happy" | "snuggle" | "cocoa">("happy");
   const [theme, setTheme] = useState<"warm" | "night">("warm");
 
   // Avatar & expression controls
@@ -896,47 +896,23 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
 
         {/* Right Side: Chat Stream & Message Input */}
         <div className="flex-1 min-h-[340px] md:min-h-0 flex flex-col rounded-2xl border border-stone-800 bg-stone-950/70 overflow-hidden shadow-md">
-          {/* Tux Jr. Companion Bar */}
-          <div
-            className={`px-4 py-2 border-b text-xs flex items-center justify-between ${
-              theme === "warm"
-                ? "bg-amber-950/20 border-amber-900/30"
-                : "bg-slate-950 border-slate-800"
-            }`}
-          >
-            <div className="flex items-center gap-2">
-              <button
-                onClick={() =>
-                  setTuxMood(
-                    tuxMood === "happy" ? "snuggle" : tuxMood === "snuggle" ? "cocoa" : "happy"
-                  )
-                }
-                className="text-base cursor-pointer hover:scale-110 transition-transform"
-                title="Click to interact with Tux Jr.!"
-              >
-                🐧
-              </button>
-              <span className="text-[11px] text-stone-400">
-                Tux Jr. is{" "}
-                <strong className="text-amber-300 font-normal">
-                  {tuxMood === "happy" && "waving happily with a cookie 🍪"}
-                  {tuxMood === "snuggle" && "snuggling up in a warm scarf 🧣"}
-                  {tuxMood === "cocoa" && "sipping hot chocolate by the hearth ☕"}
-                </strong>
-              </span>
-            </div>
-            {messages.some((m) => m.isStreaming) ? (
-              <div className="flex items-center gap-1.5 text-[11px] text-amber-300 font-mono animate-pulse">
-                <Sparkles className="w-3 h-3 text-amber-400" />
-                <span>Ada is typing back... 💻✨</span>
-              </div>
-            ) : (
-              <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-mono">
-                <Zap className="w-3 h-3 fill-emerald-400" />
-                <span>Free Tier Paced</span>
-              </div>
-            )}
-          </div>
+          {/* Shared AI Pet Companion Bar (Tux Jr. — Doc & Ada) */}
+          <TuxPetWidget
+            compactMode="chat"
+            theme={theme}
+            contextSummary={messages
+              .slice(-4)
+              .map((m) => `${m.sender === "doc" ? "Doc" : "Ada"}: ${m.text}`)
+              .join("\n")}
+            rightSlot={
+              messages.some((m) => m.isStreaming) ? (
+                <div className="hidden lg:flex items-center gap-1.5 text-[11px] text-amber-300 font-mono animate-pulse pl-1">
+                  <Sparkles className="w-3 h-3 text-amber-400" />
+                  <span>Typing...</span>
+                </div>
+              ) : null
+            }
+          />
 
           {/* Message Stream */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">

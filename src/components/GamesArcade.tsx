@@ -6,6 +6,7 @@ import { ConnectFourGame } from "./games/ConnectFourGame";
 import { SnakeFishGame } from "./games/SnakeFishGame";
 import { ChessGame } from "./games/ChessGame";
 import { PokerGame } from "./games/PokerGame";
+import { TuxPetWidget } from "./TuxPetWidget";
 
 type GameId = "frontier" | "chess" | "poker" | "blackjack" | "connect4" | "snake";
 
@@ -218,6 +219,15 @@ export default function GamesArcade() {
         {activeGame === "connect4" && <ConnectFourGame muted={muted} isFullscreen={isFullscreen} />}
         {activeGame === "snake" && <SnakeFishGame muted={muted} isFullscreen={isFullscreen} />}
       </div>
+
+      {!isFullscreen && (
+        <div className="rounded-xl border border-stone-800 bg-stone-900/70 overflow-hidden">
+          <TuxPetWidget
+            compactMode="games"
+            contextSummary={`Doc and Ada are currently in Games Lounge playing ${currentMeta.label} (${currentMeta.genre}).`}
+          />
+        </div>
+      )}
     </div>
   );
 }
