@@ -130,13 +130,13 @@ export default function GamesArcade() {
       className={
         isFullscreen
           ? "fixed inset-0 z-50 bg-stone-950 overflow-y-auto px-4 sm:px-8 py-4 sm:py-5 flex flex-col gap-4"
-          : "max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6"
+          : `${activeGame === "chess" ? "max-w-7xl" : "max-w-5xl"} w-full mx-auto px-4 sm:px-6 py-6 space-y-6`
       }
     >
       {/* Header & Game Switcher */}
       <div
         className={`flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-stone-800 ${
-          isFullscreen ? "max-w-6xl w-full mx-auto pb-3" : "pb-5"
+          isFullscreen ? "max-w-7xl w-full mx-auto pb-3" : "pb-5"
         }`}
       >
         <div>
@@ -211,7 +211,7 @@ export default function GamesArcade() {
       </div>
 
       {/* Active Game Viewport */}
-      <div className={isFullscreen ? "max-w-6xl w-full mx-auto flex-1 flex flex-col justify-center" : ""}>
+      <div className={isFullscreen ? "max-w-7xl w-full mx-auto flex-1 flex flex-col justify-start" : ""}>
         {activeGame === "frontier" && <FrontierDefenseGame muted={muted} isFullscreen={isFullscreen} />}
         {activeGame === "chess" && <ChessGame muted={muted} />}
         {activeGame === "blackjack" && <BlackjackGame muted={muted} />}

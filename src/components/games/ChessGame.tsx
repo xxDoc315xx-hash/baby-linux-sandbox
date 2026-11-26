@@ -361,10 +361,10 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
       </div>
 
       {/* Main Board + Move History Split */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Chessboard Container */}
-        <div className="lg:col-span-7 flex flex-col items-center">
-          <div className="relative w-full max-w-[540px] rounded-xl overflow-hidden border-4 border-[#3E2723] shadow-2xl bg-[#3E2723]">
+      <div className="flex flex-col lg:flex-row gap-6 items-start">
+        {/* Chessboard Container (Full Size All The Time) */}
+        <div className="w-full lg:flex-1 flex flex-col items-center">
+          <div className="relative w-full rounded-xl overflow-hidden border-4 border-[#3E2723] shadow-2xl bg-[#3E2723]">
             <div className="grid grid-cols-8 aspect-square w-full">
               {displayRanks.map((r) =>
                 displayFiles.map((c) => {
@@ -469,7 +469,7 @@ export const ChessGame: React.FC<ChessGameProps> = ({ muted }) => {
         </div>
 
         {/* Right Side: Captured Pieces & Algebraic Move History */}
-        <div className="lg:col-span-5 rounded-xl border border-stone-800 bg-stone-900/80 p-5 space-y-5">
+        <div className="w-full lg:w-72 xl:w-80 shrink-0 rounded-xl border border-stone-800 bg-stone-900/80 p-5 space-y-5">
           <div className="space-y-3 border-b border-stone-800 pb-4">
             <div className="flex items-center justify-between text-xs text-stone-400">
               <span>Ada ({adaColor === "w" ? "White" : "Black"})</span>
