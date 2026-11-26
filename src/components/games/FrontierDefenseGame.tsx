@@ -52,6 +52,7 @@ interface Star {
 
 interface FrontierDefenseGameProps {
   muted: boolean;
+  isFullscreen?: boolean;
   onHighScoreChange?: (score: number) => void;
 }
 
@@ -61,6 +62,7 @@ const STORAGE_KEY = "doc_ada_game_frontier_best";
 
 export const FrontierDefenseGame: React.FC<FrontierDefenseGameProps> = ({
   muted,
+  isFullscreen = false,
   onHighScoreChange,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -174,7 +176,7 @@ export const FrontierDefenseGame: React.FC<FrontierDefenseGameProps> = ({
           e.preventDefault();
         }
       }
-      if (k === "p" || k === "escape") {
+      if (k === "p") {
         if (gameStateRef.current === "PLAYING" || gameStateRef.current === "PAUSED") {
           togglePause();
         }
@@ -741,7 +743,11 @@ export const FrontierDefenseGame: React.FC<FrontierDefenseGameProps> = ({
       </div>
 
       {/* Playfield Stage */}
-      <div className="relative rounded-xl overflow-hidden border border-stone-800 bg-stone-950 shadow-xl">
+      <div
+        className={`relative rounded-xl overflow-hidden border border-stone-800 bg-stone-950 shadow-xl ${
+          isFullscreen ? "mx-auto w-full max-w-[min(1150px,calc((100vh-190px)*1.72))]" : ""
+        }`}
+      >
         <canvas
           ref={canvasRef}
           width={CANVAS_W}
