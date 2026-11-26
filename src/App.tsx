@@ -3,24 +3,34 @@ import DocAndAdaChat from "./components/DocAndAdaChat";
 import SparkSanctuary from "./components/SparkSanctuary";
 import ProjectCanvas from "./components/ProjectCanvas";
 import HfyStoriesPlayer from "./components/HfyStoriesPlayer";
-import { Zap, MessageSquareHeart, Layers, Flame, Headphones } from "lucide-react";
+import GamesArcade from "./components/GamesArcade";
+import { MessageSquareHeart, Layers, Flame, Headphones, Gamepad2 } from "lucide-react";
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<"chat" | "hearth" | "stories" | "canvas">(() => {
+  const [currentView, setCurrentView] = useState<"chat" | "hearth" | "stories" | "games" | "canvas">(() => {
     try {
       if (typeof window !== "undefined") {
         const hash = window.location.hash.toLowerCase();
+        if (hash.includes("games")) return "games";
         if (hash.includes("stories") || hash.includes("hfy")) return "stories";
         if (hash.includes("hearth") || hash.includes("spark")) return "hearth";
         if (hash.includes("canvas") || hash.includes("blueprint")) return "canvas";
         const saved = localStorage.getItem("baby_linux_current_view");
-        if (saved === "canvas" || saved === "chat" || saved === "hearth" || saved === "stories") return saved as any;
+        if (
+          saved === "canvas" ||
+          saved === "chat" ||
+          saved === "hearth" ||
+          saved === "stories" ||
+          saved === "games"
+        ) {
+          return saved as "chat" | "hearth" | "stories" | "games" | "canvas";
+        }
       }
     } catch (_) {}
     return "chat";
   });
 
-  const handleSelectView = (view: "chat" | "hearth" | "stories" | "canvas") => {
+  const handleSelectView = (view: "chat" | "hearth" | "stories" | "games" | "canvas") => {
     setCurrentView(view);
     try {
       localStorage.setItem("baby_linux_current_view", view);
@@ -30,6 +40,8 @@ export default function App() {
         window.location.hash = "hearth";
       } else if (view === "stories") {
         window.location.hash = "stories";
+      } else if (view === "games") {
+        window.location.hash = "games";
       } else {
         window.location.hash = "chat";
       }
@@ -103,8 +115,20 @@ export default function App() {
             </button>
 
             <button
+              onClick={() => handleSelectView("games")}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap shrink-0 ${
+                currentView === "games"
+                  ? "bg-amber-600 text-white shadow-sm ring-1 ring-amber-400/40"
+                  : "text-stone-400 hover:text-stone-200"
+              }`}
+            >
+              <Gamepad2 className="w-3.5 h-3.5 text-amber-300" />
+              <span>Games</span>
+            </button>
+
+            <button
               onClick={() => handleSelectView("canvas")}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-medium transition-all cursor-pointer whitespace-nowrap shrink-0 ${
                 currentView === "canvas"
                   ? "bg-stone-800 text-white shadow-sm"
                   : "text-stone-400 hover:text-stone-200"
@@ -126,6 +150,8 @@ export default function App() {
           <SparkSanctuary />
         ) : currentView === "stories" ? (
           <HfyStoriesPlayer />
+        ) : currentView === "games" ? (
+          <GamesArcade />
         ) : (
           <ProjectCanvas />
         )}
