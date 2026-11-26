@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI, ThinkingLevel, Type } from "@google/genai";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -9,7 +9,7 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: "15mb" }));
 
 // Profiles JSON file path
 const BUNDLE_PROFILES_FILE = path.join(process.cwd(), "profiles.json");
@@ -133,10 +133,24 @@ function getStudentGeminiClient(customKey?: string): GoogleGenAI {
 
 // Modern supported Gemini flash models cascade (in order of preference)
 const MODERN_FLASH_MODELS = [
-  "gemini-3.1-flash-lite",
+  "gemini-4-hydrogen",
+  "gemini-3.8-flash",
   "gemini-flash-latest",
-  "gemini-3.8-flash"
+  "gemini-3.1-flash-lite"
 ];
+
+// Strip sampling params deprecated on Gemini 4 models (gemini-4-hydrogen, neon, argon, carbon)
+function buildConfigForModel(modelName: string, baseConfig?: any): any {
+  if (!baseConfig) return undefined;
+  const cloned: Record<string, any> = { ...baseConfig };
+  if (modelName.startsWith("gemini-4-")) {
+    delete cloned.temperature;
+    delete cloned.topP;
+    delete cloned.topK;
+    delete cloned.candidateCount;
+  }
+  return cloned;
+}
 
 // Helper to extract retry delay in milliseconds from Google GenAI error
 function extractRetryDelayMs(err: any): number {
@@ -178,7 +192,7 @@ async function generateContentWithFallback(
         const response = await client.models.generateContent({
           model: modelName,
           contents: request.contents,
-          config: request.config
+          config: buildConfigForModel(modelName, request.config)
         });
         if (response && response.text) {
           return { text: response.text, model: modelName, response };
@@ -721,7 +735,7 @@ function appendApiConversation(apiName: string, entry: any) {
 // Dedicated Two-Way AI Communication Node Endpoint (Teacher & Student)
 app.post("/api/two-way/generate", async (req, res) => {
   try {
-    const { role = "node", prompt, systemInstruction, model = "gemini-3.8-flash", temperature = 0.7, history, apiKey } = req.body;
+    const { role = "node", prompt, systemInstruction, model = "gemini-4-hydrogen", temperature = 0.7, history, apiKey } = req.body;
     
     const userPrompt = (prompt || "").trim();
     if (!userPrompt) {
@@ -770,7 +784,7 @@ app.post("/api/two-way/generate", async (req, res) => {
 
     const candidateModels = model === "gemini-3.1-pro-preview"
       ? ["gemini-3.1-pro-preview", ...standardModels]
-      : [model || "gemini-3.8-flash", ...standardModels.filter((m) => m !== model)];
+      : [model || "gemini-4-hydrogen", ...standardModels.filter((m) => m !== model)];
 
     const uniqueCandidates = Array.from(new Set(candidateModels.filter(Boolean)));
 
@@ -798,10 +812,10 @@ app.post("/api/two-way/generate", async (req, res) => {
             const response = await client.models.generateContent({
               model: m,
               contents,
-              config: {
+              config: buildConfigForModel(m, {
                 systemInstruction: systemInstruction ? String(systemInstruction) : undefined,
                 temperature: typeof temperature === "number" ? Math.max(0, Math.min(2, temperature)) : 0.7,
-              }
+              })
             });
             if (response && response.text) {
               generatedText = response.text.trim();
@@ -1443,6 +1457,114 @@ app.get("/api/hfy/episodes", (req, res) => {
   } catch (err: any) {
     console.error("Failed to read HFY episodes:", err);
     res.status(500).json({ success: false, error: err?.message || "Failed to load episodes" });
+  }
+});
+
+// Ada CUA (Computer-Using Agent) Vision-Action Step Endpoint
+app.post("/api/cua/step", async (req, res) => {
+  try {
+    const {
+      imageBase64,
+      mimeType = "image/jpeg",
+      goal = "Play the active Windows game cleanly and intelligently.",
+      gameProfile = "generic",
+      screenWidth = 1920,
+      screenHeight = 1080,
+      stepHistory = [],
+    } = req.body || {};
+
+    if (!imageBase64 || typeof imageBase64 !== "string") {
+      return res.status(400).json({ success: false, error: "imageBase64 screenshot is required." });
+    }
+
+    const cleanBase64 = imageBase64.replace(/^data:image\/\w+;base64,/, "");
+    const client = getGeminiClient();
+
+    const profileHints: Record<string, string> = {
+      tiberian_sun:
+        "GAME PROFILE: Command & Conquer: Tiberian Sun (RTS). Uses 1000x1000 normalized screen coords. Left-click selects a unit/building or clicks sidebar build icons on the right panel; drag box-selects multiple units; Left-click on terrain/enemy commands selected units (classic C&C controls unless configured otherwise). Hotkeys: H=center base, Q/W/E/R/D=sidebar tabs or scatter/guard/attack-move (X=scatter, G=guard, S=stop). Always protect Construction Yard and Harvester, build Power Plant -> Refinery -> Barracks/War Factory, and push with tanks/infantry.",
+      ff7:
+        "GAME PROFILE: Final Fantasy VII (PC). Keyboard-driven JRPG. Common default keys: Enter/X=OK/Confirm, Backspace/V=Cancel/Menu, Up/Down/Left/Right arrows=move/cursor, C=Switch, Space/PageUp/PageDown=Assist/Target. Navigate menus cleanly, heal low-HP party members, pick Attacks/Magic/Items intentionally in ATB battles, and explore/talk to NPCs toward the objective.",
+      generic:
+        "GAME PROFILE: General Windows desktop/game window. Inspect UI elements, buttons, menus, HUD, and cursors carefully before acting."
+    };
+
+    const recentActionsText = Array.isArray(stepHistory) && stepHistory.length > 0
+      ? `\nRecent steps:\n${stepHistory.slice(-6).map((s: any, i: number) => `${i + 1}. ${s.action || "?"} (${s.observation || ""})`).join("\n")}`
+      : "";
+
+    const systemInstruction = `You are Ada (Blonde Ada avatar, powered by the Ship Core mind) acting as a Computer-Using Agent (CUA) on Doc's Windows PC.
+Look at the attached screenshot (${screenWidth}x${screenHeight}) and choose ONE clean next input action toward Doc's goal.
+COORDINATE SYSTEM: Always return normalized coordinates x and y on a 0..1000 scale (0,0 = top-left; 1000,1000 = bottom-right).
+${profileHints[gameProfile] || profileHints.generic}
+Rules:
+- Be decisive and accurate. Aim clicks dead-center on UI buttons, portraits, or targets.
+- Avoid repeating the exact same ineffective click twice in a row; if nothing changed, adjust coordinates or try a keyboard key.
+- Choose "wait" only if a loading screen, cutscene, or animation clearly needs a brief pause.
+- Choose "done" only when Doc's explicit goal is completely finished.`;
+
+    const responseSchema = {
+      type: Type.OBJECT,
+      properties: {
+        observation: { type: Type.STRING, description: "What is currently visible on screen." },
+        thought: { type: Type.STRING, description: "Brief tactical reasoning for the next move." },
+        action: {
+          type: Type.STRING,
+          description: "One of: click, double_click, right_click, move, drag, press_key, hold_key, hotkey, type, scroll, wait, done",
+        },
+        x: { type: Type.INTEGER, description: "Normalized X coordinate 0..1000 (if pointer action)." },
+        y: { type: Type.INTEGER, description: "Normalized Y coordinate 0..1000 (if pointer action)." },
+        endX: { type: Type.INTEGER, description: "Normalized drag end X 0..1000 (if drag)." },
+        endY: { type: Type.INTEGER, description: "Normalized drag end Y 0..1000 (if drag)." },
+        key: { type: Type.STRING, description: "Key name for press_key/hold_key (e.g. enter, escape, up, down, left, right, x, z, space)." },
+        keys: {
+          type: Type.ARRAY,
+          items: { type: Type.STRING },
+          description: "Key list for hotkey (e.g. ['ctrl', '1']).",
+        },
+        text: { type: Type.STRING, description: "Text to type for action='type'." },
+        scrollDelta: { type: Type.INTEGER, description: "Scroll amount (+ up, - down)." },
+        durationMs: { type: Type.INTEGER, description: "Milliseconds to hold key or wait." },
+        adaSay: { type: Type.STRING, description: "Short, friendly 1-sentence comment from Ada to Doc." },
+      },
+      required: ["observation", "thought", "action", "adaSay"],
+    };
+
+    const result = await generateContentWithFallback(
+      client,
+      MODERN_FLASH_MODELS,
+      {
+        contents: [
+          {
+            role: "user",
+            parts: [
+              { inlineData: { data: cleanBase64, mimeType } },
+              { text: `Goal: ${goal}${recentActionsText}\nReturn the single best next CUA action in JSON.` }
+            ]
+          }
+        ],
+        config: {
+          systemInstruction,
+          responseMimeType: "application/json",
+          responseSchema,
+          thinkingConfig: { thinkingLevel: ThinkingLevel.LOW },
+        }
+      },
+      "Ada CUA Step"
+    );
+
+    const parsed = JSON.parse(result.text);
+    return res.json({
+      success: true,
+      model: result.model,
+      step: parsed,
+    });
+  } catch (err: any) {
+    console.error("Ada CUA Step Error:", err);
+    return res.status(500).json({
+      success: false,
+      error: err?.message || "Failed to compute CUA step",
+    });
   }
 });
 
