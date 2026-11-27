@@ -40,8 +40,17 @@ try:
 except Exception:
     pyttsx3 = None
 
-from google import genai
-from google.genai import types
+try:
+    from google import genai
+    from google.genai import types
+except Exception as import_err:
+    _r = tk.Tk()
+    _r.withdraw()
+    messagebox.showerror(
+        "Ada Desktop Setup Needed",
+        f"Missing Google GenAI SDK: {import_err}\n\nPlease run run_ada_desktop.bat so it can install requirements.",
+    )
+    sys.exit(1)
 
 FIRESTORE_PROJECT = "gen-lang-client-0295154432"
 FIRESTORE_DB = "ai-studio-cosmiccreatorsdi-aaa64d0e-f6d7-4710-90b5-fa0bec07077f"

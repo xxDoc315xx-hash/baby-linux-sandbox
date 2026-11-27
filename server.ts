@@ -795,14 +795,18 @@ app.get("/api/desktop-ada/download", async (_req, res) => {
     ];
 
     const zip = new JSZip();
-    const folder = zip.folder("AdaDesktop_Windows") || zip;
 
     let added = 0;
     for (const fileName of allowedFiles) {
       const resolved = path.resolve(baseDir, fileName);
       if (!resolved.startsWith(baseDir + path.sep)) continue;
       if (fs.existsSync(resolved)) {
-        folder.file(fileName, fs.readFileSync(resolved));
+        if (fileName.endsWith(".bat")) {
+          const text = fs.readFileSync(resolved, "utf-8").replace(/\r?\n/g, "\r\n");
+          zip.file(`AdaDesktop_Windows/${fileName}`, text, { binary: false });
+        } else {
+          zip.file(`AdaDesktop_Windows/${fileName}`, fs.readFileSync(resolved));
+        }
         added++;
       }
     }
@@ -811,10 +815,17 @@ app.get("/api/desktop-ada/download", async (_req, res) => {
       return res.status(404).json({ success: false, error: "Desktop Ada bundle files not found." });
     }
 
-    const zipBuffer = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
+    const zipBuffer = await zip.generateAsync({
+      type: "nodebuffer",
+      platform: "DOS",
+      compression: "DEFLATE",
+      compressionOptions: { level: 6 },
+    });
     res.setHeader("Content-Type", "application/zip");
     res.setHeader("Content-Disposition", 'attachment; filename="AdaDesktop_Windows.zip"');
-    return res.send(zipBuffer);
+    res.setHeader("Content-Length", String(zipBuffer.length));
+    res.setHeader("Cache-Control", "no-store");
+    return res.end(zipBuffer);
   } catch (err: any) {
     console.error("Desktop Ada ZIP download error:", err);
     return res.status(500).json({ success: false, error: "Failed to package AdaDesktop_Windows.zip" });

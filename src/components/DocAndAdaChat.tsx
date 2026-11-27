@@ -867,6 +867,51 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
     URL.revokeObjectURL(url);
   };
 
+  const handleDownloadDesktopAda = async () => {
+    try {
+      const res = await fetch("/api/desktop-ada/download", { credentials: "include" });
+      if (!res.ok) {
+        throw new Error(`Download returned ${res.status}`);
+      }
+      const buf = await res.arrayBuffer();
+      const bytes = new Uint8Array(buf);
+      // Verify real ZIP PK header (0x50 0x4B) so we never save an HTML login redirect as a .zip
+      if (bytes.length < 100 || bytes[0] !== 0x50 || bytes[1] !== 0x4b) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: "zip-warn-" + Date.now(),
+            sender: "ada",
+            text: "Heads up, Doc — the preview frame returned a web redirect instead of the real ZIP bytes. Try opening our app in its own browser tab and clicking Desktop Ada (.zip) there!",
+            time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          },
+        ]);
+        return;
+      }
+
+      const blob = new Blob([buf], { type: "application/zip" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "AdaDesktop_Windows.zip";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1500);
+    } catch (err) {
+      console.error("Desktop Ada download error:", err);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: "zip-err-" + Date.now(),
+          sender: "ada",
+          text: "I couldn't grab AdaDesktop_Windows.zip from inside this preview frame—if you open the app in a full browser tab and click Desktop Ada (.zip), it should save cleanly!",
+          time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        },
+      ]);
+    }
+  };
+
   return (
     <div
       className={`w-full max-w-7xl mx-auto flex flex-col h-[calc(100vh-68px)] p-2 sm:p-4 ${
@@ -967,15 +1012,15 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
           </button>
 
           {/* Download Windows Desktop Ada (.zip) */}
-          <a
-            href="/api/desktop-ada/download"
-            download="AdaDesktop_Windows.zip"
+          <button
+            type="button"
+            onClick={handleDownloadDesktopAda}
             className="px-2.5 py-1.5 rounded-xl border bg-amber-600/20 border-amber-500/50 hover:bg-amber-600/30 text-amber-200 hover:text-white transition-all cursor-pointer flex items-center gap-1.5 font-medium"
             title="Download Ada Desktop Companion for Windows (Zero WSL 2)"
           >
             <Monitor className="w-3.5 h-3.5 text-amber-400" />
             <span className="hidden sm:inline">Desktop Ada (.zip)</span>
-          </a>
+          </button>
 
           {/* Voice Settings Button */}
           <button
