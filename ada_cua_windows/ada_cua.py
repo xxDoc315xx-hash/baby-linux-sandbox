@@ -196,7 +196,10 @@ def call_gemini_direct(api_key: str, payload: dict) -> dict:
                 ),
             )
             if response and response.text:
-                return json.loads(response.text)
+                parsed = json.loads(response.text)
+                if isinstance(parsed, list):
+                    return next((item for item in parsed if isinstance(item, dict)), {"action": "wait"})
+                return parsed if isinstance(parsed, dict) else {"action": "wait"}
         except Exception as err:
             last_err = err
     raise last_err or RuntimeError("All Gemini models failed.")

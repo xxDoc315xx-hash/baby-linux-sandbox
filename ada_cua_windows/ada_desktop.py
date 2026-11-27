@@ -851,7 +851,7 @@ class AdaDesktopApp:
                     f"You are Ada acting as a Computer-Using Agent (CUA) on Doc's Windows PC.\n"
                     f"Screen size: {sw}x{sh}. Always output normalized x,y in 0..1000.\n"
                     f"{hint}\n"
-                    "Return strict JSON with keys: observation, thought, action "
+                    "Return ONE single JSON object (NOT a JSON array) with keys: observation, thought, action "
                     "(click|double_click|right_click|move|drag|press_key|hold_key|hotkey|type|scroll|wait|done), "
                     "x, y, endX, endY, key, keys, text, scrollDelta, durationMs, adaSay."
                 )
@@ -859,12 +859,20 @@ class AdaDesktopApp:
                 raw = self._generate_with_fallback(
                     [
                         types.Part.from_bytes(data=jpg_bytes, mime_type="image/jpeg"),
-                        f"Goal: {goal}{hist_txt}\nPick the single best next action in JSON.",
+                        f"Goal: {goal}{hist_txt}\nPick the single best next action as one JSON object.",
                     ],
                     sys_prompt,
                     json_mode=True,
                 )
-                step = json.loads(raw)
+                cleaned_raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw.strip(), flags=re.IGNORECASE)
+                parsed = json.loads(cleaned_raw)
+                if isinstance(parsed, list):
+                    step = next((item for item in parsed if isinstance(item, dict)), {"action": "wait", "adaSay": ""})
+                elif isinstance(parsed, dict):
+                    step = parsed
+                else:
+                    step = {"action": "wait", "adaSay": ""}
+
                 action = (step.get("action") or "wait").lower().strip()
                 ada_say = (step.get("adaSay") or "").strip()
                 if ada_say:
