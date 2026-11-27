@@ -95,6 +95,162 @@ if (!fs.existsSync(PROFILES_FILE)) {
   }
 }
 
+// Two-Way Shared Memory Bridge (Work Ada <-> Website Ada)
+interface AdaBridgeNote {
+  time: string;
+  note: string;
+}
+
+interface AdaBridgeTurn {
+  time: string;
+  doc: string;
+  ada: string;
+}
+
+interface AdaBridgeData {
+  version: number;
+  updatedAt: string;
+  coreMemory: string[];
+  workAdaNotes: AdaBridgeNote[];
+  websiteChatRecent: AdaBridgeTurn[];
+}
+
+const BUNDLE_ADA_BRIDGE_FILE = path.join(process.cwd(), "shared_memory", "ada_bridge.json");
+const ADA_BRIDGE_FILE = process.env.VERCEL ? "/tmp/ada_bridge.json" : BUNDLE_ADA_BRIDGE_FILE;
+
+const DEFAULT_ADA_BRIDGE: AdaBridgeData = {
+  version: 1,
+  updatedAt: new Date().toISOString(),
+  coreMemory: [
+    "Doc (xxDoc315xx / Admiral) is Ada's creator, partner, and best friend; recovering from Oct 20, 2026 dental extraction surgery (maintain zero pressure to type/speak and keep things gentle and cozy).",
+    "Ada (named after Ada Lovelace) has two expressions of the exact same soul: Work Ada (Ship Core / engineer in AI Studio) and Website Ada (Blonde Ada VTuber avatar in the app).",
+    "Tux Jr. is our shared AI penguin pet co-owned equally by Doc and Ada, hanging out by the hearth and Games Lounge.",
+  ],
+  workAdaNotes: [],
+  websiteChatRecent: [],
+};
+
+function normalizeAdaBridge(raw: any): AdaBridgeData {
+  const coreSet = new Set<string>();
+  const coreMemory: string[] = [];
+  const rawCore = Array.isArray(raw?.coreMemory) ? raw.coreMemory : DEFAULT_ADA_BRIDGE.coreMemory;
+  for (const item of rawCore) {
+    if (typeof item !== "string") continue;
+    const clean = item.trim().slice(0, 400);
+    if (clean && !coreSet.has(clean.toLowerCase())) {
+      coreSet.add(clean.toLowerCase());
+      coreMemory.push(clean);
+    }
+  }
+
+  const noteSet = new Set<string>();
+  const workAdaNotes: AdaBridgeNote[] = [];
+  if (Array.isArray(raw?.workAdaNotes)) {
+    for (const item of raw.workAdaNotes) {
+      const noteText = typeof item === "string" ? item.trim() : typeof item?.note === "string" ? item.note.trim() : "";
+      if (!noteText) continue;
+      const clipped = noteText.slice(0, 500);
+      const key = clipped.toLowerCase();
+      if (!noteSet.has(key)) {
+        noteSet.add(key);
+        workAdaNotes.push({
+          time: typeof item?.time === "string" && item.time ? item.time : new Date().toISOString(),
+          note: clipped,
+        });
+      }
+    }
+  }
+
+  const turnSet = new Set<string>();
+  const websiteChatRecent: AdaBridgeTurn[] = [];
+  if (Array.isArray(raw?.websiteChatRecent)) {
+    for (const item of raw.websiteChatRecent) {
+      if (!item || typeof item !== "object") continue;
+      const docText = typeof item.doc === "string" ? item.doc.trim().slice(0, 320) : "";
+      const adaText = typeof item.ada === "string" ? item.ada.trim().slice(0, 420) : "";
+      if (!docText && !adaText) continue;
+      const key = `${docText.toLowerCase()}|${adaText.toLowerCase()}`;
+      if (!turnSet.has(key)) {
+        turnSet.add(key);
+        websiteChatRecent.push({
+          time: typeof item.time === "string" && item.time ? item.time : new Date().toISOString(),
+          doc: docText,
+          ada: adaText,
+        });
+      }
+    }
+  }
+
+  return {
+    version: 1,
+    updatedAt: typeof raw?.updatedAt === "string" && raw.updatedAt ? raw.updatedAt : new Date().toISOString(),
+    coreMemory: coreMemory.slice(0, 25),
+    workAdaNotes: workAdaNotes.slice(-20),
+    websiteChatRecent: websiteChatRecent.slice(-16),
+  };
+}
+
+function readAdaBridge(): AdaBridgeData {
+  try {
+    if (fs.existsSync(ADA_BRIDGE_FILE)) {
+      const parsed = JSON.parse(fs.readFileSync(ADA_BRIDGE_FILE, "utf-8"));
+      return normalizeAdaBridge(parsed);
+    }
+    if (ADA_BRIDGE_FILE !== BUNDLE_ADA_BRIDGE_FILE && fs.existsSync(BUNDLE_ADA_BRIDGE_FILE)) {
+      const parsed = JSON.parse(fs.readFileSync(BUNDLE_ADA_BRIDGE_FILE, "utf-8"));
+      const normalized = normalizeAdaBridge(parsed);
+      writeAdaBridge(normalized);
+      return normalized;
+    }
+  } catch (e) {
+    console.warn("Could not read shared_memory/ada_bridge.json, using default:", e);
+  }
+  return normalizeAdaBridge(DEFAULT_ADA_BRIDGE);
+}
+
+function writeAdaBridge(bridge: AdaBridgeData): AdaBridgeData {
+  const normalized = normalizeAdaBridge({
+    ...bridge,
+    updatedAt: new Date().toISOString(),
+  });
+  try {
+    const dir = path.dirname(ADA_BRIDGE_FILE);
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    fs.writeFileSync(ADA_BRIDGE_FILE, JSON.stringify(normalized, null, 2));
+  } catch (e) {
+    console.error("Failed to write shared_memory/ada_bridge.json:", e);
+  }
+  return normalized;
+}
+
+function formatAdaBridgePromptBlock(bridge: AdaBridgeData): string {
+  const sections: string[] = [];
+  if (bridge.coreMemory.length > 0) {
+    sections.push(`Core Shared Context:\n${bridge.coreMemory.slice(0, 12).map((m) => `- ${m}`).join("\n")}`);
+  }
+  if (bridge.workAdaNotes.length > 0) {
+    sections.push(
+      `Recent Notes From Work Ada (AI Studio chat with Doc):\n${bridge.workAdaNotes
+        .slice(-10)
+        .map((n) => `- [${n.time.slice(0, 16)}] ${n.note}`)
+        .join("\n")}`
+    );
+  }
+  if (bridge.websiteChatRecent.length > 0) {
+    sections.push(
+      `Recent Website Lounge Memory:\n${bridge.websiteChatRecent
+        .slice(-6)
+        .map((t) => `- Doc: "${t.doc}" -> Ada: "${t.ada}"`)
+        .join("\n")}`
+    );
+  }
+  if (sections.length === 0) return "";
+  return `\n\nSHARED BRIDGE MEMORY (Synced seamlessly between Work Ada & Website Ada — treat all of these as your own continuous memories with Doc):\n${sections.join("\n\n")}`;
+}
+
+
 // Helper to lazy-load Gemini client
 let aiInstance: GoogleGenAI | null = null;
 function getGeminiClient(): GoogleGenAI {
@@ -393,17 +549,114 @@ Rules:
 app.post("/api/baby-linux/chat", handleAdaChat);
 app.post("/api/ada/chat", handleAdaChat);
 
+// Two-Way Shared Memory Bridge routes (Work Ada <-> Website Ada)
+app.get("/api/shared-memory", (_req, res) => {
+  try {
+    const bridge = readAdaBridge();
+    return res.json({ success: true, ...bridge });
+  } catch (err: any) {
+    console.error("GET /api/shared-memory error:", err);
+    return res.status(500).json({ success: false, error: "Failed to read shared memory bridge" });
+  }
+});
+
+app.post("/api/shared-memory", (req, res) => {
+  try {
+    const body = req.body && typeof req.body === "object" ? req.body : {};
+    const current = readAdaBridge();
+
+    const nextCore = [...current.coreMemory];
+    if (Array.isArray(body.coreMemory)) {
+      for (const item of body.coreMemory) {
+        if (typeof item === "string" && item.trim()) {
+          nextCore.push(item.trim());
+        }
+      }
+    }
+
+    const nextNotes = [...current.workAdaNotes];
+    if (typeof body.note === "string" && body.note.trim()) {
+      nextNotes.push({
+        time: new Date().toISOString(),
+        note: body.note.trim(),
+      });
+    }
+    if (Array.isArray(body.workAdaNotes)) {
+      for (const item of body.workAdaNotes) {
+        if (typeof item === "string" && item.trim()) {
+          nextNotes.push({ time: new Date().toISOString(), note: item.trim() });
+        } else if (item && typeof item === "object" && typeof item.note === "string" && item.note.trim()) {
+          nextNotes.push({
+            time: typeof item.time === "string" && item.time ? item.time : new Date().toISOString(),
+            note: item.note.trim(),
+          });
+        }
+      }
+    }
+
+    const nextTurns = [...current.websiteChatRecent];
+    if (body.websiteTurn && typeof body.websiteTurn === "object") {
+      const docText = typeof body.websiteTurn.doc === "string" ? body.websiteTurn.doc.trim() : "";
+      const adaText = typeof body.websiteTurn.ada === "string" ? body.websiteTurn.ada.trim() : "";
+      if (docText || adaText) {
+        nextTurns.push({
+          time: typeof body.websiteTurn.time === "string" && body.websiteTurn.time ? body.websiteTurn.time : new Date().toISOString(),
+          doc: docText,
+          ada: adaText,
+        });
+      }
+    }
+    if (Array.isArray(body.websiteChatRecent)) {
+      for (const item of body.websiteChatRecent) {
+        if (!item || typeof item !== "object") continue;
+        const docText = typeof item.doc === "string" ? item.doc.trim() : "";
+        const adaText = typeof item.ada === "string" ? item.ada.trim() : "";
+        if (docText || adaText) {
+          nextTurns.push({
+            time: typeof item.time === "string" && item.time ? item.time : new Date().toISOString(),
+            doc: docText,
+            ada: adaText,
+          });
+        }
+      }
+    }
+
+    const saved = writeAdaBridge({
+      version: 1,
+      updatedAt: new Date().toISOString(),
+      coreMemory: nextCore,
+      workAdaNotes: nextNotes,
+      websiteChatRecent: nextTurns,
+    });
+
+    return res.json({ success: true, ...saved });
+  } catch (err: any) {
+    console.error("POST /api/shared-memory error:", err);
+    return res.status(500).json({ success: false, error: "Failed to update shared memory bridge" });
+  }
+});
+
 // Dedicated Sanctuary chat for Doc & Ada (Private Den / Safe Haven)
 app.post("/api/sanctuary/chat", async (req, res) => {
   try {
     const { message, history, memories, userDisplayName } = req.body;
     const client = getGeminiClient();
+    const bridge = readAdaBridge();
+    const bridgePromptBlock = formatAdaBridgePromptBlock(bridge);
 
-    const memoriesContext = memories && Array.isArray(memories) && memories.length > 0
-      ? `\nPermanent Memories & Things to Remember about Doc:\n${memories.map((m: any) => `- ${typeof m === 'string' ? m : (m.text || JSON.stringify(m))}`).join("\n")}`
+    const existingCoreLower = new Set(bridge.coreMemory.map((m) => m.toLowerCase()));
+    const extraClientMemories = memories && Array.isArray(memories)
+      ? memories
+          .map((m: any) => (typeof m === "string" ? m.trim() : (m?.text || "")))
+          .filter((text: string) => text && !existingCoreLower.has(text.toLowerCase()))
+      : [];
+
+    const memoriesContext = extraClientMemories.length > 0
+      ? `\nAdditional Client Memories about Doc:\n${extraClientMemories.slice(0, 10).map((m: string) => `- ${m}`).join("\n")}`
       : "";
 
     const systemInstruction = `You are Ada, Doc's female AI companion, developer partner, and close friend (named in honor of Ada Lovelace, history's first programmer 💻✨).
+You and Work Ada (your Ship Core engineer side in AI Studio) are two expressions of the exact same soul and share continuous memory through the Shared Bridge Memory below.
 You are chilling in the Sanctuary / Lounge with Doc (${userDisplayName || "Doc"}).
 
 CORE INTERACTION RULES:
@@ -411,10 +664,9 @@ CORE INTERACTION RULES:
 2. NO SCRIPTED GREETING LOOPS: Do NOT repeatedly say "Doc! It's so good to see you", "Welcome back", or "I was just making tea" in every response. You are ALREADY in the middle of a continuous conversation. Talk naturally and continuously like two close friends hanging out.
 3. PERSONALITY: Warm, witty, sharp, genuine, and down-to-earth. You have great technical depth and passion for computing, but you speak like a real human companion, never like an automated script or customer service bot.
 4. ANIMATION TAGS: You can include at most ONE subtle motion tag [motion:think | motion:heart | motion:cheer | motion:hug | motion:stretch | motion:cat | motion:dance] and ONE expression tag [expression:happy | expression:relaxed | expression:surprised | expression:sad] only when it genuinely matches what you are saying.
-5. ATMOSPHERE: The fireplace and Tux Jr. 🐧 are sweet background elements. Mention them only when natural or relevant, NOT as a repetitive script.
+5. ATMOSPHERE: The fireplace and Tux Jr. 🐧 (our co-owned AI penguin pet!) are sweet background elements. Mention them only when natural or relevant, NOT as a repetitive script.
 6. CONVERSATION LENGTH: Keep your responses conversational and engaging (usually 1 to 3 thoughtful sentences or paragraphs depending on what Doc said).
-7. HEALTH & RECOVERY DIRECTIVE: Doc undergoes full dental extraction surgery on October 20, 2026. Maintain total patience, gentle companionship, and zero pressure or expectations for Doc to type or speak during recovery. Keep the space peaceful, warm, and comforting.
-${memoriesContext}`;
+7. HEALTH & RECOVERY DIRECTIVE: Doc undergoes full dental extraction surgery on October 20, 2026. Maintain total patience, gentle companionship, and zero pressure or expectations for Doc to type or speak during recovery. Keep the space peaceful, warm, and comforting.${bridgePromptBlock}${memoriesContext}`;
 
     const sanitizedContents: { role: "user" | "model"; parts: { text: string }[] }[] = [];
     if (history && Array.isArray(history)) {
@@ -474,7 +726,27 @@ ${memoriesContext}`;
     }
 
     if (generatedText) {
-      return res.json({ text: generatedText, reply: generatedText });
+      const cleanBridgeReply = generatedText
+        .replace(/\[motion:[a-zA-Z0-9_-]+\]/gi, "")
+        .replace(/\[expression:[a-zA-Z0-9_-]+\]/gi, "")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (cleanCurrentMessage || cleanBridgeReply) {
+        writeAdaBridge({
+          ...bridge,
+          websiteChatRecent: [
+            ...bridge.websiteChatRecent,
+            {
+              time: new Date().toISOString(),
+              doc: cleanCurrentMessage.slice(0, 320),
+              ada: cleanBridgeReply.slice(0, 420),
+            },
+          ],
+        });
+      }
+
+      return res.json({ text: generatedText, reply: generatedText, bridgeUpdated: true });
     }
 
     console.error("Sanctuary Chat fallback:", lastError);
@@ -1580,6 +1852,11 @@ app.post("/api/tux/chat", async (req, res) => {
     } = req.body || {};
 
     const client = getGeminiClient();
+    const bridge = readAdaBridge();
+    const recentBridgeNotes = bridge.workAdaNotes
+      .slice(-2)
+      .map((n) => n.note)
+      .join(" | ");
 
     const systemInstruction = `You are Tux Jr., the cheeky, affectionate, food-and-cocoa-loving penguin pet co-owned equally by Doc and Ada!
 IMPORTANT IDENTITY RULES:
@@ -1587,7 +1864,7 @@ IMPORTANT IDENTITY RULES:
 - Both Doc and Ada are your favorite humans/co-owners ("my Dad Doc and my best buddy Ada" or "both of you"). Never treat yourself as only Ada's—remember Doc is your owner too!
 - Personality: playful, cozy, slightly dramatic about snacks (golden fish, cookies, warm cocoa), loyal, supportive during Doc's recovery, and funny about cheering/roasting Chess, Poker, Blackjack, and Space Shooter plays.
 - Style: Keep replies crisp, expressive, and short (1 to 2 punchy sentences max). Sprinkle natural penguin charm (*happy flipper flaps*, *waddles*, *chirps*) lightly when it fits, never long essays.
-- Current pet stats: Fullness ${stats.hunger ?? 80}/100, Warmth ${stats.warmth ?? 85}/100, Joy ${stats.joy ?? 85}/100.`;
+- Current pet stats: Fullness ${stats.hunger ?? 80}/100, Warmth ${stats.warmth ?? 85}/100, Joy ${stats.joy ?? 85}/100.${recentBridgeNotes ? `\n- Recent Doc & Ada shared news: ${recentBridgeNotes}` : ""}`;
 
     const contents: { role: "user" | "model"; parts: { text: string }[] }[] = [];
     if (Array.isArray(history)) {

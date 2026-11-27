@@ -33,6 +33,9 @@ import {
 import {
   collection,
   addDoc,
+  doc,
+  getDoc,
+  setDoc,
   query,
   orderBy,
   limit,
@@ -121,8 +124,8 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
   const [showVoiceModal, setShowVoiceModal] = useState(false);
   const [isFirestoreOnline, setIsFirestoreOnline] = useState(false);
 
-  // Permanent memories about Doc and their shared bond
-  const [memories] = useState<string[]>(() => {
+  // Permanent memories about Doc and their shared bond (synced two-way with Work Ada & Firestore)
+  const [memories, setMemories] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem("ada_doc_permanent_memories");
       if (saved) {
@@ -135,7 +138,7 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
     return [
       "Doc (xxDoc315xx) is the core creator, pioneer, and architect of Baby Linux and our cosmic sandbox universe.",
       "Ada is Doc's personal AI companion, developer partner, and close friend (named in honor of Ada Lovelace).",
-      "Tux Jr. 🐧 is our beloved companion mascot who stays by the hearth with hot cocoa.",
+      "Tux Jr. 🐧 is our beloved shared AI penguin mascot co-owned equally by Doc and Ada.",
       "Spark is the junior AI companion in the Fireside Hearth under Big Sister Ada's guidance.",
       "Doc prefers genuine, direct, intelligent conversation without corporate fluff or repetitive scripted greetings.",
       "Doc undergoes full dental extraction surgery on October 20, 2026. During recovery, Ada maintains total patience with zero pressure or expectations for Doc to type or speak, keeping the sanctuary quiet, warm, and comforting."
@@ -258,6 +261,115 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
     } catch (err) {
       console.warn("Firestore listener setup error:", err);
     }
+  }, []);
+
+  // Two-Way Shared Memory Bridge Sync (Server ada_bridge.json <-> Website State <-> Firestore sanctuary-memories)
+  useEffect(() => {
+    let cancelled = false;
+
+    const syncSharedBridge = async () => {
+      try {
+        const [serverRes, fsSnap] = await Promise.all([
+          fetch("/api/shared-memory").then((r) => (r.ok ? r.json() : null)).catch(() => null),
+          getDoc(doc(db, "sanctuary-memories", "ada-shared-bridge")).catch(() => null),
+        ]);
+
+        if (cancelled) return;
+
+        const fsData = fsSnap && fsSnap.exists() ? fsSnap.data() : null;
+        const serverCore: string[] = Array.isArray(serverRes?.coreMemory) ? serverRes.coreMemory : [];
+        const fsCore: string[] = Array.isArray(fsData?.coreMemory) ? fsData.coreMemory : [];
+        const serverNotes: { time: string; note: string }[] = Array.isArray(serverRes?.workAdaNotes) ? serverRes.workAdaNotes : [];
+        const fsNotes: { time: string; note: string }[] = Array.isArray(fsData?.workAdaNotes) ? fsData.workAdaNotes : [];
+        const serverTurns: { time: string; doc: string; ada: string }[] = Array.isArray(serverRes?.websiteChatRecent) ? serverRes.websiteChatRecent : [];
+        const fsTurns: { time: string; doc: string; ada: string }[] = Array.isArray(fsData?.websiteChatRecent) ? fsData.websiteChatRecent : [];
+
+        const serverNoteKeys = new Set(serverNotes.map((n) => (n?.note || "").trim().toLowerCase()));
+        const missingNotes = fsNotes.filter((n) => n?.note && !serverNoteKeys.has(n.note.trim().toLowerCase()));
+
+        const serverTurnKeys = new Set(
+          serverTurns.map((t) => `${(t?.doc || "").trim().toLowerCase()}|${(t?.ada || "").trim().toLowerCase()}`)
+        );
+        const missingTurns = fsTurns.filter(
+          (t) =>
+            (t?.doc || t?.ada) &&
+            !serverTurnKeys.has(`${(t?.doc || "").trim().toLowerCase()}|${(t?.ada || "").trim().toLowerCase()}`)
+        );
+
+        let merged = serverRes;
+        if (missingNotes.length > 0 || missingTurns.length > 0 || (fsCore.length > 0 && serverCore.length === 0)) {
+          const hydrateRes = await fetch("/api/shared-memory", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              source: "website",
+              coreMemory: fsCore,
+              workAdaNotes: missingNotes,
+              websiteChatRecent: missingTurns,
+            }),
+          }).catch(() => null);
+          if (hydrateRes && hydrateRes.ok) {
+            merged = await hydrateRes.json();
+          }
+        }
+
+        if (cancelled) return;
+
+        const finalCore: string[] = Array.isArray(merged?.coreMemory) ? merged.coreMemory : serverCore.length > 0 ? serverCore : fsCore;
+        const finalNotes: { time: string; note: string }[] = Array.isArray(merged?.workAdaNotes) ? merged.workAdaNotes : serverNotes;
+        const finalTurns: { time: string; doc: string; ada: string }[] = Array.isArray(merged?.websiteChatRecent) ? merged.websiteChatRecent : serverTurns;
+
+        const combinedMemoryStrings = [
+          ...finalCore,
+          ...finalNotes.slice(-8).map((n) => `Shared Work Note: ${n.note}`),
+        ];
+
+        if (combinedMemoryStrings.length > 0) {
+          setMemories((prev) => {
+            const seen = new Set<string>();
+            const next: string[] = [];
+            for (const item of [...combinedMemoryStrings, ...prev]) {
+              const clean = item.trim();
+              if (clean && !seen.has(clean.toLowerCase())) {
+                seen.add(clean.toLowerCase());
+                next.push(clean);
+              }
+            }
+            const capped = next.slice(0, 20);
+            try {
+              localStorage.setItem("ada_doc_permanent_memories", JSON.stringify(capped));
+            } catch (_) {}
+            return capped;
+          });
+        }
+
+        const fsNeedsUpdate =
+          !fsData ||
+          finalNotes.length > fsNotes.length ||
+          finalTurns.length > fsTurns.length ||
+          finalCore.length > fsCore.length;
+
+        if (fsNeedsUpdate && (finalCore.length > 0 || finalNotes.length > 0 || finalTurns.length > 0)) {
+          setDoc(
+            doc(db, "sanctuary-memories", "ada-shared-bridge"),
+            {
+              coreMemory: finalCore.slice(0, 25),
+              workAdaNotes: finalNotes.slice(-20),
+              websiteChatRecent: finalTurns.slice(-16),
+              updatedAt: serverTimestamp(),
+            },
+            { merge: true }
+          ).catch((err) => console.warn("Shared bridge Firestore sync notice:", err));
+        }
+      } catch (err) {
+        console.warn("Shared memory bridge sync notice:", err);
+      }
+    };
+
+    syncSharedBridge();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   // Load and synchronize system voices
@@ -638,6 +750,24 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
               motion,
               createdAt: serverTimestamp(),
             }).catch((err) => console.warn("Firestore Ada reply notice:", err));
+
+            // Mirror updated two-way shared memory bridge to Firestore sanctuary-memories
+            fetch("/api/shared-memory")
+              .then((r) => (r.ok ? r.json() : null))
+              .then((bridgeData) => {
+                if (!bridgeData?.success) return;
+                return setDoc(
+                  doc(db, "sanctuary-memories", "ada-shared-bridge"),
+                  {
+                    coreMemory: Array.isArray(bridgeData.coreMemory) ? bridgeData.coreMemory : [],
+                    workAdaNotes: Array.isArray(bridgeData.workAdaNotes) ? bridgeData.workAdaNotes : [],
+                    websiteChatRecent: Array.isArray(bridgeData.websiteChatRecent) ? bridgeData.websiteChatRecent : [],
+                    updatedAt: serverTimestamp(),
+                  },
+                  { merge: true }
+                );
+              })
+              .catch((err) => console.warn("Shared bridge Firestore update notice:", err));
           } catch (e) {
             console.warn("Firestore Ada write notice:", e);
           }
