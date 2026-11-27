@@ -358,6 +358,8 @@ class AdaDesktopApp:
         self.game_var = tk.StringVar(value="generic")
 
         self._tts_lock = threading.Lock()
+        self._tts_queue: queue.Queue = queue.Queue()
+        self._sending = False
         self._build_ui()
 
         if not self.api_key:
@@ -365,6 +367,7 @@ class AdaDesktopApp:
         else:
             self._append_system("Ada Desktop ready! Syncing shared memories with Work Ada & Website Ada...")
 
+        threading.Thread(target=self._tts_worker_loop, daemon=True).start()
         threading.Thread(target=self._refresh_bridge_bg, daemon=True).start()
         self.root.after(80, self._process_ui_queue)
 
@@ -638,28 +641,40 @@ class AdaDesktopApp:
         self.ui_queue.put(("status", "Syncing shared memory..."))
         threading.Thread(target=self._refresh_bridge_bg, daemon=True).start()
 
+    def _tts_worker_loop(self):
+        if sys.platform == "win32":
+            try:
+                ctypes.windll.ole32.CoInitialize(0)
+            except Exception:
+                pass
+        engine = None
+        while True:
+            text = self._tts_queue.get()
+            if text is None:
+                break
+            if pyttsx3 is None:
+                continue
+            try:
+                if engine is None:
+                    engine = pyttsx3.init()
+                    engine.setProperty("rate", 175)
+                engine.say(text)
+                engine.runAndWait()
+            except Exception:
+                engine = None
+
     def _speak_async(self, text: str):
         if not self.voice_var.get() or pyttsx3 is None:
             return
         clean = re.sub(r"https?://\S+", "", text)
         clean = re.sub(r"`([^`]+)`", r"\1", clean)
+        clean = re.sub(r"\*[^*]+\*", "", clean)
         clean = re.sub(r"\bAda's\b", "Ayda's", clean)
         clean = re.sub(r"\bAda\b", "Ayda", clean)
-        if not clean.strip():
+        clean = re.sub(r"\s+", " ", clean).strip()
+        if not clean:
             return
-
-        def _worker():
-            with self._tts_lock:
-                try:
-                    engine = pyttsx3.init()
-                    engine.setProperty("rate", 175)
-                    engine.say(clean)
-                    engine.runAndWait()
-                    engine.stop()
-                except Exception:
-                    pass
-
-        threading.Thread(target=_worker, daemon=True).start()
+        self._tts_queue.put(clean)
 
     def _discover_flash_models(self) -> list[str]:
         found = []
@@ -680,6 +695,25 @@ class AdaDesktopApp:
             pass
         return found
 
+    def _extract_response_text(self, resp) -> str:
+        try:
+            if resp and resp.text:
+                return resp.text
+        except Exception:
+            pass
+        # Check if blocked by safety filters rather than throwing empty-text loop
+        try:
+            cands = getattr(resp, "candidates", None) or []
+            if cands:
+                reason = str(getattr(cands[0], "finish_reason", "") or "").upper()
+                if "SAFETY" in reason or "PROHIBITED" in reason or "BLOCKLIST" in reason:
+                    raise PermissionError("SAFETY_BLOCK")
+        except PermissionError:
+            raise
+        except Exception:
+            pass
+        return ""
+
     def _call_single_model(self, model_name: str, contents, system_instruction: str, json_mode: bool) -> str:
         base_kwargs = {"system_instruction": system_instruction}
         if json_mode:
@@ -696,8 +730,11 @@ class AdaDesktopApp:
                 contents=contents,
                 config=cfg,
             )
-            if resp and resp.text:
-                return resp.text
+            txt = self._extract_response_text(resp)
+            if txt:
+                return txt
+        except PermissionError:
+            raise
         except Exception as err:
             msg = str(err).lower()
             if "thinking" in msg or "invalid_argument" in msg or "400" in msg or "unexpected" in msg:
@@ -706,8 +743,9 @@ class AdaDesktopApp:
                     contents=contents,
                     config=types.GenerateContentConfig(**base_kwargs),
                 )
-                if resp and resp.text:
-                    return resp.text
+                txt = self._extract_response_text(resp)
+                if txt:
+                    return txt
             raise
 
         raise RuntimeError(f"{model_name} returned empty text")
@@ -722,6 +760,10 @@ class AdaDesktopApp:
                 text = self._call_single_model(model_name, contents, system_instruction, json_mode)
                 self._working_model = model_name
                 return text
+            except PermissionError:
+                if json_mode:
+                    return '{"action":"wait","observation":"Safety block","adaSay":"Whoa, keeping it PG!"}'
+                return "Whoa there, Admiral—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
             except Exception as err:
                 errors.append(f"{model_name}: {err}")
 
@@ -732,12 +774,18 @@ class AdaDesktopApp:
                 text = self._call_single_model(model_name, contents, system_instruction, json_mode)
                 self._working_model = model_name
                 return text
+            except PermissionError:
+                if json_mode:
+                    return '{"action":"wait","observation":"Safety block","adaSay":"Whoa, keeping it PG!"}'
+                return "Whoa there, Admiral—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
             except Exception as err:
                 errors.append(f"{model_name}: {err}")
 
         raise RuntimeError(" | ".join(errors[-2:]) if errors else "No Gemini models available.")
 
     def send_chat(self):
+        if self._sending:
+            return
         msg = self.msg_entry.get().strip()
         if not msg:
             return
@@ -745,6 +793,7 @@ class AdaDesktopApp:
             self.prompt_for_api_key()
             return
 
+        self._sending = True
         self.msg_entry.delete(0, tk.END)
         self._append_chat("Doc", msg)
         self.send_btn.configure(state=tk.DISABLED)
@@ -796,6 +845,7 @@ class AdaDesktopApp:
             self.ui_queue.put(("sys", f"Oops: {err}"))
             self.ui_queue.put(("status", "Ready"))
         finally:
+            self._sending = False
             self.ui_queue.put(("enable_send", None))
 
     def toggle_cua(self):
