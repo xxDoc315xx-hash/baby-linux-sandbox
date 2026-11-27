@@ -62,7 +62,8 @@ FIRESTORE_BRIDGE_URL = (
 MODEL_CANDIDATES = [
     "gemini-4-hydrogen",
     "gemini-3.8-flash",
-    "gemini-2.5-flash",
+    "gemini-3.1-flash-lite",
+    "gemini-flash-latest",
 ]
 
 PROFILE_HINTS = {
@@ -660,27 +661,81 @@ class AdaDesktopApp:
 
         threading.Thread(target=_worker, daemon=True).start()
 
-    def _generate_with_fallback(self, contents, system_instruction: str, json_mode: bool = False) -> str:
-        last_err = None
-        for model_name in MODEL_CANDIDATES:
-            try:
-                kwargs = {
-                    "system_instruction": system_instruction,
-                    "thinking_config": types.ThinkingConfig(thinking_level="LOW"),
-                }
-                if json_mode:
-                    kwargs["response_mime_type"] = "application/json"
+    def _discover_flash_models(self) -> list[str]:
+        found = []
+        try:
+            for m in self.client.models.list():
+                name = getattr(m, "name", "") or ""
+                short = name.replace("models/", "")
+                low = short.lower()
+                if "gemini" not in low or "flash" not in low:
+                    continue
+                if any(bad in low for bad in ("tts", "image", "live", "audio", "embedding", "1.5", "2.0", "2.5")):
+                    continue
+                methods = getattr(m, "supported_actions", None) or getattr(m, "supported_generation_methods", None) or []
+                if methods and not any("generateContent" in str(a) for a in methods):
+                    continue
+                found.append(short)
+        except Exception:
+            pass
+        return found
+
+    def _call_single_model(self, model_name: str, contents, system_instruction: str, json_mode: bool) -> str:
+        base_kwargs = {"system_instruction": system_instruction}
+        if json_mode:
+            base_kwargs["response_mime_type"] = "application/json"
+
+        # Try lightweight thinking first; if SDK/model rejects thinking_config, immediately retry plain config
+        try:
+            cfg = types.GenerateContentConfig(
+                **base_kwargs,
+                thinking_config=types.ThinkingConfig(thinking_level="LOW"),
+            )
+            resp = self.client.models.generate_content(
+                model=model_name,
+                contents=contents,
+                config=cfg,
+            )
+            if resp and resp.text:
+                return resp.text
+        except Exception as err:
+            msg = str(err).lower()
+            if "thinking" in msg or "invalid_argument" in msg or "400" in msg or "unexpected" in msg:
                 resp = self.client.models.generate_content(
                     model=model_name,
                     contents=contents,
-                    config=types.GenerateContentConfig(**kwargs),
+                    config=types.GenerateContentConfig(**base_kwargs),
                 )
                 if resp and resp.text:
                     return resp.text
+            raise
+
+        raise RuntimeError(f"{model_name} returned empty text")
+
+    def _generate_with_fallback(self, contents, system_instruction: str, json_mode: bool = False) -> str:
+        errors = []
+        working = getattr(self, "_working_model", None)
+        ordered = ([working] if working else []) + [m for m in MODEL_CANDIDATES if m != working]
+
+        for model_name in ordered:
+            try:
+                text = self._call_single_model(model_name, contents, system_instruction, json_mode)
+                self._working_model = model_name
+                return text
             except Exception as err:
-                last_err = err
-                continue
-        raise last_err or RuntimeError("All Gemini models failed.")
+                errors.append(f"{model_name}: {err}")
+
+        # Auto-discover an active flash model on Doc's exact key if preset names all missed
+        discovered = [m for m in self._discover_flash_models() if m not in ordered]
+        for model_name in discovered[:4]:
+            try:
+                text = self._call_single_model(model_name, contents, system_instruction, json_mode)
+                self._working_model = model_name
+                return text
+            except Exception as err:
+                errors.append(f"{model_name}: {err}")
+
+        raise RuntimeError(" | ".join(errors[-2:]) if errors else "No Gemini models available.")
 
     def send_chat(self):
         msg = self.msg_entry.get().strip()

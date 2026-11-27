@@ -181,19 +181,25 @@ def call_gemini_direct(api_key: str, payload: dict) -> dict:
     )
 
     img_bytes = base64.b64decode(payload["imageBase64"])
-    response = client.models.generate_content(
-        model="gemini-4-hydrogen",
-        contents=[
-            types.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"),
-            f"Goal: {payload['goal']}{hist_txt}\nPick the single best next action in JSON.",
-        ],
-        config=types.GenerateContentConfig(
-            system_instruction=system_prompt,
-            response_mime_type="application/json",
-            thinking_config=types.ThinkingConfig(thinking_level="LOW"),
-        ),
-    )
-    return json.loads(response.text)
+    last_err = None
+    for model_name in ("gemini-4-hydrogen", "gemini-3.8-flash", "gemini-3.1-flash-lite", "gemini-flash-latest"):
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=[
+                    types.Part.from_bytes(data=img_bytes, mime_type="image/jpeg"),
+                    f"Goal: {payload['goal']}{hist_txt}\nPick the single best next action in JSON.",
+                ],
+                config=types.GenerateContentConfig(
+                    system_instruction=system_prompt,
+                    response_mime_type="application/json",
+                ),
+            )
+            if response and response.text:
+                return json.loads(response.text)
+        except Exception as err:
+            last_err = err
+    raise last_err or RuntimeError("All Gemini models failed.")
 
 
 def main():
