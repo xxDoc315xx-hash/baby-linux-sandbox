@@ -67,6 +67,13 @@ MODEL_CANDIDATES = [
 ]
 
 PROFILE_HINTS = {
+    "pokemon": (
+        "GAME PROFILE: Pokemon / Turn-Based RPG (emulator, PokéRogue, Pokémon Showdown, or browser RPG). "
+        "Supports BOTH mouse clicks (x,y in 0..1000) and keyboard keys (up/down/left/right or w/a/s/d to move, "
+        "z/enter/space = A/Confirm, x/backspace/escape = B/Back/Menu; use hold_key 250-450ms for smooth walking). "
+        "Figure out the game's controls from on-screen prompts, read dialogue cleanly, heal when HP is low, "
+        "pick type-effective moves in battle, and if recent steps show your position didn't change, try a different direction or key!"
+    ),
     "poker": (
         "GAME PROFILE: Texas Hold'em / Poker (e.g. WSOP, PokerNow). Uses 0..1000 normalized screen coords. "
         "STRICT POPUP & MINI-GAME BLOCK: If ANY popup, flash sale, chip bundle, VIP offer, bonus wheel, scratcher, "
@@ -550,7 +557,7 @@ class AdaDesktopApp:
         profile_menu = ttk.Combobox(
             cua_top,
             textvariable=self.game_var,
-            values=["generic", "poker", "mtga", "tiberian_sun", "ff7"],
+            values=["generic", "pokemon", "poker", "mtga", "tiberian_sun", "ff7"],
             state="readonly",
             width=14,
         )
@@ -902,12 +909,12 @@ class AdaDesktopApp:
 
                 step_num += 1
                 self.ui_queue.put(("status", f"CUA Step {step_num} active (F12 stops)"))
-                jpg_bytes, sw, sh = capture_screen_jpeg(max_width=1280)
+                jpg_bytes, sw, sh = capture_screen_jpeg(max_width=1024)
 
                 hist_txt = ""
                 if cua_hist:
                     hist_txt = "\nRecent steps:\n" + "\n".join(
-                        f"{i+1}. {h.get('action')} ({h.get('observation', '')})" for i, h in enumerate(cua_hist[-6:])
+                        f"{i+1}. {h.get('summary', h.get('action'))} -> {h.get('observation', '')}" for i, h in enumerate(cua_hist[-8:])
                     )
 
                 sys_prompt = (
@@ -947,8 +954,13 @@ class AdaDesktopApp:
                     break
 
                 execute_cua_action(step, sw, sh)
-                cua_hist.append({"action": action, "observation": step.get("observation", "")})
-                time.sleep(0.85)
+                detail = step.get("key") or (f"({step.get('x')},{step.get('y')})" if step.get("x") is not None else "") or step.get("text") or ""
+                cua_hist.append({
+                    "action": action,
+                    "summary": f"{action} {detail}".strip(),
+                    "observation": step.get("observation", ""),
+                })
+                time.sleep(0.3)
         except Exception as err:
             self.ui_queue.put(("sys", f"CUA stopped: {err}"))
         finally:

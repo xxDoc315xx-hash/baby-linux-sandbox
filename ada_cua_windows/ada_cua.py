@@ -32,6 +32,11 @@ except ImportError:
 
 
 PROFILE_HINTS = {
+    "pokemon": (
+        "GAME PROFILE: Pokemon / Turn-Based RPG (emulator, PokéRogue, Pokémon Showdown, or browser RPG). "
+        "Supports mouse clicks (0..1000) and keyboard keys (up/down/left/right or w/a/s/d, z/enter/space=Confirm, x/backspace/escape=Back). "
+        "Read prompts, pick type-effective moves, and change direction if stuck."
+    ),
     "poker": (
         "GAME PROFILE: Texas Hold'em / Poker (e.g. WSOP, PokerNow). Uses 0..1000 normalized screen coords. "
         "STRICT POPUP & MINI-GAME BLOCK: If ANY popup, flash sale, chip bundle, bonus wheel, scratcher, or mini-game appears, "
