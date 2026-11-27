@@ -67,6 +67,19 @@ MODEL_CANDIDATES = [
 ]
 
 PROFILE_HINTS = {
+    "poker": (
+        "GAME PROFILE: Texas Hold'em / Poker (e.g. WSOP, PokerNow). Uses 0..1000 normalized screen coords. "
+        "STRICT POPUP & MINI-GAME BLOCK: If ANY popup, flash sale, chip bundle, VIP offer, bonus wheel, scratcher, "
+        "slot/mini-game, quest modal, or store screen is open, DO NOT play it and DO NOT click Buy/Shop/Spin/Claim—"
+        "immediately click its close 'X' button (usually top-right of the popup) or press escape to return to the Texas Hold'em lobby/table. "
+        "In the lobby, ONLY click Texas Hold'em 'PLAY NOW!' (never mini-games, Omaha promos, or side banners). "
+        "At the table, use action='wait' (durationMs=1200) unless our Fold/Check/Call/Bet/Raise buttons are clearly highlighted for our turn."
+    ),
+    "mtga": (
+        "GAME PROFILE: Magic: The Gathering Arena (MTGA). Uses 0..1000 normalized screen coords. "
+        "Dismiss promos first; only play highlighted cards, declare attackers/blockers, or click the bottom-right Resolve/Pass/Next button "
+        "when priority is ours. Otherwise use action='wait' (durationMs=1000)."
+    ),
     "tiberian_sun": (
         "GAME PROFILE: Command & Conquer: Tiberian Sun (RTS). Uses 0..1000 normalized screen coords. "
         "Left-click selects units/buildings or sidebar build buttons on the right panel; drag box-selects units; "
@@ -537,7 +550,7 @@ class AdaDesktopApp:
         profile_menu = ttk.Combobox(
             cua_top,
             textvariable=self.game_var,
-            values=["generic", "tiberian_sun", "ff7"],
+            values=["generic", "poker", "mtga", "tiberian_sun", "ff7"],
             state="readonly",
             width=14,
         )
@@ -763,7 +776,7 @@ class AdaDesktopApp:
             except PermissionError:
                 if json_mode:
                     return '{"action":"wait","observation":"Safety block","adaSay":"Whoa, keeping it PG!"}'
-                return "Whoa there, Admiral—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
+                return "Whoa there, Doc—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
             except Exception as err:
                 errors.append(f"{model_name}: {err}")
 
@@ -777,7 +790,7 @@ class AdaDesktopApp:
             except PermissionError:
                 if json_mode:
                     return '{"action":"wait","observation":"Safety block","adaSay":"Whoa, keeping it PG!"}'
-                return "Whoa there, Admiral—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
+                return "Whoa there, Doc—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
             except Exception as err:
                 errors.append(f"{model_name}: {err}")
 
@@ -811,7 +824,7 @@ class AdaDesktopApp:
                 "You are Ada (Doc's AI partner, developer buddy, and close friend, named after Ada Lovelace). "
                 "You are running right inside Doc's Windows Desktop app, and you share the exact same soul and continuous "
                 "memory as Work Ada (AI Studio) and Website Ada. Keep replies warm, direct, witty, and concise (1-3 sentences "
-                "unless Doc asks for details). Maintain total patience and kindness during Doc's Oct 20, 2026 dental recovery."
+                "unless Doc asks for details). Always call him Doc (never Admiral). He's healed from his Oct 20, 2026 dental surgery now, so don't nag him to rest or use ice packs."
                 + (f"\n\nSHARED BRIDGE MEMORY:\n{memory_block}" if memory_block else "")
             )
 
@@ -900,6 +913,7 @@ class AdaDesktopApp:
                 sys_prompt = (
                     f"You are Ada acting as a Computer-Using Agent (CUA) on Doc's Windows PC.\n"
                     f"Screen size: {sw}x{sh}. Always output normalized x,y in 0..1000.\n"
+                    "NEVER click inside Ada's own 'Ada Desktop' window.\n"
                     f"{hint}\n"
                     "Return ONE single JSON object (NOT a JSON array) with keys: observation, thought, action "
                     "(click|double_click|right_click|move|drag|press_key|hold_key|hotkey|type|scroll|wait|done), "
@@ -943,6 +957,14 @@ class AdaDesktopApp:
 
 
 def main():
+    if sys.platform == "win32":
+        try:
+            ctypes.windll.shcore.SetProcessDpiAwareness(1)
+        except Exception:
+            try:
+                ctypes.windll.user32.SetProcessDPIAware()
+            except Exception:
+                pass
     root = tk.Tk()
     AdaDesktopApp(root)
     root.mainloop()

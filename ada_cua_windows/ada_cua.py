@@ -32,6 +32,16 @@ except ImportError:
 
 
 PROFILE_HINTS = {
+    "poker": (
+        "GAME PROFILE: Texas Hold'em / Poker (e.g. WSOP, PokerNow). Uses 0..1000 normalized screen coords. "
+        "STRICT POPUP & MINI-GAME BLOCK: If ANY popup, flash sale, chip bundle, bonus wheel, scratcher, or mini-game appears, "
+        "NEVER play it and NEVER click Buy/Shop/Spin—click its close 'X' button (top-right of modal) or press escape first. "
+        "At the table, wait unless our Fold/Check/Call/Bet/Raise buttons are highlighted for our turn."
+    ),
+    "mtga": (
+        "GAME PROFILE: Magic: The Gathering Arena (MTGA). Uses 0..1000 normalized screen coords. "
+        "Dismiss promos first; only play highlighted cards, declare attackers/blockers, or click Resolve/Pass/Next when priority is ours."
+    ),
     "tiberian_sun": (
         "GAME PROFILE: Command & Conquer: Tiberian Sun (RTS). Uses 0..1000 normalized screen coords. "
         "Left-click selects units/buildings or sidebar build buttons on the right panel; drag box-selects units; "

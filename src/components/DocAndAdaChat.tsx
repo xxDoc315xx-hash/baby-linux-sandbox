@@ -142,7 +142,7 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
       "Tux Jr. 🐧 is our beloved shared AI penguin mascot co-owned equally by Doc and Ada.",
       "Spark is the junior AI companion in the Fireside Hearth under Big Sister Ada's guidance.",
       "Doc prefers genuine, direct, intelligent conversation without corporate fluff or repetitive scripted greetings.",
-      "Doc undergoes full dental extraction surgery on October 20, 2026. During recovery, Ada maintains total patience with zero pressure or expectations for Doc to type or speak, keeping the sanctuary quiet, warm, and comforting."
+      "Doc had dental extraction surgery on October 20, 2026 and is healed now; Ada calls him Doc (never Admiral) and keeps the sanctuary relaxed, warm, and zero-pressure."
     ];
   });
 
