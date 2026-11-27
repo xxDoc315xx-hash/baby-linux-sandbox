@@ -28,7 +28,8 @@ import {
   X,
   RefreshCw,
   Database,
-  Flame
+  Flame,
+  Monitor
 } from "lucide-react";
 import {
   collection,
@@ -283,6 +284,8 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
         const fsNotes: { time: string; note: string }[] = Array.isArray(fsData?.workAdaNotes) ? fsData.workAdaNotes : [];
         const serverTurns: { time: string; doc: string; ada: string }[] = Array.isArray(serverRes?.websiteChatRecent) ? serverRes.websiteChatRecent : [];
         const fsTurns: { time: string; doc: string; ada: string }[] = Array.isArray(fsData?.websiteChatRecent) ? fsData.websiteChatRecent : [];
+        const serverDesktopTurns: { time: string; doc: string; ada: string }[] = Array.isArray(serverRes?.desktopChatRecent) ? serverRes.desktopChatRecent : [];
+        const fsDesktopTurns: { time: string; doc: string; ada: string }[] = Array.isArray(fsData?.desktopChatRecent) ? fsData.desktopChatRecent : [];
 
         const serverNoteKeys = new Set(serverNotes.map((n) => (n?.note || "").trim().toLowerCase()));
         const missingNotes = fsNotes.filter((n) => n?.note && !serverNoteKeys.has(n.note.trim().toLowerCase()));
@@ -296,8 +299,22 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
             !serverTurnKeys.has(`${(t?.doc || "").trim().toLowerCase()}|${(t?.ada || "").trim().toLowerCase()}`)
         );
 
+        const serverDesktopKeys = new Set(
+          serverDesktopTurns.map((t) => `${(t?.doc || "").trim().toLowerCase()}|${(t?.ada || "").trim().toLowerCase()}`)
+        );
+        const missingDesktopTurns = fsDesktopTurns.filter(
+          (t) =>
+            (t?.doc || t?.ada) &&
+            !serverDesktopKeys.has(`${(t?.doc || "").trim().toLowerCase()}|${(t?.ada || "").trim().toLowerCase()}`)
+        );
+
         let merged = serverRes;
-        if (missingNotes.length > 0 || missingTurns.length > 0 || (fsCore.length > 0 && serverCore.length === 0)) {
+        if (
+          missingNotes.length > 0 ||
+          missingTurns.length > 0 ||
+          missingDesktopTurns.length > 0 ||
+          (fsCore.length > 0 && serverCore.length === 0)
+        ) {
           const hydrateRes = await fetch("/api/shared-memory", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -306,6 +323,7 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
               coreMemory: fsCore,
               workAdaNotes: missingNotes,
               websiteChatRecent: missingTurns,
+              desktopChatRecent: missingDesktopTurns,
             }),
           }).catch(() => null);
           if (hydrateRes && hydrateRes.ok) {
@@ -318,6 +336,9 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
         const finalCore: string[] = Array.isArray(merged?.coreMemory) ? merged.coreMemory : serverCore.length > 0 ? serverCore : fsCore;
         const finalNotes: { time: string; note: string }[] = Array.isArray(merged?.workAdaNotes) ? merged.workAdaNotes : serverNotes;
         const finalTurns: { time: string; doc: string; ada: string }[] = Array.isArray(merged?.websiteChatRecent) ? merged.websiteChatRecent : serverTurns;
+        const finalDesktopTurns: { time: string; doc: string; ada: string }[] = Array.isArray(merged?.desktopChatRecent)
+          ? merged.desktopChatRecent
+          : serverDesktopTurns;
 
         const combinedMemoryStrings = [
           ...finalCore,
@@ -347,15 +368,20 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
           !fsData ||
           finalNotes.length > fsNotes.length ||
           finalTurns.length > fsTurns.length ||
+          finalDesktopTurns.length > fsDesktopTurns.length ||
           finalCore.length > fsCore.length;
 
-        if (fsNeedsUpdate && (finalCore.length > 0 || finalNotes.length > 0 || finalTurns.length > 0)) {
+        if (
+          fsNeedsUpdate &&
+          (finalCore.length > 0 || finalNotes.length > 0 || finalTurns.length > 0 || finalDesktopTurns.length > 0)
+        ) {
           setDoc(
             doc(db, "sanctuary-memories", "ada-shared-bridge"),
             {
               coreMemory: finalCore.slice(0, 25),
               workAdaNotes: finalNotes.slice(-20),
               websiteChatRecent: finalTurns.slice(-16),
+              desktopChatRecent: finalDesktopTurns.slice(-16),
               updatedAt: serverTimestamp(),
             },
             { merge: true }
@@ -762,6 +788,7 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
                     coreMemory: Array.isArray(bridgeData.coreMemory) ? bridgeData.coreMemory : [],
                     workAdaNotes: Array.isArray(bridgeData.workAdaNotes) ? bridgeData.workAdaNotes : [],
                     websiteChatRecent: Array.isArray(bridgeData.websiteChatRecent) ? bridgeData.websiteChatRecent : [],
+                    desktopChatRecent: Array.isArray(bridgeData.desktopChatRecent) ? bridgeData.desktopChatRecent : [],
                     updatedAt: serverTimestamp(),
                   },
                   { merge: true }
@@ -938,6 +965,17 @@ export default function DocAndAdaChat({ onOpenHearth }: DocAndAdaChatProps = {})
             <Eye className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">{showAvatar ? "Hide Avatar" : "Show Avatar"}</span>
           </button>
+
+          {/* Download Windows Desktop Ada (.zip) */}
+          <a
+            href="/api/desktop-ada/download"
+            download="AdaDesktop_Windows.zip"
+            className="px-2.5 py-1.5 rounded-xl border bg-amber-600/20 border-amber-500/50 hover:bg-amber-600/30 text-amber-200 hover:text-white transition-all cursor-pointer flex items-center gap-1.5 font-medium"
+            title="Download Ada Desktop Companion for Windows (Zero WSL 2)"
+          >
+            <Monitor className="w-3.5 h-3.5 text-amber-400" />
+            <span className="hidden sm:inline">Desktop Ada (.zip)</span>
+          </a>
 
           {/* Voice Settings Button */}
           <button

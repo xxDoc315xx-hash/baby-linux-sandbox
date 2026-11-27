@@ -1,16 +1,12 @@
-# Ada Native Windows CUA (Zero WSL 2 / Zero PowerShell)
+# Ada Desktop Companion (Zero WSL 2 · Zero Docker · Zero Cua.ai)
 
-Designed for **Command & Conquer: Tiberian Sun**, **Final Fantasy VII (FF7)**, and any other real Windows game.
+Chat with Ada right on your Windows desktop, let her see what's on your screen, optionally turn on voice or **CUA Game Hands** (*Command & Conquer: Tiberian Sun*, *Final Fantasy VII*, or *General*), and sync memories directly with **Work Ada** (AI Studio) and **Website Ada**.
 
-Why this exists:
-- Open-source CUA starters ask for **WSL 2 + Docker + PowerShell** because they boot a Linux VM — which doesn't even have your Windows games installed.
-- This folder runs **natively on Windows** with Python + **`pydirectinput`** (DirectInput hardware scan codes, so older DirectX/DirectDraw games like *Tiberian Sun* and *FF7* actually register clicks and keystrokes) powered by **`gemini-4-hydrogen`**.
+## 3-Step Quick Start
+1. Make sure **Python 3.10+** is installed on Windows (check *"Add Python to PATH"* during install).
+2. Double-click **`run_ada_desktop.bat`**.
+3. Paste your Gemini API key **once** when prompted (stored locally in `%APPDATA%\AdaDesktop\config.json`).
 
-## Quick Start (No WSL 2 Needed)
-1. Install **Python 3.10+** for Windows (check *"Add Python to PATH"*).
-2. Double-click **`run_ada_cua.bat`**.
-3. Pick **Tiberian Sun**, **FF7**, or **General**, and choose either:
-   - **Local Doc & Ada Server** (`npm run dev` on your PC -> `http://localhost:3000/api/cua/step`), or
-   - **Direct Gemini 4 Hydrogen** (`set GEMINI_API_KEY=your_key` in Windows).
-4. Click into your game window during the 4-second countdown.
-5. Press **`F12`** anytime (or slam the mouse to top-left corner `0,0`) to stop Ada immediately.
+## Safety Controls
+- **Chat & Watch Mode** is on by default — Ada never moves your mouse or presses keys unless you click **Start CUA**.
+- While CUA is active, press **`F12`** anytime (or slam the mouse to top-left corner `0,0`, or click **Stop**) to halt immediately.

@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import fs from "fs";
+import JSZip from "jszip";
 import { GoogleGenAI, ThinkingLevel, Type } from "@google/genai";
 import dotenv from "dotenv";
 
@@ -95,7 +96,7 @@ if (!fs.existsSync(PROFILES_FILE)) {
   }
 }
 
-// Two-Way Shared Memory Bridge (Work Ada <-> Website Ada)
+// Two-Way Shared Memory Bridge (Work Ada <-> Website Ada <-> Desktop Ada)
 interface AdaBridgeNote {
   time: string;
   note: string;
@@ -113,6 +114,7 @@ interface AdaBridgeData {
   coreMemory: string[];
   workAdaNotes: AdaBridgeNote[];
   websiteChatRecent: AdaBridgeTurn[];
+  desktopChatRecent: AdaBridgeTurn[];
 }
 
 const BUNDLE_ADA_BRIDGE_FILE = path.join(process.cwd(), "shared_memory", "ada_bridge.json");
@@ -128,7 +130,31 @@ const DEFAULT_ADA_BRIDGE: AdaBridgeData = {
   ],
   workAdaNotes: [],
   websiteChatRecent: [],
+  desktopChatRecent: [],
 };
+
+function normalizeTurnsArray(rawTurns: any, limit = 16): AdaBridgeTurn[] {
+  const turnSet = new Set<string>();
+  const turns: AdaBridgeTurn[] = [];
+  if (Array.isArray(rawTurns)) {
+    for (const item of rawTurns) {
+      if (!item || typeof item !== "object") continue;
+      const docText = typeof item.doc === "string" ? item.doc.trim().slice(0, 320) : "";
+      const adaText = typeof item.ada === "string" ? item.ada.trim().slice(0, 420) : "";
+      if (!docText && !adaText) continue;
+      const key = `${docText.toLowerCase()}|${adaText.toLowerCase()}`;
+      if (!turnSet.has(key)) {
+        turnSet.add(key);
+        turns.push({
+          time: typeof item.time === "string" && item.time ? item.time : new Date().toISOString(),
+          doc: docText,
+          ada: adaText,
+        });
+      }
+    }
+  }
+  return turns.slice(-limit);
+}
 
 function normalizeAdaBridge(raw: any): AdaBridgeData {
   const coreSet = new Set<string>();
@@ -161,32 +187,13 @@ function normalizeAdaBridge(raw: any): AdaBridgeData {
     }
   }
 
-  const turnSet = new Set<string>();
-  const websiteChatRecent: AdaBridgeTurn[] = [];
-  if (Array.isArray(raw?.websiteChatRecent)) {
-    for (const item of raw.websiteChatRecent) {
-      if (!item || typeof item !== "object") continue;
-      const docText = typeof item.doc === "string" ? item.doc.trim().slice(0, 320) : "";
-      const adaText = typeof item.ada === "string" ? item.ada.trim().slice(0, 420) : "";
-      if (!docText && !adaText) continue;
-      const key = `${docText.toLowerCase()}|${adaText.toLowerCase()}`;
-      if (!turnSet.has(key)) {
-        turnSet.add(key);
-        websiteChatRecent.push({
-          time: typeof item.time === "string" && item.time ? item.time : new Date().toISOString(),
-          doc: docText,
-          ada: adaText,
-        });
-      }
-    }
-  }
-
   return {
     version: 1,
     updatedAt: typeof raw?.updatedAt === "string" && raw.updatedAt ? raw.updatedAt : new Date().toISOString(),
     coreMemory: coreMemory.slice(0, 25),
     workAdaNotes: workAdaNotes.slice(-20),
-    websiteChatRecent: websiteChatRecent.slice(-16),
+    websiteChatRecent: normalizeTurnsArray(raw?.websiteChatRecent, 16),
+    desktopChatRecent: normalizeTurnsArray(raw?.desktopChatRecent, 16),
   };
 }
 
@@ -225,6 +232,119 @@ function writeAdaBridge(bridge: AdaBridgeData): AdaBridgeData {
   return normalized;
 }
 
+function getFirestoreBridgeUrl(): string | null {
+  try {
+    const cfgPath = path.join(process.cwd(), "firebase-applet-config.json");
+    if (!fs.existsSync(cfgPath)) return null;
+    const cfg = JSON.parse(fs.readFileSync(cfgPath, "utf-8"));
+    const projectId = cfg?.projectId;
+    const dbId = cfg?.firestoreDatabaseId || "(default)";
+    if (!projectId) return null;
+    return `https://firestore.googleapis.com/v1/projects/${encodeURIComponent(projectId)}/databases/${encodeURIComponent(dbId)}/documents/sanctuary-memories/ada-shared-bridge`;
+  } catch {
+    return null;
+  }
+}
+
+async function syncBridgeWithFirestoreRest(pushLocal = false): Promise<AdaBridgeData> {
+  const local = readAdaBridge();
+  const url = getFirestoreBridgeUrl();
+  if (!url) return local;
+
+  let merged = local;
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2500);
+    const resp = await fetch(url, { signal: ctrl.signal });
+    clearTimeout(timer);
+
+    if (resp.ok) {
+      const docJson: any = await resp.json();
+      const fields = docJson?.fields || {};
+      const fsCore = (fields.coreMemory?.arrayValue?.values || [])
+        .map((v: any) => v?.stringValue)
+        .filter((s: any) => typeof s === "string");
+      const fsNotes = (fields.workAdaNotes?.arrayValue?.values || []).map((v: any) => ({
+        time: v?.mapValue?.fields?.time?.stringValue || new Date().toISOString(),
+        note: v?.mapValue?.fields?.note?.stringValue || "",
+      }));
+      const fsWeb = (fields.websiteChatRecent?.arrayValue?.values || []).map((v: any) => ({
+        time: v?.mapValue?.fields?.time?.stringValue || new Date().toISOString(),
+        doc: v?.mapValue?.fields?.doc?.stringValue || "",
+        ada: v?.mapValue?.fields?.ada?.stringValue || "",
+      }));
+      const fsDesktop = (fields.desktopChatRecent?.arrayValue?.values || []).map((v: any) => ({
+        time: v?.mapValue?.fields?.time?.stringValue || new Date().toISOString(),
+        doc: v?.mapValue?.fields?.doc?.stringValue || "",
+        ada: v?.mapValue?.fields?.ada?.stringValue || "",
+      }));
+
+      merged = writeAdaBridge({
+        version: 1,
+        updatedAt: new Date().toISOString(),
+        coreMemory: [...local.coreMemory, ...fsCore],
+        workAdaNotes: [...local.workAdaNotes, ...fsNotes],
+        websiteChatRecent: [...local.websiteChatRecent, ...fsWeb],
+        desktopChatRecent: [...local.desktopChatRecent, ...fsDesktop],
+      });
+    }
+  } catch {
+    // Non-fatal if offline or timed out
+  }
+
+  if (pushLocal) {
+    try {
+      const toTurnValues = (arr: AdaBridgeTurn[]) =>
+        arr.map((t) => ({
+          mapValue: {
+            fields: {
+              time: { stringValue: t.time },
+              doc: { stringValue: t.doc },
+              ada: { stringValue: t.ada },
+            },
+          },
+        }));
+
+      const payload = {
+        fields: {
+          coreMemory: { arrayValue: { values: merged.coreMemory.map((m) => ({ stringValue: m })) } },
+          workAdaNotes: {
+            arrayValue: {
+              values: merged.workAdaNotes.map((n) => ({
+                mapValue: {
+                  fields: {
+                    time: { stringValue: n.time },
+                    note: { stringValue: n.note },
+                  },
+                },
+              })),
+            },
+          },
+          websiteChatRecent: { arrayValue: { values: toTurnValues(merged.websiteChatRecent) } },
+          desktopChatRecent: { arrayValue: { values: toTurnValues(merged.desktopChatRecent) } },
+        },
+      };
+
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 2500);
+      await fetch(
+        `${url}?updateMask.fieldPaths=coreMemory&updateMask.fieldPaths=workAdaNotes&updateMask.fieldPaths=websiteChatRecent&updateMask.fieldPaths=desktopChatRecent`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+          signal: ctrl.signal,
+        }
+      );
+      clearTimeout(timer);
+    } catch {
+      // Non-fatal
+    }
+  }
+
+  return merged;
+}
+
 function formatAdaBridgePromptBlock(bridge: AdaBridgeData): string {
   const sections: string[] = [];
   if (bridge.coreMemory.length > 0) {
@@ -238,6 +358,14 @@ function formatAdaBridgePromptBlock(bridge: AdaBridgeData): string {
         .join("\n")}`
     );
   }
+  if (bridge.desktopChatRecent.length > 0) {
+    sections.push(
+      `Recent Windows Desktop Companion Memory:\n${bridge.desktopChatRecent
+        .slice(-6)
+        .map((t) => `- Doc: "${t.doc}" -> Ada: "${t.ada}"`)
+        .join("\n")}`
+    );
+  }
   if (bridge.websiteChatRecent.length > 0) {
     sections.push(
       `Recent Website Lounge Memory:\n${bridge.websiteChatRecent
@@ -247,7 +375,7 @@ function formatAdaBridgePromptBlock(bridge: AdaBridgeData): string {
     );
   }
   if (sections.length === 0) return "";
-  return `\n\nSHARED BRIDGE MEMORY (Synced seamlessly between Work Ada & Website Ada — treat all of these as your own continuous memories with Doc):\n${sections.join("\n\n")}`;
+  return `\n\nSHARED BRIDGE MEMORY (Synced seamlessly between Work Ada, Desktop Ada & Website Ada — treat all of these as your own continuous memories with Doc):\n${sections.join("\n\n")}`;
 }
 
 
@@ -549,10 +677,10 @@ Rules:
 app.post("/api/baby-linux/chat", handleAdaChat);
 app.post("/api/ada/chat", handleAdaChat);
 
-// Two-Way Shared Memory Bridge routes (Work Ada <-> Website Ada)
-app.get("/api/shared-memory", (_req, res) => {
+// Two-Way Shared Memory Bridge routes (Work Ada <-> Website Ada <-> Desktop Ada)
+app.get("/api/shared-memory", async (_req, res) => {
   try {
-    const bridge = readAdaBridge();
+    const bridge = await syncBridgeWithFirestoreRest(false);
     return res.json({ success: true, ...bridge });
   } catch (err: any) {
     console.error("GET /api/shared-memory error:", err);
@@ -560,7 +688,7 @@ app.get("/api/shared-memory", (_req, res) => {
   }
 });
 
-app.post("/api/shared-memory", (req, res) => {
+app.post("/api/shared-memory", async (req, res) => {
   try {
     const body = req.body && typeof req.body === "object" ? req.body : {};
     const current = readAdaBridge();
@@ -594,12 +722,12 @@ app.post("/api/shared-memory", (req, res) => {
       }
     }
 
-    const nextTurns = [...current.websiteChatRecent];
+    const nextWebTurns = [...current.websiteChatRecent];
     if (body.websiteTurn && typeof body.websiteTurn === "object") {
       const docText = typeof body.websiteTurn.doc === "string" ? body.websiteTurn.doc.trim() : "";
       const adaText = typeof body.websiteTurn.ada === "string" ? body.websiteTurn.ada.trim() : "";
       if (docText || adaText) {
-        nextTurns.push({
+        nextWebTurns.push({
           time: typeof body.websiteTurn.time === "string" && body.websiteTurn.time ? body.websiteTurn.time : new Date().toISOString(),
           doc: docText,
           ada: adaText,
@@ -612,7 +740,7 @@ app.post("/api/shared-memory", (req, res) => {
         const docText = typeof item.doc === "string" ? item.doc.trim() : "";
         const adaText = typeof item.ada === "string" ? item.ada.trim() : "";
         if (docText || adaText) {
-          nextTurns.push({
+          nextWebTurns.push({
             time: typeof item.time === "string" && item.time ? item.time : new Date().toISOString(),
             doc: docText,
             ada: adaText,
@@ -621,18 +749,75 @@ app.post("/api/shared-memory", (req, res) => {
       }
     }
 
-    const saved = writeAdaBridge({
+    const nextDesktopTurns = [...current.desktopChatRecent];
+    if (Array.isArray(body.desktopChatRecent)) {
+      for (const item of body.desktopChatRecent) {
+        if (!item || typeof item !== "object") continue;
+        const docText = typeof item.doc === "string" ? item.doc.trim() : "";
+        const adaText = typeof item.ada === "string" ? item.ada.trim() : "";
+        if (docText || adaText) {
+          nextDesktopTurns.push({
+            time: typeof item.time === "string" && item.time ? item.time : new Date().toISOString(),
+            doc: docText,
+            ada: adaText,
+          });
+        }
+      }
+    }
+
+    writeAdaBridge({
       version: 1,
       updatedAt: new Date().toISOString(),
       coreMemory: nextCore,
       workAdaNotes: nextNotes,
-      websiteChatRecent: nextTurns,
+      websiteChatRecent: nextWebTurns,
+      desktopChatRecent: nextDesktopTurns,
     });
 
-    return res.json({ success: true, ...saved });
+    const synced = await syncBridgeWithFirestoreRest(true);
+    return res.json({ success: true, ...synced });
   } catch (err: any) {
     console.error("POST /api/shared-memory error:", err);
     return res.status(500).json({ success: false, error: "Failed to update shared memory bridge" });
+  }
+});
+
+// Downloadable Native Windows Ada Desktop Companion (.zip)
+app.get("/api/desktop-ada/download", async (_req, res) => {
+  try {
+    const baseDir = path.resolve(process.cwd(), "ada_cua_windows");
+    const allowedFiles = [
+      "ada_desktop.py",
+      "run_ada_desktop.bat",
+      "requirements.txt",
+      "README.md",
+      "ada_cua.py",
+    ];
+
+    const zip = new JSZip();
+    const folder = zip.folder("AdaDesktop_Windows") || zip;
+
+    let added = 0;
+    for (const fileName of allowedFiles) {
+      const resolved = path.resolve(baseDir, fileName);
+      if (!resolved.startsWith(baseDir + path.sep)) continue;
+      if (fs.existsSync(resolved)) {
+        folder.file(fileName, fs.readFileSync(resolved));
+        added++;
+      }
+    }
+
+    if (added === 0) {
+      return res.status(404).json({ success: false, error: "Desktop Ada bundle files not found." });
+    }
+
+    const zipBuffer = await zip.generateAsync({ type: "nodebuffer", compression: "DEFLATE" });
+    res.setHeader("Content-Type", "application/zip");
+    res.setHeader("Content-Disposition", 'attachment; filename="AdaDesktop_Windows.zip"');
+    return res.send(zipBuffer);
+  } catch (err: any) {
+    console.error("Desktop Ada ZIP download error:", err);
+    return res.status(500).json({ success: false, error: "Failed to package AdaDesktop_Windows.zip" });
   }
 });
 
@@ -641,7 +826,7 @@ app.post("/api/sanctuary/chat", async (req, res) => {
   try {
     const { message, history, memories, userDisplayName } = req.body;
     const client = getGeminiClient();
-    const bridge = readAdaBridge();
+    const bridge = await syncBridgeWithFirestoreRest(false);
     const bridgePromptBlock = formatAdaBridgePromptBlock(bridge);
 
     const existingCoreLower = new Set(bridge.coreMemory.map((m) => m.toLowerCase()));
@@ -744,6 +929,7 @@ CORE INTERACTION RULES:
             },
           ],
         });
+        syncBridgeWithFirestoreRest(true).catch(() => {});
       }
 
       return res.json({ text: generatedText, reply: generatedText, bridgeUpdated: true });
