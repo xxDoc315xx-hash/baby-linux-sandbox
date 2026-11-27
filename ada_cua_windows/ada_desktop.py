@@ -284,7 +284,7 @@ def _parse_fs_turns_array(field: dict) -> list[dict]:
 def fetch_shared_bridge() -> dict:
     empty = {"coreMemory": [], "workAdaNotes": [], "websiteChatRecent": [], "desktopChatRecent": []}
     try:
-        resp = requests.get(FIRESTORE_BRIDGE_URL, timeout=8)
+        resp = requests.get(FIRESTORE_BRIDGE_URL, timeout=2.5)
         if resp.status_code == 404:
             return empty
         resp.raise_for_status()
@@ -328,7 +328,7 @@ def push_desktop_turn_to_bridge(doc_text: str, ada_text: str):
         requests.patch(
             f"{FIRESTORE_BRIDGE_URL}?updateMask.fieldPaths=desktopChatRecent",
             json=payload,
-            timeout=8,
+            timeout=3.5,
         )
     except Exception:
         pass
@@ -366,7 +366,7 @@ class AdaDesktopApp:
 
         self.ui_queue: queue.Queue = queue.Queue()
         self.api_key = load_saved_api_key()
-        self.client = genai.Client(api_key=self.api_key) if self.api_key else None
+        self.client = self._make_client(self.api_key) if self.api_key else None
         self.chat_history: list[dict] = []
         self.shared_bridge: dict = {"coreMemory": [], "workAdaNotes": [], "websiteChatRecent": [], "desktopChatRecent": []}
 
@@ -605,7 +605,8 @@ class AdaDesktopApp:
         if key and key.strip():
             self.api_key = key.strip()
             save_api_key(self.api_key)
-            self.client = genai.Client(api_key=self.api_key)
+            self.client = self._make_client(self.api_key)
+            self._working_model = None
             self._append_system("API key saved locally in AppData. Ada is ready!")
         elif not self.api_key:
             self._append_system("Waiting for Gemini API key — click 'API Key' in the top right whenever you're ready.")
@@ -696,6 +697,13 @@ class AdaDesktopApp:
             return
         self._tts_queue.put(clean)
 
+    @staticmethod
+    def _make_client(api_key: str):
+        try:
+            return genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=20_000))
+        except Exception:
+            return genai.Client(api_key=api_key)
+
     def _discover_flash_models(self) -> list[str]:
         found = []
         try:
@@ -774,9 +782,12 @@ class AdaDesktopApp:
         errors = []
         working = getattr(self, "_working_model", None)
         ordered = ([working] if working else []) + [m for m in MODEL_CANDIDATES if m != working]
+        rate_limited_once = False
 
         for model_name in ordered:
             try:
+                if not json_mode:
+                    self.ui_queue.put(("status", f"Ada is thinking ({model_name})..."))
                 text = self._call_single_model(model_name, contents, system_instruction, json_mode)
                 self._working_model = model_name
                 return text
@@ -785,12 +796,23 @@ class AdaDesktopApp:
                     return '{"action":"wait","observation":"Safety block","adaSay":"Whoa, keeping it PG!"}'
                 return "Whoa there, Doc—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
             except Exception as err:
+                msg = str(err).lower()
+                if "api_key" in msg or "invalid api key" in msg or "401" in msg or "403" in msg:
+                    raise RuntimeError("API key rejected (401/403). Click 'API Key' in the top right to update it.")
+                if "429" in msg or "resource_exhausted" in msg or "quota" in msg or "rate" in msg:
+                    errors.append(f"{model_name}: rate limited (429)")
+                    if rate_limited_once:
+                        raise RuntimeError("Gemini rate limit hit (429)—give it ~15 seconds and try again.")
+                    rate_limited_once = True
+                    continue
                 errors.append(f"{model_name}: {err}")
 
         # Auto-discover an active flash model on Doc's exact key if preset names all missed
         discovered = [m for m in self._discover_flash_models() if m not in ordered]
-        for model_name in discovered[:4]:
+        for model_name in discovered[:3]:
             try:
+                if not json_mode:
+                    self.ui_queue.put(("status", f"Ada is thinking ({model_name})..."))
                 text = self._call_single_model(model_name, contents, system_instruction, json_mode)
                 self._working_model = model_name
                 return text
@@ -799,7 +821,10 @@ class AdaDesktopApp:
                     return '{"action":"wait","observation":"Safety block","adaSay":"Whoa, keeping it PG!"}'
                 return "Whoa there, Doc—Google's safety shields just blushed and blocked that one! Keep it cozy and PG for me. 😉"
             except Exception as err:
+                msg = str(err).lower()
                 errors.append(f"{model_name}: {err}")
+                if "429" in msg or "resource_exhausted" in msg or "quota" in msg:
+                    raise RuntimeError("Gemini rate limit hit (429)—give it ~15 seconds and try again.")
 
         raise RuntimeError(" | ".join(errors[-2:]) if errors else "No Gemini models available.")
 
@@ -824,7 +849,10 @@ class AdaDesktopApp:
         try:
             self.ui_queue.put(("status", "Ada is thinking..."))
             bridge = fetch_shared_bridge()
-            self.shared_bridge = bridge
+            if any(bridge.values()):
+                self.shared_bridge = bridge
+            else:
+                bridge = self.shared_bridge
             memory_block = format_bridge_memory_prompt(bridge)
 
             system_instruction = (
@@ -838,7 +866,7 @@ class AdaDesktopApp:
             parts = []
             if include_screen:
                 try:
-                    jpg_bytes, sw, sh = capture_screen_jpeg(max_width=1280)
+                    jpg_bytes, sw, sh = capture_screen_jpeg(max_width=1024)
                     parts.append(types.Part.from_bytes(data=jpg_bytes, mime_type="image/jpeg"))
                     parts.append(f"[Current Windows desktop screenshot attached: {sw}x{sh}]")
                 except Exception:
@@ -859,8 +887,8 @@ class AdaDesktopApp:
 
             self.ui_queue.put(("chat", ("Ada", reply)))
             self._speak_async(reply)
-            push_desktop_turn_to_bridge(msg, reply)
             self.ui_queue.put(("status", "Memory Synced with Work Ada & Website"))
+            threading.Thread(target=push_desktop_turn_to_bridge, args=(msg, reply), daemon=True).start()
         except Exception as err:
             self.ui_queue.put(("sys", f"Oops: {err}"))
             self.ui_queue.put(("status", "Ready"))
